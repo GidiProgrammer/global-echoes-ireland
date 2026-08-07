@@ -37,16 +37,16 @@ export function PageHero({
 }) {
   return (
     <section className="border-b border-forest/10 bg-cream">
-      <div className="container-x pt-16 pb-14 md:pt-20 md:pb-20">
-        <h1 className="max-w-4xl font-serif text-4xl leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl lg:text-6xl">
+      <div className="container-x pt-10 pb-8 md:pt-12 md:pb-10">
+        <h1 className="max-w-3xl font-display text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
           {title}
         </h1>
         {intro && (
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-foreground/85 md:text-lg">
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-foreground/80">
             {intro}
           </p>
         )}
-        {children}
+        {children ? <div className="mt-6">{children}</div> : null}
       </div>
     </section>
   );

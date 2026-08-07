@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useId, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { List, X } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 
 /** Persuade path: five doors. Gallery/Blog live in the footer until content-ready. */
@@ -178,9 +178,9 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
             }`}
           >
             {open ? (
-              <X className="h-4 w-4" strokeWidth={1.75} />
+              <X className="h-4 w-4" />
             ) : (
-              <Menu className="h-4 w-4" strokeWidth={1.75} />
+              <List className="h-4 w-4" />
             )}
           </button>
         </div>
@@ -196,9 +196,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
           className="fixed inset-0 z-[60] flex flex-col bg-forest lg:hidden"
         >
           <div className="flex h-16 items-center justify-between border-b border-cream/15 px-4 sm:px-6 md:h-[4.25rem]">
-            <p className="font-serif text-[1.25rem] leading-none tracking-[-0.02em] text-cream">
-              Global Echoes Ireland
-            </p>
+            <Logo inverted size="sm" />
             <button
               type="button"
               onClick={() => {
@@ -208,7 +206,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               aria-label="Close menu"
               className="grid h-11 w-11 min-h-11 min-w-11 cursor-pointer place-items-center rounded-[6px] border border-cream/25 text-cream transition-colors duration-200 hover:bg-cream/10 focus-ring-brand-on-dark"
             >
-              <X className="h-4 w-4" strokeWidth={1.75} />
+              <X className="h-4 w-4" />
             </button>
           </div>
 

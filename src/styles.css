@@ -1,3 +1,13 @@
+/* Self-hosted faces — no Google Fonts runtime */
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+@import "@fontsource/outfit/latin-600.css";
+@import "@fontsource/outfit/latin-700.css";
+@import "@fontsource/work-sans/latin-400.css";
+@import "@fontsource/work-sans/latin-500.css";
+@import "@fontsource/work-sans/latin-600.css";
+@import "@fontsource/work-sans/latin-700.css";
+
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -14,9 +24,10 @@
   --radius-3xl: 1.25rem;
   --radius-4xl: 1.5rem;
 
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  /* font-serif utility = display role (Outfit). Name kept for existing class usage. */
+  --font-serif: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -69,43 +80,42 @@
 :root {
   --radius: 6px;
 
-  /* Brand board palette — source of truth
-     --gold: fills, borders, accents on dark
-     --gold-ink: text on cream (AA)
-     --gold-bright: text/icons on forest */
+  /* Forest family: deep green + cool bone + amber
+     Token names (--cream / --gold*) kept for class compatibility.
+     --gold: amber fills / CTAs
+     --gold-ink: amber text on bone (AA)
+     --gold-bright: amber text/icons on forest (AA) */
   --forest: #1b3f24;
   --forest-deep: #14301c;
-  --forest-soft: #eef2ea;
-  --gold: #b8860b;
-  /* Readable gold on cream (AA body / large) */
-  --gold-ink: #8a6508;
-  /* Readable gold on forest (AA) */
-  --gold-bright: #f5d98a;
-  --gold-soft: #f3e6c4;
+  --forest-soft: #e8efe9;
+  --gold: #c97b14;
+  --gold-ink: #7a4a0a;
+  --gold-bright: #f0c56a;
+  --gold-soft: #f3e8d0;
   --clay: #70201f;
   --maroon: #70201f;
-  --cream: #f9f8f3;
-  --ink: #1a1a1a;
-  /* Near-black hero vignette — neutral, not forest gel */
+  --cream: #f2f5f1;
+  --ink: #121614;
+  /* Near-black hero vignette — cool, not forest gel */
   --hero-scrim: #070a08;
 
   /* Semantic */
-  --background: #f9f8f3;
-  --foreground: #1a1a1a;
+  --background: #f2f5f1;
+  --foreground: #121614;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #121614;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
+  --popover-foreground: #121614;
   --primary: var(--forest);
-  --primary-foreground: #f9f8f3;
-  --secondary: #f0eee6;
+  --primary-foreground: #f2f5f1;
+  --secondary: #e6ebe7;
   --secondary-foreground: #14301c;
-  --muted: #ebe9e1;
-  --muted-foreground: #3d3d3d;
+  --muted: #dde3df;
+  --muted-foreground: #3a403c;
   --accent: var(--gold-soft);
   --accent-foreground: #14301c;
   --destructive: var(--maroon);
-  --destructive-foreground: #f9f8f3;
+  --destructive-foreground: #f2f5f1;
   --border: color-mix(in srgb, var(--forest) 18%, transparent);
   --input: color-mix(in srgb, var(--forest) 14%, transparent);
   --ring: var(--forest);
@@ -167,11 +177,11 @@
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: -0.015em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
     color: var(--color-foreground);
-    line-height: 0.95;
+    line-height: 1.08;
     text-wrap: balance;
   }
   ::selection {
@@ -192,10 +202,9 @@
 @utility eyebrow {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--gold-ink);
 }
 
@@ -219,16 +228,15 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   border-radius: 6px;
   background: var(--forest);
   color: #fff;
-  padding: 0.75rem 1.35rem;
+  padding: 0.75rem 1.25rem;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   transition: background 200ms ease, transform 150ms ease;
   &:hover { background: var(--forest-deep); }
   &:active { transform: translateY(1px); }
@@ -248,17 +256,16 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   border-radius: 6px;
   border: 1px solid var(--forest);
   background: #fff;
   color: var(--forest);
-  padding: 0.75rem 1.35rem;
+  padding: 0.75rem 1.25rem;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease, transform 150ms ease;
   &:hover {
     background: var(--forest);
@@ -277,16 +284,15 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   border-radius: 6px;
   background: var(--gold);
   color: var(--ink);
-  padding: 0.75rem 1.35rem;
+  padding: 0.75rem 1.25rem;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   transition: background 200ms ease, transform 150ms ease;
   &:hover { background: color-mix(in srgb, var(--gold) 82%, white); }
   &:active { transform: translateY(1px); }
@@ -302,14 +308,13 @@
   display: inline-flex;
   cursor: pointer;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   color: var(--forest-deep);
   padding: 0.4rem 0;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   border-bottom: 1px solid var(--forest);
   transition: color 200ms ease, border-color 200ms ease;
   &:hover { color: var(--gold-ink); border-color: var(--gold-ink); }
@@ -477,45 +482,27 @@
   background:
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--hero-scrim) 55%, transparent) 0%,
-      color-mix(in srgb, var(--hero-scrim) 12%, transparent) 32%,
-      color-mix(in srgb, var(--hero-scrim) 42%, transparent) 62%,
-      color-mix(in srgb, var(--hero-scrim) 78%, transparent) 82%,
-      color-mix(in srgb, var(--hero-scrim) 92%, transparent) 100%
+      color-mix(in srgb, var(--hero-scrim) 48%, transparent) 0%,
+      color-mix(in srgb, var(--hero-scrim) 18%, transparent) 36%,
+      color-mix(in srgb, var(--hero-scrim) 38%, transparent) 68%,
+      color-mix(in srgb, var(--hero-scrim) 72%, transparent) 100%
     ),
     linear-gradient(
       90deg,
-      color-mix(in srgb, var(--hero-scrim) 58%, transparent) 0%,
-      color-mix(in srgb, var(--hero-scrim) 22%, transparent) 38%,
-      color-mix(in srgb, var(--hero-scrim) 8%, transparent) 62%,
-      color-mix(in srgb, var(--hero-scrim) 18%, transparent) 100%
+      color-mix(in srgb, var(--hero-scrim) 78%, transparent) 0%,
+      color-mix(in srgb, var(--hero-scrim) 52%, transparent) 28%,
+      color-mix(in srgb, var(--hero-scrim) 18%, transparent) 52%,
+      color-mix(in srgb, var(--hero-scrim) 6%, transparent) 72%,
+      color-mix(in srgb, var(--hero-scrim) 12%, transparent) 100%
     );
 }
 
 /* Static noise tile — avoids SVG feTurbulence (paint cost / a11y noise). */
 .hero-grain {
-  opacity: 0.22;
+  opacity: 0.12;
   mix-blend-mode: soft-light;
   background-image: url("./assets/hero-noise.png");
   background-size: 128px 128px;
   background-repeat: repeat;
-}
-
-/* Gold arc: the brand-board curve, kept as a quiet outline */
-.hero-arc {
-  position: absolute;
-  top: 50%;
-  right: -34%;
-  aspect-ratio: 1;
-  width: min(96%, 40rem);
-  translate: 0 -50%;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--gold-bright) 30%, transparent);
   pointer-events: none;
-}
-@media (min-width: 1024px) {
-  .hero-arc {
-    right: -12%;
-    width: min(56%, 48rem);
-  }
 }

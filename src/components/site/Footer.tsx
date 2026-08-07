@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import {
-  Facebook,
-  Instagram,
-  Mail,
+  FacebookLogo,
+  InstagramLogo,
+  EnvelopeSimple,
   MapPin,
   Phone,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
 
@@ -29,12 +29,12 @@ const socials = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/globalechoesireland/",
-    Icon: Instagram,
+    Icon: InstagramLogo,
   },
   {
     label: "Facebook",
     href: "https://www.facebook.com/globalechoesireland",
-    Icon: Facebook,
+    Icon: FacebookLogo,
   },
 ] as const;
 
@@ -45,9 +45,9 @@ export function Footer() {
         <div>
           <Logo inverted />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/75">
-            Global Harmony through Sound and creative collaborations. Wellbeing music programmes
-            for care homes, schools, universities and communities across Ireland
-            and beyond.
+            Global Harmony through Sound and creative collaborations. Wellbeing
+            music programmes for care homes, schools, universities and
+            communities across Ireland and beyond.
           </p>
           <p className="mt-3 text-xs text-cream/55">@globalechoesireland</p>
           <div className="mt-6 flex gap-2">
@@ -60,7 +60,7 @@ export function Footer() {
                 aria-label={label}
                 className="grid h-10 w-10 place-items-center rounded-[6px] border border-cream/20 text-cream/85 transition-colors hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
               >
-                <Icon className="h-4 w-4" strokeWidth={1.75} />
+                <Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
@@ -106,7 +106,7 @@ export function Footer() {
           <p className="text-sm font-medium text-gold-bright">Contact</p>
           <ul className="mt-5 space-y-4 text-sm text-cream/85">
             <li className="flex gap-3">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-bright" />
+              <EnvelopeSimple className="mt-0.5 h-4 w-4 shrink-0 text-gold-bright" />
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="break-all hover:text-gold-bright focus-ring-brand-on-dark"
@@ -133,10 +133,7 @@ export function Footer() {
 
       <div className="border-t border-cream/15">
         <div className="container-x flex flex-col gap-3 py-5 text-[11px] tracking-[0.04em] text-cream/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} Global Echoes Ireland. Building Global
-            Connections Through Music, Culture, and Creative Collaboration
-          </p>
+          <p>© {new Date().getFullYear()} Global Echoes Ireland</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link
               to="/privacy"

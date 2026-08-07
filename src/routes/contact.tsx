@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Facebook,
-  Instagram,
+  FacebookLogo,
+  InstagramLogo,
   Copy,
-  Mail,
+  EnvelopeSimple,
   MapPin,
   Phone,
-  Send,
-} from "lucide-react";
+  PaperPlaneTilt,
+} from "@phosphor-icons/react";
 import { useId, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -43,12 +43,12 @@ const socials = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/globalechoesireland/",
-    Icon: Instagram,
+    Icon: InstagramLogo,
   },
   {
     label: "Facebook",
     href: "https://www.facebook.com/globalechoesireland",
-    Icon: Facebook,
+    Icon: FacebookLogo,
   },
 ] as const;
 
@@ -64,7 +64,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          `Book a taster session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
+          `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
       },
       { property: "og:url", content: "/contact" },
     ],
@@ -158,21 +158,21 @@ function Contact() {
   return (
     <PageShell>
       <PageHero
-        title="Book a taster or start a conversation"
-        intro="We aim to respond within one working day. The form opens your email application with a pre-drafted message, ensuring that your information is not lost in the event of a sending issue."
+        title="Book a Taster Session"
+        intro="We aim to reply within one working day. The form opens your email app with a prefilled message."
       />
 
       <section className="container-x grid gap-10 py-12 md:py-16 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="rounded-xl border border-forest/10 bg-white p-8">
-            <h2 className="font-serif text-2xl">Direct contact</h2>
+            <h2 className="font-display text-2xl font-medium">Direct contact</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Natalie Rodgers, Programme Coordinator
             </p>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-soft text-forest">
-                  <Mail className="h-4 w-4" />
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[6px] bg-forest-soft text-forest">
+                  <EnvelopeSimple className="h-4 w-4" weight="regular" />
                 </span>
                 <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">
@@ -189,14 +189,14 @@ function Contact() {
                     onClick={copyEmail}
                     className="mt-2 inline-flex min-h-9 items-center gap-1.5 text-xs font-medium text-forest underline-offset-2 hover:underline focus-ring-brand"
                   >
-                    <Copy className="h-3.5 w-3.5" strokeWidth={1.75} />
+                    <Copy className="h-3.5 w-3.5" />
                     Copy email address
                   </button>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-soft text-forest">
-                  <Phone className="h-4 w-4" />
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[6px] bg-forest-soft text-forest">
+                  <Phone className="h-4 w-4" weight="regular" />
                 </span>
                 <div>
                   <p className="text-sm text-muted-foreground">
@@ -213,8 +213,8 @@ function Contact() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-soft text-forest">
-                  <MapPin className="h-4 w-4" />
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[6px] bg-forest-soft text-forest">
+                  <MapPin className="h-4 w-4" weight="regular" />
                 </span>
                 <div>
                   <p className="text-sm text-muted-foreground">
@@ -241,7 +241,7 @@ function Contact() {
                     aria-label={label}
                     className="grid h-10 w-10 place-items-center rounded-[6px] border border-forest/20 text-forest transition-colors hover:bg-forest hover:text-cream focus-ring-brand"
                   >
-                    <Icon className="h-4 w-4" strokeWidth={1.75} />
+                    <Icon className="h-4 w-4" />
                   </a>
                 ))}
               </div>
@@ -254,10 +254,10 @@ function Contact() {
           noValidate
           className="rounded-xl border border-forest/10 bg-white p-8 lg:col-span-7"
         >
-          <h2 className="font-serif text-2xl">Draft an enquiry</h2>
+          <h2 className="font-display text-2xl font-medium">Draft an enquiry</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Submitting opens your email app with a prefilled message to{" "}
-            {CONTACT_EMAIL}. Nothing is stored on this site.
+            {CONTACT_EMAIL}.
           </p>
 
           <div
@@ -371,7 +371,7 @@ function Contact() {
               className="btn-solid disabled:cursor-not-allowed disabled:opacity-70"
             >
               {pending ? "Opening email…" : "Open email to send"}{" "}
-              <Send className="h-4 w-4" />
+              <PaperPlaneTilt className="h-4 w-4" />
             </button>
             <Link
               to="/programme"
@@ -397,7 +397,7 @@ function Contact() {
                 onClick={copyEmail}
                 className="mt-3 inline-flex min-h-9 items-center gap-1.5 text-sm font-medium text-forest underline-offset-2 hover:underline focus-ring-brand"
               >
-                <Copy className="h-3.5 w-3.5" strokeWidth={1.75} />
+                <Copy className="h-3.5 w-3.5" />
                 Copy email address
               </button>
             </div>

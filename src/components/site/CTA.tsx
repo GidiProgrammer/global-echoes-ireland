@@ -13,12 +13,15 @@ export function CTASection() {
       />
       <div className="absolute inset-0 bg-forest/75" aria-hidden="true" />
       <div className="container-x relative py-20 text-center md:py-28">
-        <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.05] text-cream md:text-5xl lg:text-6xl">
-          Ready to Bring Global Echoes to your community.
+        <p className="mx-auto max-w-2xl text-sm font-medium text-gold-bright">
+          Global Harmony through Sound and creative collaborations
+        </p>
+        <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.1] text-cream md:text-5xl lg:text-6xl">
+          Book a taster for your care home or community
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/80">
-          Book a taster for your care home, school, university or community
-          group, or explore our events and cultural initiatives.
+          A short on-site session for care homes, schools, universities and
+          community groups across Ireland.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <Link
@@ -35,14 +38,6 @@ export function CTASection() {
             Events &amp; Communities
           </Link>
         </div>
-        <p className="mt-6">
-          <Link
-            to="/programme"
-            className="text-sm font-medium text-cream/75 underline-offset-4 transition-colors hover:text-gold-bright hover:underline focus-ring-brand-on-dark"
-          >
-            Explore Stay Healthy with the Beat
-          </Link>
-        </p>
       </div>
     </section>
   );

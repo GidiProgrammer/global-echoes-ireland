@@ -30,18 +30,22 @@
 | 12 UI | `btn-solid` / `btn-outline` / `btn-gold` at 6px radius |
 
 ## Brand Colors
-| Role | Hex |
-|------|-----|
-| Forest | `#1B3F24` |
-| Gold | `#B8860B` |
-| Maroon | `#70201F` |
-| Cream | `#F9F8F3` |
-| Ink | `#1A1A1A` |
+| Role | Hex | Notes |
+|------|-----|-------|
+| Forest | `#1B3F24` | Primary brand (locked) |
+| Amber | `#C97B14` | CTA / accent fills (token: `--gold`) |
+| Amber ink | `#7A4A0A` | Accent text on bone (token: `--gold-ink`) |
+| Amber bright | `#F0C56A` | Accent on forest (token: `--gold-bright`) |
+| Maroon | `#70201F` | Destructive / rare emphasis |
+| Bone | `#F2F5F1` | Page ground (token: `--cream`) |
+| Ink | `#121614` | Cool near-black body text |
+
+> Retuned from warm cream `#F9F8F3` + brass `#B8860B` to cool bone + amber while keeping forest. CSS token names (`--cream`, `--gold*`) unchanged for class compatibility.
 
 ## Typography
-- **Display:** Instrument Serif
-- **UI / Body:** Work Sans
-- **Motto:** Rhythm as Medicine (recurring verbal brand beat)
+- **Display:** Outfit (self-hosted)
+- **UI / Body:** Work Sans (self-hosted)
+- **Mantra:** Global Harmony through Sound and creative collaborations
 
 ## Effects
 - Editorial mast header (transparent over hero → solid cream on scroll); no liquid-glass tray

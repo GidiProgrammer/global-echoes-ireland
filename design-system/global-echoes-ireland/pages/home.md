@@ -12,10 +12,9 @@ Overrides `MASTER.md` for the homepage first viewport only.
 
 ## Copy Hierarchy
 1. Brand in nav (logo) **and** hero lockup: **Global Echoes Ireland** (serif, cream, ~1.85–2.85rem)
-2. Motto: **Rhythm as Medicine** (quiet; air above the H1)
-3. H1: Healing Through / *Rhythm* (cream / gold italic), `clamp(3rem, 9vw, 6rem)` — Prisma-like scale jump vs body
-4. Supporting sentence quieter / shorter measure (~36ch), right column with wide gutter
-5. Primary CTA → `/contact`, secondary text link → `/programme`
+2. H1: Global Harmony / through Sound / and creative collaborations (cream / amber emphasis)
+3. Supporting sentence quieter / shorter measure (~36ch)
+4. Primary CTA → `/contact` (Book a Taster Session), secondary text link → `/programme`
 
 ## Spacing (Prisma-inspired floor)
 - Heavier bottom padding (`pb-16` → `lg:pb-24`)

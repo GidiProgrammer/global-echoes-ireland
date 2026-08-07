@@ -58,7 +58,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 const TITLE =
   "Global Echoes Ireland | Global Harmony through Sound and creative collaborations";
 const DESC =
-  "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond. Flagship: Building Global Connections Through Music, Culture, and Creative Collaboration.";
+  "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -74,6 +74,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Global Echoes Ireland" },
       { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:image:alt", content: "Global Echoes Ireland logo" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESC },
@@ -81,14 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap",
-      },
-
+      { rel: "icon", href: "/favicon.png?v=2", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/favicon.ico?v=2", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=2", sizes: "180x180" },
     ],
     scripts: [
       {
@@ -100,12 +97,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           url: "/",
           description: DESC,
           email: CONTACT_EMAIL,
+          logo: "/gei-logo.jpg",
           image: "/og-image.jpg",
           areaServed: "IE",
-          department: {
-            "@type": "Organization",
-            name: "Building Global Connections Through Music, Culture, and Creative Collaboration",
-          },
+          slogan:
+            "Global Harmony through Sound and creative collaborations",
         }),
       },
     ],

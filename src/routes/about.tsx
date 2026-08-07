@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import johnImg from "@/assets/founder-john.jpg";
+import johnImg from "@/assets/drjohn.png";
 import natalieImg from "@/assets/founder-natalie.jpg";
 import emmanuelImg from "@/assets/founder-emmanuel.jpg";
 import circleImg from "@/assets/community-circle.jpg";
@@ -29,18 +29,21 @@ function About() {
       name: "Natalie Rodgers",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieImg,
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover",
       bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
     },
     {
       name: "Dr John Nutekpor",
-      role: "Founder & Artistic Director, PhD Arts Practitioner",
+      role: "Founder & Artistic Director, PhD Arts Practice",
       img: johnImg,
-      bio: "Dr Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_15%]",
+      bio: "Dr. Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
     },
     {
       name: "Emmanuel Njume Sone",
       role: "Co-founder, Strategy & Partnerships",
       img: emmanuelImg,
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover",
       bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
     },
   ];
@@ -48,18 +51,46 @@ function About() {
   return (
     <PageShell>
       <PageHero
-        title={
-          <>
-            Culture, <span className="text-gold-ink">Care</span> &amp;{" "}
-            <span className="text-maroon">Community</span>
-          </>
-        }
-        intro="Guided by Global Harmony through Sound and creative collaborations, we deliver structured wellbeing music experiences across care homes, schools, communities and HEA institutions."
+        title="The people behind the work"
+        intro="Clinical coordination, cultural mastery and partnership leadership in one team."
       />
+
+      <section className="container-x pb-16 md:pb-24">
+        <div className="grid gap-10 sm:grid-cols-3">
+          {founders.map((f) => (
+            <article key={f.name}>
+              <img
+                src={f.img}
+                loading="lazy"
+                alt={f.name}
+                className={f.imgClass}
+              />
+              <h2 className="mt-5 font-serif text-2xl">{f.name}</h2>
+              <p className="mt-1 text-sm text-forest">{f.role}</p>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                {f.bio}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-forest/10 bg-white">
+        <div className="container-x py-16 md:py-24">
+          <h2 className="font-display text-3xl font-medium tracking-[-0.02em] text-ink md:text-4xl">
+            Culture, care and community
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85">
+            Guided by Global Harmony through Sound and creative collaborations,
+            we deliver structured wellbeing music experiences across care homes,
+            schools, communities and HEA institutions.
+          </p>
+        </div>
+      </section>
 
       <section className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-6">
-          <div className="overflow-hidden rounded-bl-[4rem] rounded-tr-xl">
+          <div className="overflow-hidden rounded-xl">
             <img
               src={circleImg}
               loading="lazy"
@@ -126,29 +157,6 @@ function About() {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      <section className="container-x py-16 md:py-24">
-        <h2 className="font-serif text-4xl md:text-5xl">
-          The people behind the work
-        </h2>
-        <div className="mt-14 grid gap-10 sm:grid-cols-3">
-          {founders.map((f) => (
-            <article key={f.name}>
-              <img
-                src={f.img}
-                loading="lazy"
-                alt={f.name}
-                className="aspect-[4/5] w-full rounded-xl object-cover"
-              />
-              <h3 className="mt-5 font-serif text-2xl">{f.name}</h3>
-              <p className="mt-1 text-sm text-forest">{f.role}</p>
-              <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                {f.bio}
-              </p>
-            </article>
-          ))}
         </div>
       </section>
 

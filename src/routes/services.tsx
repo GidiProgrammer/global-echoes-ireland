@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check } from "lucide-react";
+import { Check } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import heroImg from "@/assets/hero-care-drumming.jpg";
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Services and indicative pricing for African Rhythms sessions in healthcare, care homes, schools, festivals and community settings.",
+          "Services and indicative pricing for Global Echoes Ireland sessions in healthcare, care homes, schools, festivals and community settings.",
       },
       { property: "og:url", content: "/services" },
     ],
@@ -27,7 +27,7 @@ const cards = [
   {
     id: "care-homes",
     name: "Care Homes & Healthcare" as const,
-    color: "text-forest",
+    ask: "care homes",
     img: heroImg,
     alt: "Care home drumming session",
     price: "From €240",
@@ -38,11 +38,13 @@ const cards = [
       "Weekly / block bookings",
       "All instruments provided",
     ],
+    span: "md:col-span-7",
+    aspect: "aspect-[16/10] md:aspect-[5/3]",
   },
   {
     id: "community",
     name: "Community & Wellbeing" as const,
-    color: "text-gold-ink",
+    ask: "community",
     img: circleImg,
     alt: "Community drumming circle",
     price: "From €200",
@@ -53,72 +55,88 @@ const cards = [
       "Wellbeing days",
       "Sliding scale for grassroots",
     ],
+    span: "md:col-span-5",
+    aspect: "aspect-[4/5] md:aspect-auto md:min-h-full",
   },
   {
     id: "schools",
     name: "Schools, Universities & Education" as const,
-    color: "text-maroon",
+    ask: "schools",
     img: handsImg,
     alt: "Hands on a djembe drum",
     price: "From €220",
     unit: "per session",
     features: [
       "Curriculum-aligned workshops",
-      "Schools, Universities institutions and HEA settings",
+      "Schools, universities and HEA settings",
       "Cultural learning outcomes",
-      "Optional performance day activities",
     ],
+    span: "md:col-span-5",
+    aspect: "aspect-[4/5] md:aspect-auto md:min-h-full",
   },
   {
     id: "festivals",
     name: "Festivals & Events" as const,
-    color: "text-forest",
+    ask: "festivals",
     img: rehabImg,
     alt: "Group rhythmic session",
     price: "Upon request",
-    unit: "1 or 2 artist formats",
+    unit: "",
     features: [
-      "Single or group artist performance formats",
+      "Single or group performance formats",
       "Immersive drum circles",
-      "Community stage sets and performance delivery",
       "Festival programming available",
     ],
+    span: "md:col-span-7",
+    aspect: "aspect-[16/10] md:aspect-[5/3]",
   },
-];
+] as const;
 
 function Services() {
   return (
     <PageShell>
       <PageHero
-        title="Programmes tailored to your setting"
-        intro="Indicative pricing to help you plan. Every engagement is quoted individually based on setting, group size, travel and outcomes."
+        title="Programmes for your setting"
+        intro="Indicative pricing to help you plan. Final quotes reflect setting, group size, travel and outcomes."
       />
 
       <section className="container-x py-16 md:py-24">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-12 md:gap-6">
           {cards.map((t) => (
             <article
               key={t.id}
               id={t.id}
-              className="flex h-full scroll-mt-28 flex-col"
+              className={`flex scroll-mt-28 flex-col ${t.span}`}
             >
-              <div className="overflow-hidden rounded-xl">
+              <div className="overflow-hidden rounded-xl bg-forest/5">
                 <img
                   src={t.img}
                   alt={t.alt}
-                  className="aspect-[4/5] w-full object-cover"
+                  className={`${t.aspect} w-full object-cover`}
                   loading="lazy"
                 />
               </div>
-              <h3 className={`mt-4 font-serif text-xl ${t.color}`}>{t.name}</h3>
+              <h2 className="mt-5 font-display text-2xl font-medium text-ink">
+                {t.name}
+              </h2>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="font-serif text-2xl text-forest">{t.price}</span>
-                <span className="text-sm text-muted-foreground">{t.unit}</span>
+                <span className="font-display text-2xl font-medium text-forest">
+                  {t.price}
+                </span>
+                {t.unit ? (
+                  <span className="text-sm text-muted-foreground">{t.unit}</span>
+                ) : null}
               </div>
               <ul className="mt-4 flex-1 space-y-2">
                 {t.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-foreground/85">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
+                  <li
+                    key={f}
+                    className="flex items-start gap-2 text-sm text-foreground/85"
+                  >
+                    <Check
+                      className="mt-0.5 h-4 w-4 shrink-0 text-forest"
+                      weight="regular"
+                    />
                     {f}
                   </li>
                 ))}
@@ -126,18 +144,17 @@ function Services() {
               <Link
                 to="/contact"
                 search={{ interest: t.name }}
-                className="btn-outline mt-6 w-full"
+                className="btn-outline mt-6 self-start"
               >
-                Enquire about {t.name}
+                Ask about {t.ask}
               </Link>
             </article>
           ))}
         </div>
-        <p className="mt-8 text-sm text-muted-foreground/80">
-          Structured health programmes available in 4, 8 and 12-week formats.
+        <p className="mt-12 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Structured programmes are available in 4, 8 and 12-week formats.
           Prices exclude travel outside Dublin and instrument provision above 20
           participants. Charitable and community rates available on request.
-          Music school and cultural fashion strands are in development.
         </p>
       </section>
 

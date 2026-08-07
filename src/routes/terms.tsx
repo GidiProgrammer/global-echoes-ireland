@@ -28,8 +28,8 @@ function Terms() {
       <section className="container-x max-w-3xl space-y-6 pb-20 text-base leading-relaxed text-foreground/85">
         <p>
           This website is provided by Global Echoes Ireland for information
-          about Building Global Connections Through Music, Culture, and Creative Collaboration. Content is offered
-          in good faith and may be updated without notice.
+          about our wellbeing music programmes. Content is offered in good faith
+          and may be updated without notice.
         </p>
         <p>
           Submitting the contact form or emailing us is a request for

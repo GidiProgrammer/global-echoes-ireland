@@ -34,10 +34,10 @@ function Blog() {
           </p>
           <Link
             to="/contact"
-            search={{ interest: "General enquiry" }}
+            search={{ interest: "Taster session" }}
             className="btn-solid mt-8"
           >
-            Get in touch
+            Book a Taster Session
           </Link>
         </div>
       </section>
