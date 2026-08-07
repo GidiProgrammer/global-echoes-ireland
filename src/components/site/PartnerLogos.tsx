@@ -1,19 +1,19 @@
-/** Honest strategy labels — not partnership logos or endorsements. */
+/** Settings we serve - not partnership endorsements. */
 
-const frameworks = [
-  "HSE community healthcare",
-  "Sláintecare priorities",
-  "Pobal-funded settings",
-  "Arts Council practice",
+const settings = [
+  "Care homes",
+  "Schools & universities",
+  "Communities",
+  "Cultural events",
 ] as const;
 
 export function PartnerLogos({ className = "" }: { className?: string }) {
   return (
     <ul
       className={`flex flex-wrap items-center gap-x-2 gap-y-2 ${className}`}
-      aria-label="National strategies and funding contexts we design for"
+      aria-label="Settings we work with"
     >
-      {frameworks.map((label, i) => (
+      {settings.map((label, i) => (
         <li key={label} className="flex items-center gap-2 text-sm text-[#5a5a5a]">
           {i > 0 && (
             <span
@@ -21,7 +21,7 @@ export function PartnerLogos({ className = "" }: { className?: string }) {
               aria-hidden="true"
             />
           )}
-          <span className="font-medium tracking-[0.01em]">{label}</span>
+          <span className="font-medium">{label}</span>
         </li>
       ))}
     </ul>
@@ -38,13 +38,12 @@ export function WorkingWithStrip() {
         <div className="shrink-0">
           <h2
             id="working-with-heading"
-            className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#5c5c5c]"
+            className="font-serif text-xl text-ink md:text-2xl"
           >
-            Strategy alignment
+            Where we work
           </h2>
-          <p className="mt-1 max-w-xs text-xs leading-relaxed text-[#5c5c5c]">
-            Designed for Irish healthcare and community funding contexts, not
-            claimed endorsements.
+          <p className="mt-1 max-w-xs text-sm leading-relaxed text-[#5c5c5c]">
+            Wellbeing music programmes across Ireland and beyond.
           </p>
         </div>
         <PartnerLogos className="md:justify-end" />

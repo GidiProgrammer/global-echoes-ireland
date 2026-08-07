@@ -8,7 +8,7 @@ const nav = [
   { to: "/about", label: "About" },
   { to: "/programme", label: "Programme" },
   { to: "/services", label: "Services" },
-  { to: "/funders", label: "For Funders" },
+  { to: "/events", label: "Events" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -161,9 +161,10 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
           <Link
             to="/contact"
             search={{ interest: "Taster session" }}
-            className="btn-gold hidden md:inline-flex"
+            className="btn-gold hidden sm:inline-flex"
           >
-            Book a Taster
+            <span className="lg:hidden">Book a Taster</span>
+            <span className="hidden lg:inline">Book a Taster Session</span>
           </Link>
           <button
             ref={toggleRef}
@@ -232,9 +233,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                 {n.label}
               </Link>
             ))}
-            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-cream/75">
-              More
-            </p>
+            <p className="mt-8 text-sm font-medium text-cream/75">More</p>
             {secondary.map((n) => (
               <Link
                 key={n.to}
@@ -254,7 +253,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               onClick={() => setOpen(false)}
               className="btn-gold flex w-full"
             >
-              Book a Taster
+              Book a Taster Session
             </Link>
           </div>
         </div>

@@ -19,7 +19,14 @@ export const INTEREST_OPTIONS = [
   "4-week programme",
   "8-week programme",
   "12-week programme",
-  "Programme Profile (funders)",
+  "Care Homes & Healthcare",
+  "Community & Wellbeing",
+  "Schools, Universities & Education",
+  "Festivals & Events",
+  "Events & community",
+  "CeltAfrik",
+  "The GETROS",
+  "The GR Brothers",
   "General enquiry",
 ] as const;
 
@@ -35,12 +42,12 @@ function isInterestOption(value: unknown): value is InterestOption {
 const socials = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/AfricanRhythmsIreland/",
+    href: "https://www.instagram.com/globalechoesireland/",
     Icon: Instagram,
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/AfricanRhythmsIreland",
+    href: "https://www.facebook.com/globalechoesireland",
     Icon: Facebook,
   },
 ] as const;
@@ -57,7 +64,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          `Book a taster session, request the Programme Profile or partner with Global Echoes Ireland. Contact Natalie Sone at ${CONTACT_EMAIL}.`,
+          `Book a taster session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
       },
       { property: "og:url", content: "/contact" },
     ],
@@ -111,6 +118,12 @@ function Contact() {
         errs[String(issue.path[0])] = issue.message;
       setErrors(errs);
       setPending(false);
+      queueMicrotask(() => {
+        const firstInvalid = form.querySelector<HTMLElement>(
+          "[aria-invalid='true']",
+        );
+        firstInvalid?.focus();
+      });
       return;
     }
     setErrors({});
@@ -146,7 +159,7 @@ function Contact() {
     <PageShell>
       <PageHero
         title="Book a taster or start a conversation"
-        intro="We typically respond within one working day. The form opens your email app with a drafted message so nothing is lost if the send fails."
+        intro="We aim to respond within one working day. The form opens your email application with a pre-drafted message, ensuring that your information is not lost in the event of a sending issue."
       />
 
       <section className="container-x grid gap-10 py-12 md:py-16 lg:grid-cols-12">
@@ -154,7 +167,7 @@ function Contact() {
           <div className="rounded-xl border border-forest/10 bg-white p-8">
             <h2 className="font-serif text-2xl">Direct contact</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Natalie Sone, Programme Coordinator
+              Natalie Rodgers, Programme Coordinator
             </p>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-3">
@@ -162,7 +175,7 @@ function Contact() {
                   <Mail className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
+                  <p className="text-sm text-muted-foreground">
                     Email
                   </p>
                   <a
@@ -186,7 +199,7 @@ function Contact() {
                   <Phone className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
+                  <p className="text-sm text-muted-foreground">
                     Phone
                   </p>
                   <div className="flex flex-col gap-1 font-medium">
@@ -204,7 +217,7 @@ function Contact() {
                   <MapPin className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
+                  <p className="text-sm text-muted-foreground">
                     Based in
                   </p>
                   <p className="font-medium">Ireland, delivering nationwide</p>
@@ -212,11 +225,11 @@ function Contact() {
               </li>
             </ul>
             <div className="mt-8 border-t border-forest/10 pt-6">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
+              <p className="text-sm text-muted-foreground">
                 Follow us
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                @AfricanRhythmsIreland
+                @globalechoesireland
               </p>
               <div className="mt-4 flex gap-2">
                 {socials.map(({ label, href, Icon }) => (
@@ -266,6 +279,7 @@ function Contact() {
               name="name"
               error={errors.name}
               required
+              disabled={pending}
               className={fieldClass}
             />
             <Field
@@ -274,23 +288,27 @@ function Contact() {
               type="email"
               error={errors.email}
               required
+              disabled={pending}
               className={fieldClass}
             />
             <Field
               label="Organisation"
               name="organisation"
               error={errors.organisation}
+              disabled={pending}
               className={fieldClass}
             />
             <label className="block" htmlFor={interestId}>
-              <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
+              <span className="text-sm text-muted-foreground">
                 I&apos;m interested in *
               </span>
               <select
+                key={interestFromUrl ?? "none"}
                 id={interestId}
                 name="interest"
                 required
                 defaultValue={interestFromUrl ?? ""}
+                disabled={pending}
                 aria-invalid={Boolean(errors.interest)}
                 aria-describedby={
                   errors.interest ? `${interestId}-error` : undefined
@@ -320,7 +338,7 @@ function Contact() {
           <div className="mt-5">
             <label
               htmlFor={messageId}
-              className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80"
+              className="text-sm text-muted-foreground"
             >
               Message *
             </label>
@@ -329,6 +347,7 @@ function Contact() {
               name="message"
               rows={5}
               required
+              disabled={pending}
               aria-invalid={Boolean(errors.message)}
               aria-describedby={
                 errors.message ? `${messageId}-error` : undefined
@@ -376,7 +395,7 @@ function Contact() {
               <button
                 type="button"
                 onClick={copyEmail}
-                className="mt-3 inline-flex min-h-9 items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-forest underline-offset-2 hover:underline focus-ring-brand"
+                className="mt-3 inline-flex min-h-9 items-center gap-1.5 text-sm font-medium text-forest underline-offset-2 hover:underline focus-ring-brand"
               >
                 <Copy className="h-3.5 w-3.5" strokeWidth={1.75} />
                 Copy email address
@@ -395,6 +414,7 @@ function Field({
   type = "text",
   required,
   error,
+  disabled,
   className,
 }: {
   label: string;
@@ -402,12 +422,13 @@ function Field({
   type?: string;
   required?: boolean;
   error?: string;
+  disabled?: boolean;
   className: string;
 }) {
   const id = useId();
   return (
     <label className="block" htmlFor={id}>
-      <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
+      <span className="text-sm text-muted-foreground">
         {label}
         {required && " *"}
       </span>
@@ -416,6 +437,7 @@ function Field({
         name={name}
         type={type}
         required={required}
+        disabled={disabled}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={className}

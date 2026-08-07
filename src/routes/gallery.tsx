@@ -14,7 +14,7 @@ export const Route = createFileRoute("/gallery")({
       {
         name: "description",
         content:
-          "Photos and moments from African Rhythms for Health & Wellbeing sessions across Ireland.",
+          "Gallery from Global Echoes Ireland. Placeholder photography for now; consented session photos and video coming as delivery begins.",
       },
       { property: "og:url", content: "/gallery" },
     ],

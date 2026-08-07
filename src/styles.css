@@ -313,10 +313,10 @@
   border-bottom: 1px solid var(--forest);
   transition: color 200ms ease, border-color 200ms ease;
   &:hover { color: var(--gold-ink); border-color: var(--gold-ink); }
-}
-
-@utility soft-shadow {
-  box-shadow: none;
+  &:focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 2px;
+  }
 }
 
 @keyframes fade-up {

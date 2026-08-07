@@ -10,34 +10,30 @@ import { Logo } from "./Logo";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
 
 const quick = [
-  { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/programme", label: "Our Programme" },
+  { to: "/programme", label: "Programme" },
   { to: "/services", label: "Services" },
-  { to: "/funders", label: "For Funders" },
+  { to: "/events", label: "Events & Communities" },
   { to: "/gallery", label: "Gallery" },
-  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 const programmes = [
-  "Care Homes",
-  "Healthcare & HSE",
-  "Schools & Education",
-  "Festivals & Events",
-  "Community & Wellbeing",
-  "Rehabilitation",
+  { label: "Care Homes & Healthcare", hash: "care-homes" },
+  { label: "Community & Wellbeing", hash: "community" },
+  { label: "Schools, Universities & Education", hash: "schools" },
+  { label: "Festivals & Events", hash: "festivals" },
 ] as const;
 
 const socials = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/AfricanRhythmsIreland/",
+    href: "https://www.instagram.com/globalechoesireland/",
     Icon: Instagram,
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/AfricanRhythmsIreland",
+    href: "https://www.facebook.com/globalechoesireland",
     Icon: Facebook,
   },
 ] as const;
@@ -49,10 +45,11 @@ export function Footer() {
         <div>
           <Logo inverted />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/75">
-            Rhythm as Medicine: therapeutic African drumming programmes improving
-            health, wellbeing and social connection across Ireland.
+            Global Harmony through Sound and creative collaborations. Wellbeing music programmes
+            for care homes, schools, universities and communities across Ireland
+            and beyond.
           </p>
-          <p className="mt-3 text-xs text-cream/55">@AfricanRhythmsIreland</p>
+          <p className="mt-3 text-xs text-cream/55">@globalechoesireland</p>
           <div className="mt-6 flex gap-2">
             {socials.map(({ Icon, label, href }) => (
               <a
@@ -70,9 +67,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-bright">
-            Quick Links
-          </p>
+          <p className="text-sm font-medium text-gold-bright">Quick Links</p>
           <ul className="mt-5 space-y-2.5 text-sm text-cream/85">
             {quick.map((item) => (
               <li key={item.to}>
@@ -91,17 +86,16 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-bright">
-            Programmes
-          </p>
+          <p className="text-sm font-medium text-gold-bright">Programmes</p>
           <ul className="mt-5 space-y-2.5 text-sm text-cream/85">
-            {programmes.map((label) => (
-              <li key={label}>
+            {programmes.map((item) => (
+              <li key={item.hash}>
                 <Link
                   to="/services"
+                  hash={item.hash}
                   className="transition-colors duration-200 hover:text-gold-bright focus-ring-brand-on-dark"
                 >
-                  {label}
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -109,9 +103,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-bright">
-            Contact
-          </p>
+          <p className="text-sm font-medium text-gold-bright">Contact</p>
           <ul className="mt-5 space-y-4 text-sm text-cream/85">
             <li className="flex gap-3">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-bright" />
@@ -133,7 +125,7 @@ export function Footer() {
             </li>
             <li className="flex gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-bright" />
-              <span>Ireland - delivering nationwide</span>
+              <span>Ireland, delivering nationwide</span>
             </li>
           </ul>
         </div>
@@ -142,8 +134,8 @@ export function Footer() {
       <div className="border-t border-cream/15">
         <div className="container-x flex flex-col gap-3 py-5 text-[11px] tracking-[0.04em] text-cream/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} Global Echoes Ireland · African Rhythms
-            for Health &amp; Wellbeing
+            © {new Date().getFullYear()} Global Echoes Ireland. Building Global
+            Connections Through Music, Culture, and Creative Collaboration
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link

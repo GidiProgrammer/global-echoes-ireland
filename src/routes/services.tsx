@@ -1,11 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Building2,
-  Check,
-  Drum,
-  GraduationCap,
-  Users,
-} from "lucide-react";
+import { Check } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import heroImg from "@/assets/hero-care-drumming.jpg";
@@ -31,9 +25,9 @@ export const Route = createFileRoute("/services")({
 
 const cards = [
   {
-    name: "Care Homes & Healthcare",
+    id: "care-homes",
+    name: "Care Homes & Healthcare" as const,
     color: "text-forest",
-    icon: Building2,
     img: heroImg,
     alt: "Care home drumming session",
     price: "From €240",
@@ -46,9 +40,9 @@ const cards = [
     ],
   },
   {
-    name: "Community & Wellbeing",
+    id: "community",
+    name: "Community & Wellbeing" as const,
     color: "text-gold-ink",
-    icon: Users,
     img: circleImg,
     alt: "Community drumming circle",
     price: "From €200",
@@ -61,32 +55,32 @@ const cards = [
     ],
   },
   {
-    name: "Schools & Education",
+    id: "schools",
+    name: "Schools, Universities & Education" as const,
     color: "text-maroon",
-    icon: GraduationCap,
     img: handsImg,
     alt: "Hands on a djembe drum",
     price: "From €220",
     unit: "per session",
     features: [
       "Curriculum-aligned workshops",
-      "Class or year-group formats",
+      "Schools, Universities institutions and HEA settings",
       "Cultural learning outcomes",
-      "Optional performance day",
+      "Optional performance day activities",
     ],
   },
   {
-    name: "Festivals & Events",
+    id: "festivals",
+    name: "Festivals & Events" as const,
     color: "text-forest",
-    icon: Drum,
     img: rehabImg,
     alt: "Group rhythmic session",
-    price: "On request",
+    price: "Upon request",
     unit: "1 or 2 artist formats",
     features: [
-      "1 and 2 artist performance formats",
+      "Single or group artist performance formats",
       "Immersive drum circles",
-      "Community stage sets",
+      "Community stage sets and performance delivery",
       "Festival programming available",
     ],
   },
@@ -103,24 +97,23 @@ function Services() {
       <section className="container-x py-16 md:py-24">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((t) => (
-            <article key={t.name} className="flex h-full flex-col">
-              <div className="relative overflow-hidden rounded-xl">
+            <article
+              key={t.id}
+              id={t.id}
+              className="flex h-full scroll-mt-28 flex-col"
+            >
+              <div className="overflow-hidden rounded-xl">
                 <img
                   src={t.img}
                   alt={t.alt}
                   className="aspect-[4/5] w-full object-cover"
                   loading="lazy"
                 />
-                <span className="absolute bottom-3 left-3 grid h-11 w-11 place-items-center rounded-full bg-cream text-forest shadow-sm">
-                  <t.icon className="h-5 w-5" strokeWidth={1.5} />
-                </span>
               </div>
               <h3 className={`mt-4 font-serif text-xl ${t.color}`}>{t.name}</h3>
               <div className="mt-2 flex items-baseline gap-2">
                 <span className="font-serif text-2xl text-forest">{t.price}</span>
-                <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
-                  {t.unit}
-                </span>
+                <span className="text-sm text-muted-foreground">{t.unit}</span>
               </div>
               <ul className="mt-4 flex-1 space-y-2">
                 {t.features.map((f) => (
@@ -132,10 +125,10 @@ function Services() {
               </ul>
               <Link
                 to="/contact"
-                search={{ interest: "General enquiry" }}
+                search={{ interest: t.name }}
                 className="btn-outline mt-6 w-full"
               >
-                Enquire
+                Enquire about {t.name}
               </Link>
             </article>
           ))}

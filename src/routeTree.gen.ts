@@ -13,7 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as FundersRouteImport } from './routes/funders'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProgrammeRouteImport } from './routes/programme'
@@ -41,9 +41,9 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FundersRoute = FundersRouteImport.update({
-  id: '/funders',
-  path: '/funders',
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -82,7 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
-  '/funders': typeof FundersRoute
+  '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/privacy': typeof PrivacyRoute
   '/programme': typeof ProgrammeRoute
@@ -95,7 +95,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
-  '/funders': typeof FundersRoute
+  '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/privacy': typeof PrivacyRoute
   '/programme': typeof ProgrammeRoute
@@ -109,7 +109,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
-  '/funders': typeof FundersRoute
+  '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/privacy': typeof PrivacyRoute
   '/programme': typeof ProgrammeRoute
@@ -124,7 +124,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
-    | '/funders'
+    | '/events'
     | '/gallery'
     | '/privacy'
     | '/programme'
@@ -137,7 +137,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
-    | '/funders'
+    | '/events'
     | '/gallery'
     | '/privacy'
     | '/programme'
@@ -150,7 +150,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/contact'
-    | '/funders'
+    | '/events'
     | '/gallery'
     | '/privacy'
     | '/programme'
@@ -164,7 +164,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
-  FundersRoute: typeof FundersRoute
+  EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
   PrivacyRoute: typeof PrivacyRoute
   ProgrammeRoute: typeof ProgrammeRoute
@@ -203,11 +203,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/funders': {
-      id: '/funders'
-      path: '/funders'
-      fullPath: '/funders'
-      preLoaderRoute: typeof FundersRouteImport
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -260,7 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
-  FundersRoute: FundersRoute,
+  EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
   PrivacyRoute: PrivacyRoute,
   ProgrammeRoute: ProgrammeRoute,

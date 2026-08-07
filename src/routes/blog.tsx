@@ -9,7 +9,7 @@ export const Route = createFileRoute("/blog")({
       {
         name: "description",
         content:
-          "Programme updates, session highlights and funding news from Global Echoes Ireland and African Rhythms for Health & Wellbeing.",
+          "Programme updates, session highlights and community news from Global Echoes Ireland.",
       },
       { property: "og:url", content: "/blog" },
     ],
@@ -23,14 +23,11 @@ function Blog() {
     <PageShell>
       <PageHero
         title="Stories and programme updates"
-        intro="Session highlights, funding news and reflections from African Rhythms for Health & Wellbeing, coming as delivery begins."
+        intro="Session highlights, events and reflections from Global Echoes Ireland, coming as delivery begins."
       />
       <section className="container-x py-12 md:py-16">
         <div className="mx-auto max-w-xl rounded-xl border border-forest/10 bg-white px-8 py-14 text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
-            Coming soon
-          </p>
-          <h2 className="mt-4 font-serif text-3xl">First updates on the way</h2>
+          <h2 className="font-serif text-3xl">First updates on the way</h2>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             We are at the start of our delivery phase. As taster sessions and
             programmes roll out, we will share highlights and news here.

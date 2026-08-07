@@ -1,12 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Building2,
-  CalendarDays,
-  Drum,
-  GraduationCap,
-  Users,
-} from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import { WordsPullUpMultiStyle } from "@/components/ui/words-pull-up";
 import { PageShell } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
@@ -30,22 +23,22 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "Global Echoes Ireland | African Rhythms for Health & Wellbeing",
+          "Global Echoes Ireland | Global Harmony through Sound and creative collaborations",
       },
       {
         name: "description",
         content:
-          "Therapeutic African drumming programmes for HSE settings, care homes, schools and communities across Ireland.",
+          "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.",
       },
       {
         property: "og:title",
         content:
-          "Global Echoes Ireland | African Rhythms for Health & Wellbeing",
+          "Global Echoes Ireland | Global Harmony through Sound and creative collaborations",
       },
       {
         property: "og:description",
         content:
-          "Evidence-informed therapeutic drumming for Irish healthcare, care homes and community settings.",
+          "Culture, care and connection through structured wellbeing music. Building Global Connections Through Music, Culture, and Creative Collaboration.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -65,13 +58,13 @@ function Home() {
       <TeamPreview />
       <ProgrammeOptions />
       <GalleryPreview />
-      <Testimonial />
+      <Positioning />
       <CTASection />
     </PageShell>
   );
 }
 
-/* Hero | full-bleed session imagery, bottom-anchored display type */
+/* Hero | brand, headline, short sub, CTA pair */
 function Masthead() {
   return (
     <section
@@ -110,29 +103,31 @@ function Masthead() {
           <p className="font-serif text-[clamp(1.85rem,4vw,2.85rem)] leading-none tracking-[-0.025em] text-cream">
             Global Echoes Ireland
           </p>
-          <p className="mt-4 flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-[0.24em] text-gold-bright">
-            <span className="h-px w-8 bg-gold-bright/60" aria-hidden="true" />
-            Rhythm as Medicine
-          </p>
 
           <div className="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-12 lg:items-end lg:gap-x-16 xl:gap-x-24">
             <h1
               id="hero-heading"
-              className="font-serif font-normal leading-[0.88] tracking-[-0.03em] text-[clamp(3rem,9vw,6rem)] text-balance lg:col-span-7"
+              className="max-w-[20ch] font-serif font-normal leading-[0.92] tracking-[-0.03em] text-[clamp(2.35rem,6.5vw,4.75rem)] text-balance sm:max-w-none lg:col-span-7"
             >
               <WordsPullUpMultiStyle
                 segments={[
-                  { text: "Healing Through", className: "text-cream" },
-                  { text: "Rhythm", className: "italic text-gold-bright" },
+                  { text: "Global Harmony", className: "text-cream" },
+                  {
+                    text: "through Sound",
+                    className: "italic text-gold-bright",
+                  },
+                  {
+                    text: "and creative collaborations",
+                    className: "text-cream",
+                  },
                 ]}
               />
             </h1>
 
             <div className="lg:col-span-5 lg:pb-2 xl:col-span-4 xl:col-start-9">
-              <p className="max-w-[36ch] font-sans text-[0.9375rem] leading-[1.65] text-cream/80 md:text-base">
-                Therapeutic African drumming for care homes, HSE services,
-                schools and communities across Ireland. Culture, care and
-                connection in one programme.
+              <p className="max-w-[38ch] font-sans text-[0.9375rem] leading-[1.65] text-cream/80 md:text-base">
+                Wellbeing music programmes for care homes, schools, universities
+                and communities across Ireland and beyond.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -151,7 +146,7 @@ function Masthead() {
                   to="/programme"
                   className="inline-flex min-h-11 items-center border-b border-cream/70 pb-0.5 font-sans text-sm font-medium text-cream transition-colors duration-200 hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
                 >
-                  See how the programme works
+                  See Stay Healthy with the Beat
                 </Link>
               </div>
             </div>
@@ -162,7 +157,6 @@ function Masthead() {
   );
 }
 
-/* 02 | About preview */
 function AboutPreview() {
   return (
     <section className="border-b border-forest/10 bg-cream">
@@ -186,12 +180,13 @@ function AboutPreview() {
             <span className="text-maroon">Community</span>
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-foreground/85 md:text-lg">
-            Global Echoes Ireland bridges West African rhythmic heritage with
-            clinical recovery. Our programmes are shaped by master drummers and
-            senior clinicians for care homes, HSE services and communities.
+            Guided by Global Harmony through Sound and creative collaborations,
+            we deliver structured wellbeing music experiences that integrate
+            world rhythmic traditions with wellbeing practice across care homes,
+            schools, communities and HEA institutions.
           </p>
           <Link to="/about" className="btn-solid mt-8">
-            About us
+            About
           </Link>
         </div>
       </div>
@@ -199,7 +194,6 @@ function AboutPreview() {
   );
 }
 
-/* 03 | Outcomes teaser (full story on /programme) */
 function Benefits() {
   const items = [
     {
@@ -235,15 +229,12 @@ function Benefits() {
           </Link>
         </div>
         <ul className="md:col-span-8 grid gap-0 sm:grid-cols-2">
-          {items.map((item, i) => (
+          {items.map((item) => (
             <li
               key={item.title}
               className="border-t border-forest/12 py-6 sm:odd:pr-8 sm:even:pl-8"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-ink">
-                {String(i + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-2 font-serif text-2xl">{item.title}</h3>
+              <h3 className="font-serif text-2xl">{item.title}</h3>
               <p className="mt-2 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
                 {item.body}
               </p>
@@ -255,34 +246,33 @@ function Benefits() {
   );
 }
 
-/* 04 | Services overview */
 function ServicesOverview() {
   const services = [
     {
       title: "Care Homes & Healthcare",
+      hash: "care-homes",
       color: "text-forest",
-      icon: Building2,
       img: heroImg,
       alt: "Drumming session in a care setting",
     },
     {
       title: "Community & Wellbeing",
+      hash: "community",
       color: "text-gold-ink",
-      icon: Users,
       img: circleImg,
       alt: "Community drumming circle",
     },
     {
-      title: "Schools & Education",
+      title: "Schools, Universities & Education",
+      hash: "schools",
       color: "text-maroon",
-      icon: GraduationCap,
       img: handsImg,
       alt: "Hands on a djembe drum",
     },
     {
       title: "Festivals & Events",
+      hash: "festivals",
       color: "text-forest",
-      icon: Drum,
       img: rehabImg,
       alt: "Group rhythmic session",
     },
@@ -291,34 +281,34 @@ function ServicesOverview() {
   return (
     <section className="border-b border-forest/10 bg-cream">
       <div className="container-x py-20 md:py-28">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="font-serif text-4xl tracking-[-0.02em] md:text-5xl">
-              Where we work
-            </h2>
-            <p className="mt-3 max-w-lg text-base text-muted-foreground">
-              Programmes tailored to your setting, from clinical wards to
-              community festivals.
-            </p>
-          </div>
-          <Link to="/services" className="btn-outline">
+        <div className="max-w-2xl">
+          <h2 className="font-serif text-4xl tracking-[-0.02em] md:text-5xl">
+            Where we work
+          </h2>
+          <p className="mt-3 max-w-lg text-base text-muted-foreground">
+            From care homes and universities to festivals and community
+            circles. Programmes tailored to your setting.
+          </p>
+          <Link to="/services" className="btn-outline mt-6">
             View services
           </Link>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => (
-            <Link key={s.title} to="/services" className="group focus-ring-brand">
+            <Link
+              key={s.title}
+              to="/services"
+              hash={s.hash}
+              className="group focus-ring-brand"
+            >
               <article>
-                <div className="relative overflow-hidden rounded-xl">
+                <div className="overflow-hidden rounded-xl">
                   <img
                     src={s.img}
                     alt={s.alt}
                     className="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
                     loading="lazy"
                   />
-                  <span className="absolute bottom-3 left-3 grid h-11 w-11 place-items-center rounded-full bg-cream text-forest shadow-sm">
-                    <s.icon className="h-5 w-5" strokeWidth={1.5} />
-                  </span>
                 </div>
                 <h3 className={`mt-4 font-serif text-xl ${s.color}`}>
                   {s.title}
@@ -332,22 +322,21 @@ function ServicesOverview() {
   );
 }
 
-/* 05 | Team preview */
 function TeamPreview() {
   const founders = [
     {
-      name: "Natalie Sone",
-      role: "Programme Coordinator · Senior Clinical Nurse",
+      name: "Natalie Rodgers",
+      role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieImg,
     },
     {
       name: "Dr John Nutekpor",
-      role: "PhD Drumming Practitioner",
+      role: "Founder & Artistic Director, PhD Arts Practitioner",
       img: johnImg,
     },
     {
       name: "Emmanuel Njume Sone",
-      role: "Strategy & Partnerships",
+      role: "Co-founder, Strategy & Partnerships",
       img: emmanuelImg,
     },
   ];
@@ -386,35 +375,25 @@ function TeamPreview() {
   );
 }
 
-/* 06 | Programme options */
 function ProgrammeOptions() {
-  const options = [
+  const featured = {
+    weeks: "8-Week",
+    tag: "Most booked",
+    interest: "8-week programme" as const,
+    body: "Our standard programme: deep enough to see meaningful change.",
+  };
+  const others = [
     {
       weeks: "4-Week",
       tag: "Introductory",
       interest: "4-week programme" as const,
       body: "A short structured engagement to introduce rhythmic wellbeing.",
-      tone: "border border-forest/15 bg-white text-ink",
-      tagClass: "text-forest",
-      recommended: false,
-    },
-    {
-      weeks: "8-Week",
-      tag: "Most booked",
-      interest: "8-week programme" as const,
-      body: "Our standard programme: deep enough to see meaningful change.",
-      tone: "bg-gold text-ink",
-      tagClass: "text-ink/70",
-      recommended: true,
     },
     {
       weeks: "12-Week",
       tag: "Advanced",
       interest: "12-week programme" as const,
       body: "Full therapeutic engagement with baseline and outcome reporting.",
-      tone: "bg-maroon text-cream",
-      tagClass: "text-gold-bright",
-      recommended: false,
     },
   ];
 
@@ -430,43 +409,49 @@ function ProgrammeOptions() {
             option already selected.
           </p>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {options.map((o) => (
-            <article
-              key={o.weeks}
-              className={`relative flex h-full flex-col rounded-xl p-8 ${o.tone}`}
+
+        <div className="mt-12 grid gap-6 md:grid-cols-12">
+          <article className="flex flex-col rounded-xl bg-gold p-8 text-ink md:col-span-7 md:p-10">
+            <CalendarDays className="h-7 w-7 opacity-90" strokeWidth={1.5} />
+            <p className="mt-6 text-sm font-medium text-ink/70">{featured.tag}</p>
+            <h3 className="mt-1 font-serif text-4xl md:text-5xl">
+              {featured.weeks}
+            </h3>
+            <p className="mt-4 max-w-[42ch] flex-1 text-base leading-relaxed opacity-90">
+              {featured.body}
+            </p>
+            <Link
+              to="/contact"
+              search={{ interest: featured.interest }}
+              className="mt-8 inline-flex min-h-11 w-fit items-center justify-center rounded-[6px] bg-ink px-5 text-sm font-medium text-cream transition-colors hover:bg-ink/90 focus-ring-brand"
             >
-              {o.recommended && (
-                <span className="absolute right-4 top-4 rounded-[4px] bg-ink/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]">
-                  Recommended
-                </span>
-              )}
-              <CalendarDays className="h-7 w-7 opacity-90" strokeWidth={1.5} />
-              <p
-                className={`mt-6 text-[11px] font-semibold uppercase tracking-[0.18em] ${o.tagClass}`}
+              Enquire about {featured.weeks}
+            </Link>
+          </article>
+
+          <div className="flex flex-col gap-6 md:col-span-5">
+            {others.map((o) => (
+              <article
+                key={o.weeks}
+                className="flex flex-1 flex-col border border-forest/15 bg-white p-6 text-ink md:p-7"
               >
-                {o.tag}
-              </p>
-              <h3 className="mt-2 font-serif text-4xl">{o.weeks}</h3>
-              <p className="mt-4 flex-1 text-sm leading-relaxed opacity-90">
-                {o.body}
-              </p>
-              <Link
-                to="/contact"
-                search={{ interest: o.interest }}
-                className={`mt-8 inline-flex min-h-11 items-center justify-center rounded-[6px] px-4 text-[0.7rem] font-semibold uppercase tracking-[0.12em] transition-colors focus-ring-brand ${
-                  o.recommended
-                    ? "bg-ink text-cream hover:bg-ink/90"
-                    : o.weeks === "12-Week"
-                      ? "bg-cream text-maroon hover:bg-white"
-                      : "bg-forest text-cream hover:bg-forest-deep"
-                }`}
-              >
-                Enquire about {o.weeks}
-              </Link>
-            </article>
-          ))}
+                <p className="text-sm font-medium text-forest">{o.tag}</p>
+                <h3 className="mt-1 font-serif text-3xl">{o.weeks}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {o.body}
+                </p>
+                <Link
+                  to="/contact"
+                  search={{ interest: o.interest }}
+                  className="mt-5 inline-flex min-h-11 w-fit items-center justify-center rounded-[6px] bg-forest px-4 text-sm font-medium text-cream transition-colors hover:bg-forest-deep focus-ring-brand"
+                >
+                  Enquire about {o.weeks}
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
+
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link to="/programme" className="btn-outline">
             View full details
@@ -484,28 +469,34 @@ function ProgrammeOptions() {
   );
 }
 
-/* 07 | Gallery preview */
 function GalleryPreview() {
   const imgs = [
-    { src: circleImg, className: "md:col-span-2 md:row-span-2", alt: "Community drumming circle" },
+    {
+      src: circleImg,
+      className: "md:col-span-2 md:row-span-2",
+      alt: "Community drumming circle",
+    },
     { src: rehabImg, className: "", alt: "Rehabilitation session" },
     { src: handsImg, className: "", alt: "Hands on a djembe" },
-    { src: heroImg, className: "md:col-span-2", alt: "Care home drumming session" },
+    {
+      src: heroImg,
+      className: "md:col-span-2",
+      alt: "Care home drumming session",
+    },
   ];
 
   return (
     <section className="border-b border-forest/10 bg-white">
       <div className="container-x py-20 md:py-28">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="font-serif text-4xl tracking-[-0.02em] md:text-5xl">
-              Moments from the Programme
-            </h2>
-            <p className="mt-3 max-w-lg text-base text-muted-foreground">
-              Sessions across care homes, HSE settings and community groups.
-            </p>
-          </div>
-          <Link to="/gallery" className="btn-outline">
+        <div className="max-w-2xl">
+          <h2 className="font-serif text-4xl tracking-[-0.02em] md:text-5xl">
+            Moments from the programme
+          </h2>
+          <p className="mt-3 max-w-lg text-base text-muted-foreground">
+            Atmosphere from our practice for layout. Consented photos and video
+            from taster sessions will replace these as delivery begins.
+          </p>
+          <Link to="/gallery" className="btn-outline mt-6">
             View Gallery
           </Link>
         </div>
@@ -530,30 +521,24 @@ function GalleryPreview() {
   );
 }
 
-/* 08 | Positioning line (no fabricated testimonials at launch) */
-function Testimonial() {
+function Positioning() {
   return (
     <section className="border-b border-forest/10 bg-cream">
       <div className="container-x py-20 md:py-28">
-        <figure className="mx-auto max-w-3xl text-center">
-          <span
-            className="font-serif text-6xl leading-none text-gold-ink"
-            aria-hidden="true"
-          >
-            &ldquo;
-          </span>
-          <blockquote className="mt-2 text-balance font-serif text-2xl leading-snug text-ink md:text-3xl lg:text-4xl">
-            PhD-level drumming practice, coordinated by a senior clinical nurse,
-            with culture, care and community in one programme.
-          </blockquote>
-          <figcaption className="mt-6 text-sm text-muted-foreground">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-balance font-serif text-2xl leading-snug text-ink md:text-3xl lg:text-4xl">
+            Stay Healthy with the Beat is a structured programme co-designed with
+            care teams and delivered by a PhD-qualified arts practitioner with
+            senior clinical coordination.
+          </p>
+          <p className="mt-6 text-sm text-muted-foreground">
             <span className="font-medium text-ink">
-              African Rhythms for Health &amp; Wellbeing
+              Rhythmic Sound for Health &amp; Wellbeing
             </span>
             <span className="mx-2 text-forest/30">|</span>
             Global Echoes Ireland
-          </figcaption>
-        </figure>
+          </p>
+        </div>
       </div>
     </section>
   );

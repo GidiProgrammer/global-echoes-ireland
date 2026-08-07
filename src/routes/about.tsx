@@ -13,7 +13,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "The story, mission and founders of Global Echoes Ireland: arts, culture and wellbeing through therapeutic African drumming.",
+          "Mission, vision and founders of Global Echoes Ireland, building global harmony through sound and rhythm.",
       },
       { property: "og:title", content: "About | Global Echoes Ireland" },
       { property: "og:url", content: "/about" },
@@ -26,22 +26,22 @@ export const Route = createFileRoute("/about")({
 function About() {
   const founders = [
     {
-      name: "Natalie Sone",
-      role: "Programme Coordinator · Senior Clinical Nurse",
+      name: "Natalie Rodgers",
+      role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieImg,
       bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
     },
     {
       name: "Dr John Nutekpor",
-      role: "Programme Lead · PhD Drumming Practitioner",
+      role: "Founder & Artistic Director, PhD Arts Practitioner",
       img: johnImg,
-      bio: "John leads African Rhythms sessions, blending traditional West African drumming with therapeutic practice.",
+      bio: "Dr Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
     },
     {
       name: "Emmanuel Njume Sone",
-      role: "Co-founder · Strategy & Partnerships",
+      role: "Co-founder, Strategy & Partnerships",
       img: emmanuelImg,
-      bio: "Emmanuel leads partnerships with healthcare, cultural and community bodies across Ireland.",
+      bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
     },
   ];
 
@@ -54,7 +54,7 @@ function About() {
             <span className="text-maroon">Community</span>
           </>
         }
-        intro="Global Echoes Ireland is a multi-strand arts, culture and wellbeing organisation. Our motto is Rhythm as Medicine: African Rhythms for Health & Wellbeing is the flagship healthcare programme."
+        intro="Guided by Global Harmony through Sound and creative collaborations, we deliver structured wellbeing music experiences across care homes, schools, communities and HEA institutions."
       />
 
       <section className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
@@ -75,12 +75,12 @@ function About() {
           <p className="mt-5 text-base leading-relaxed text-foreground/85">
             Global Echoes Ireland was born from a simple belief: cultural
             traditions, carried with respect and rigour, can improve health,
-            connection and belonging in Ireland&apos;s communities.
+            connection and belonging in global communities.
           </p>
           <p className="mt-4 text-base leading-relaxed text-foreground/85">
-            Today we work alongside HSE services, care providers and cultural
-            organisations to deliver structured programmes with real health and
-            social outcomes.
+            Today we work alongside care providers, cultural organisations and
+            academic institutions to deliver structured programmes with real
+            health and social outcomes.
           </p>
           <Link to="/programme" className="btn-solid mt-8">
             Our programme
@@ -94,33 +94,32 @@ function About() {
             <h2 className="font-serif text-3xl md:text-4xl">
               What we stand for
             </h2>
-            <p className="mt-4 max-w-[32ch] text-sm leading-relaxed text-muted-foreground">
-              Rhythm as Medicine is the through-line: culture carried with
-              respect, and care delivered with clinical coordination.
+            <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
+              Through sound and rhythms, we build global harmony: celebrating
+              culture, promoting wellbeing, and connecting communities through
+              compassionate, coordinated care.
             </p>
           </div>
           <ol className="md:col-span-8 space-y-0">
             {[
               {
-                title: "Mission",
-                body: "To use rhythm, culture and community to improve wellbeing across Ireland's healthcare and social settings.",
-              },
-              {
                 title: "Vision",
-                body: "An Ireland where cultural heritage is a recognised part of everyday health and connection.",
+                body: "To build global harmony through sound and rhythm, using music and cultural expression to promote wellbeing, connection, and belonging across Ireland and global communities.",
               },
               {
-                title: "Values",
-                body: "Respect. Rigour. Cultural integrity. Clinical safety. Genuine human warmth.",
+                title: "Mission",
+                body: "To harness the transformative power of rhythm, culture, and community to promote wellbeing, connection, and inclusion across Ireland and global communities.",
               },
-            ].map((c, i) => (
+              {
+                title: "Core values",
+                body: "We honour diverse traditions, voices, and lived experiences, using music as a bridge for intercultural understanding and inclusion.",
+              },
+            ].map((c) => (
               <li
                 key={c.title}
                 className="border-t border-forest/12 py-6 md:grid md:grid-cols-[7rem_1fr] md:gap-8"
               >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-ink">
-                  {String(i + 1).padStart(2, "0")} · {c.title}
-                </p>
+                <h3 className="font-serif text-xl text-forest">{c.title}</h3>
                 <p className="mt-2 text-base leading-relaxed text-foreground/85 md:mt-0 md:text-[1.05rem]">
                   {c.body}
                 </p>

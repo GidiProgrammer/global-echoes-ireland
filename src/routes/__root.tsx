@@ -55,9 +55,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const TITLE = "Global Echoes Ireland | African Rhythms for Health & Wellbeing";
+const TITLE =
+  "Global Echoes Ireland | Global Harmony through Sound and creative collaborations";
 const DESC =
-  "Global Echoes Ireland delivers African Rhythms for Health & Wellbeing: therapeutic African drumming for care homes Dublin, HSE wellbeing programmes, rehabilitation and community healthcare across Ireland.";
+  "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond. Flagship: Building Global Connections Through Music, Culture, and Creative Collaboration.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -103,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           areaServed: "IE",
           department: {
             "@type": "Organization",
-            name: "African Rhythms for Health & Wellbeing",
+            name: "Building Global Connections Through Music, Culture, and Creative Collaboration",
           },
         }),
       },

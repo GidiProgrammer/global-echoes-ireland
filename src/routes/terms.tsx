@@ -28,7 +28,7 @@ function Terms() {
       <section className="container-x max-w-3xl space-y-6 pb-20 text-base leading-relaxed text-foreground/85">
         <p>
           This website is provided by Global Echoes Ireland for information
-          about African Rhythms for Health &amp; Wellbeing. Content is offered
+          about Building Global Connections Through Music, Culture, and Creative Collaboration. Content is offered
           in good faith and may be updated without notice.
         </p>
         <p>
