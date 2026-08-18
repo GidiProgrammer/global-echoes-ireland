@@ -64,7 +64,7 @@ const cards = [
     unit: "per session",
     features: [
       "Curriculum-aligned workshops",
-      "Schools, universities and HEA settings",
+      "Schools, universities and Higher Education Authority (HEA) settings",
       "Cultural learning outcomes",
     ],
     span: "md:col-span-5",

@@ -11,7 +11,7 @@ web
 Primary audiences:
 
 - Care-home managers and activities coordinators seeking wellbeing music programmes
-- Schools, universities and HEA institutions
+- Schools, universities and Higher Education Authority (HEA) institutions
 - Community and cultural organisations; festival and event organisers
 - Also served: rehabilitation/disability settings and broader diaspora communities across Ireland and beyond
 
@@ -30,7 +30,7 @@ Wellbeing music programmes for care homes, schools, universities and communities
 ## Operating Context
 
 - On-site delivery; taster plus 4 / 8 / 12-week programme formats
-- Settings: care homes & healthcare, community & wellbeing, schools/universities/HEA, festivals & events
+- Settings: care homes & healthcare, community & wellbeing, schools/universities/Higher Education Authority (HEA), festivals & events
 - Community strands: CeltAfrik; Global Echoes Troubadours (GETROS); Global Roots Brothers (led by Nathan Harllels)
 - Contact is enquiry-led (form / mailto)
 - Gallery may retain AI/stock photography until client supplies consented session media and video

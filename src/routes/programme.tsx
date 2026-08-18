@@ -186,7 +186,7 @@ function Programme() {
               {
                 icon: UsersThree,
                 title: "Who it serves",
-                body: "Care home residents, school and university groups, community participants, rehabilitation and disability settings, and HEA institutions.",
+                body: "Care home residents, school and university groups, community participants, rehabilitation and disability settings, and Higher Education Authority (HEA) institutions.",
               },
               {
                 icon: Heart,

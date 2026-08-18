@@ -153,7 +153,8 @@ function AboutPreview() {
             Guided by global harmony through sound and creative collaborations,
             we deliver structured wellbeing music experiences that integrate
             world rhythmic traditions with wellbeing practice across care homes,
-            schools, communities and HEA institutions.
+            schools, communities and Higher Education Authority (HEA)
+            institutions.
           </p>
           <Link to="/about" className="btn-solid mt-8">
             About

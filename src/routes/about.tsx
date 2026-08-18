@@ -94,7 +94,8 @@ function About() {
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85">
             Guided by global harmony through sound and creative collaborations,
             we deliver structured wellbeing music experiences across care homes,
-            schools, communities and HEA institutions.
+            schools, communities and Higher Education Authority (HEA)
+            institutions.
           </p>
         </div>
       </section>
