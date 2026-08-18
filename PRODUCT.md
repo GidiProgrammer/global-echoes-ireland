@@ -23,7 +23,7 @@ Global Echoes Ireland (GEI) establishes professional credibility for the parent 
 
 ## Positioning
 
-**Primary tagline:** Global Harmony through Sound and creative collaborations.
+**Primary tagline:** Global harmony through sound and creative collaborations.
 
 Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond — bringing culture, care, and connection together. Flagship: Building Global Connections Through Music, Culture, and Creative Collaboration (Rhythms for Wellbeing), delivered by a PhD-level arts practitioner (Dr John Nutekpor, Founder & Artistic Director) with senior clinical coordination (Natalie Rodgers).
 
@@ -51,7 +51,7 @@ Contact facts:
 
 - Organisation: Global Echoes Ireland (GEI)
 - Flagship programme: Rhythmic Sound for Health & Wellbeing (Stay Healthy with the Beat)
-- Primary tagline: Global Harmony through Sound and creative collaborations / Global Harmony Through Sound and Rhythm Creative Collaborations
+- Primary tagline: Global harmony through sound and creative collaborations
 - Positioning line: Building Global Connections Through Music, Culture, and Creative Collaboration
 - Framing: Culture, Care & Community
 - Tone: warm, professional, culturally confident, healthcare-credible
@@ -59,7 +59,7 @@ Contact facts:
 
 ## Evidence on Hand
 
-- Founder/team bios for Natalie Rodgers, Dr John Nutekpor, Emmanuel Njume Sone
+- Founder/team bios for Natalie Rodgers, Dr John Nutekpor, Emmanuel Njume Sone, Caoimhe Doherty, Faris Amin
 - Community initiative copy for CeltAfrik, GETROS, GR Brothers
 - Do not fabricate: named client testimonials, partner endorsement logos, clinical outcome claims beyond evidence-informed language
 

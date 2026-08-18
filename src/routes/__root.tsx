@@ -7,11 +7,11 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CONTACT_EMAIL } from "../lib/contact";
+import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME, SITE_ORIGIN } from "../lib/site";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -34,9 +34,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-dvh items-center justify-center bg-background px-4">
@@ -56,7 +53,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 const TITLE =
-  "Global Echoes Ireland | Global Harmony through Sound and creative collaborations";
+  "Global Echoes Ireland | Global harmony through sound and creative collaborations";
 const DESC =
   "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.";
 
@@ -72,16 +69,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Global Echoes Ireland" },
-      { property: "og:image", content: "/og-image.jpg" },
-      { property: "og:image:alt", content: "Global Echoes Ireland logo" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:url", content: SITE_ORIGIN },
+      { property: "og:image", content: absoluteUrl(DEFAULT_OG_IMAGE) },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Global Echoes Ireland - wellbeing music programmes" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESC },
-      { name: "twitter:image", content: "/og-image.jpg" },
+      { name: "twitter:image", content: absoluteUrl(DEFAULT_OG_IMAGE) },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: SITE_ORIGIN },
       { rel: "icon", href: "/favicon.png?v=2", type: "image/png", sizes: "32x32" },
       { rel: "icon", href: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
       { rel: "icon", href: "/favicon.ico?v=2", sizes: "any" },
@@ -94,14 +95,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Global Echoes Ireland",
-          url: "/",
+          url: SITE_ORIGIN,
           description: DESC,
           email: CONTACT_EMAIL,
-          logo: "/gei-logo.jpg",
-          image: "/og-image.jpg",
+          logo: absoluteUrl("/gei-logo.jpg"),
+          image: absoluteUrl(DEFAULT_OG_IMAGE),
           areaServed: "IE",
           slogan:
-            "Global Harmony through Sound and creative collaborations",
+            "Global harmony through sound and creative collaborations",
         }),
       },
     ],

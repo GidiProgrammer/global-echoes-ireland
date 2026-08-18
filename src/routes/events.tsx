@@ -3,26 +3,18 @@ import { CalendarBlank } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import celtafrikImg from "@/assets/celtafrik-quartet.png";
-import grBrothersImg from "@/assets/globalroutebrothers.png";
-import nathanImg from "@/assets/nathan-harllels.png";
+import grBrothersImg from "@/assets/globalroutebrothers.jpg";
+import nathanImg from "@/assets/nathan-harllels.jpg";
+import { pageHead } from "@/lib/site";
 
 export const Route = createFileRoute("/events")({
-  head: () => ({
-    meta: [
-      { title: "Events & Communities | Global Echoes Ireland" },
-      {
-        name: "description",
-        content:
-          "CeltAfrik, Global Echoes Troubadours (GETROS) and Global Roots Brothers: community and cultural music initiatives from Global Echoes Ireland.",
-      },
-      {
-        property: "og:title",
-        content: "Events & Communities | Global Echoes Ireland",
-      },
-      { property: "og:url", content: "/events" },
-    ],
-    links: [{ rel: "canonical", href: "/events" }],
-  }),
+  head: () =>
+    pageHead({
+      title: "Events & Communities | Global Echoes Ireland",
+      description:
+        "CeltAfrik, Global Echoes Troubadours (GETROS) and Global Roots Brothers: community and cultural music initiatives from Global Echoes Ireland.",
+      path: "/events",
+    }),
   component: Events,
 });
 

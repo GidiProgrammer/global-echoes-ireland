@@ -2,24 +2,20 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import heroImg from "@/assets/hero-care-drumming.jpg";
-import circleImg from "@/assets/community-circle.jpg";
-import handsImg from "@/assets/hands-drum.jpg";
-import rehabImg from "@/assets/rehab-session.jpg";
+import careHomesImg from "@/assets/carehomes.jpg";
+import communityWellbeingImg from "@/assets/community-wellbeing.jpg";
+import schoolsEducationImg from "@/assets/schools-education.jpg";
+import festivalsEventsImg from "@/assets/festivals-and-events.jpg";
+import { pageHead } from "@/lib/site";
 
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services & Pricing | Global Echoes Ireland" },
-      {
-        name: "description",
-        content:
-          "Services and indicative pricing for Global Echoes Ireland sessions in healthcare, care homes, schools, festivals and community settings.",
-      },
-      { property: "og:url", content: "/services" },
-    ],
-    links: [{ rel: "canonical", href: "/services" }],
-  }),
+  head: () =>
+    pageHead({
+      title: "Services & Pricing | Global Echoes Ireland",
+      description:
+        "Services and indicative pricing for Global Echoes Ireland sessions in healthcare, care homes, schools, festivals and community settings.",
+      path: "/services",
+    }),
   component: Services,
 });
 
@@ -28,8 +24,8 @@ const cards = [
     id: "care-homes",
     name: "Care Homes & Healthcare" as const,
     ask: "care homes",
-    img: heroImg,
-    alt: "Care home drumming session",
+    img: careHomesImg,
+    alt: "Caregiver holding an older person's hands in a care setting",
     price: "From €240",
     unit: "per session",
     features: [
@@ -45,8 +41,8 @@ const cards = [
     id: "community",
     name: "Community & Wellbeing" as const,
     ask: "community",
-    img: circleImg,
-    alt: "Community drumming circle",
+    img: communityWellbeingImg,
+    alt: "Facilitated drumming circle with older participants",
     price: "From €200",
     unit: "per session",
     features: [
@@ -62,8 +58,8 @@ const cards = [
     id: "schools",
     name: "Schools, Universities & Education" as const,
     ask: "schools",
-    img: handsImg,
-    alt: "Hands on a djembe drum",
+    img: schoolsEducationImg,
+    alt: "School percussion workshop with facilitator and pupils around djembes",
     price: "From €220",
     unit: "per session",
     features: [
@@ -78,8 +74,8 @@ const cards = [
     id: "festivals",
     name: "Festivals & Events" as const,
     ask: "festivals",
-    img: rehabImg,
-    alt: "Group rhythmic session",
+    img: festivalsEventsImg,
+    alt: "Outdoor festival performance with djembe and audience",
     price: "Upon request",
     unit: "",
     features: [

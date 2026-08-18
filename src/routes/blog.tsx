@@ -1,20 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
+import { pageHead } from "@/lib/site";
 
 export const Route = createFileRoute("/blog")({
-  head: () => ({
-    meta: [
-      { title: "Blog | Global Echoes Ireland" },
-      {
-        name: "description",
-        content:
-          "Programme updates, session highlights and community news from Global Echoes Ireland.",
-      },
-      { property: "og:url", content: "/blog" },
-    ],
-    links: [{ rel: "canonical", href: "/blog" }],
-  }),
+  head: () =>
+    pageHead({
+      title: "Blog | Global Echoes Ireland",
+      description:
+        "Programme updates, session highlights and community news from Global Echoes Ireland.",
+      path: "/blog",
+    }),
   component: Blog,
 });
 

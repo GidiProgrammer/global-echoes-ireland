@@ -13,6 +13,8 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
+import { openMailtoDraft, submitEnquiry } from "@/lib/enquiry";
+import { pageHead } from "@/lib/site";
 
 export const INTEREST_OPTIONS = [
   "Taster session",
@@ -58,18 +60,12 @@ export const Route = createFileRoute("/contact")({
       ? search.interest
       : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "Contact | Global Echoes Ireland" },
-      {
-        name: "description",
-        content:
-          `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
-      },
-      { property: "og:url", content: "/contact" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
+  head: () =>
+    pageHead({
+      title: "Contact | Global Echoes Ireland",
+      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
+      path: "/contact",
+    }),
   component: Contact,
 });
 
@@ -91,10 +87,12 @@ function Contact() {
   const { interest: interestFromUrl } = Route.useSearch();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pending, setPending] = useState(false);
-  const [drafted, setDrafted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [usedFallback, setUsedFallback] = useState(false);
   const formErrorId = useId();
   const messageId = useId();
   const interestId = useId();
+  const honeypotId = useId();
 
   const copyEmail = async () => {
     try {
@@ -108,9 +106,17 @@ function Contact() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPending(true);
-    setDrafted(false);
+    setSubmitted(false);
+    setUsedFallback(false);
+
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+
+    if (typeof data.botcheck === "string" && data.botcheck.trim().length > 0) {
+      setPending(false);
+      return;
+    }
+
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
       const errs: Record<string, string> = {};
@@ -128,27 +134,27 @@ function Contact() {
     }
     setErrors({});
 
-    const { name, email, organisation, interest, message } = parsed.data;
-    const subject = encodeURIComponent(`Enquiry: ${interest}`);
-    const body = encodeURIComponent(
-      [
-        message,
-        "",
-        "---",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        organisation ? `Organisation: ${organisation}` : null,
-        `Interest: ${interest}`,
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    );
+    const payload = parsed.data;
+    const result = await submitEnquiry(payload);
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setDrafted(true);
-    toast.success(
-      "Your email app should open with this enquiry. If nothing opens, use the copy button below.",
-    );
+    if (result.ok) {
+      setSubmitted(true);
+      form.reset();
+      toast.success("Enquiry sent. We aim to reply within one working day.");
+      setPending(false);
+      return;
+    }
+
+    openMailtoDraft(payload);
+    setUsedFallback(true);
+    setSubmitted(true);
+    if (result.reason === "activation") {
+      toast.message(
+        "Form delivery needs a one-time confirmation. Your email app should open as a backup.",
+      );
+    } else {
+      toast.error(result.message);
+    }
     setPending(false);
   };
 
@@ -159,7 +165,7 @@ function Contact() {
     <PageShell>
       <PageHero
         title="Book a Taster Session"
-        intro="We aim to reply within one working day. The form opens your email app with a prefilled message."
+        intro="Send an enquiry below. We aim to reply within one working day."
       />
 
       <section className="container-x grid gap-10 py-12 md:py-16 lg:grid-cols-12">
@@ -175,9 +181,7 @@ function Contact() {
                   <EnvelopeSimple className="h-4 w-4" weight="regular" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-sm text-muted-foreground">
-                    Email
-                  </p>
+                  <p className="text-sm text-muted-foreground">Email</p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
                     className="break-all font-medium hover:text-forest focus-ring-brand"
@@ -199,9 +203,7 @@ function Contact() {
                   <Phone className="h-4 w-4" weight="regular" />
                 </span>
                 <div>
-                  <p className="text-sm text-muted-foreground">
-                    Phone
-                  </p>
+                  <p className="text-sm text-muted-foreground">Phone</p>
                   <div className="flex flex-col gap-1 font-medium">
                     <a
                       href={CONTACT_PHONE.href}
@@ -217,17 +219,13 @@ function Contact() {
                   <MapPin className="h-4 w-4" weight="regular" />
                 </span>
                 <div>
-                  <p className="text-sm text-muted-foreground">
-                    Based in
-                  </p>
+                  <p className="text-sm text-muted-foreground">Based in</p>
                   <p className="font-medium">Ireland, delivering nationwide</p>
                 </div>
               </li>
             </ul>
             <div className="mt-8 border-t border-forest/10 pt-6">
-              <p className="text-sm text-muted-foreground">
-                Follow us
-              </p>
+              <p className="text-sm text-muted-foreground">Follow us</p>
               <p className="mt-1 text-sm text-muted-foreground">
                 @globalechoesireland
               </p>
@@ -254,11 +252,27 @@ function Contact() {
           noValidate
           className="rounded-xl border border-forest/10 bg-white p-8 lg:col-span-7"
         >
-          <h2 className="font-display text-2xl font-medium">Draft an enquiry</h2>
+          <h2 className="font-display text-2xl font-medium">Send an enquiry</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Submitting opens your email app with a prefilled message to{" "}
-            {CONTACT_EMAIL}.
+            Your message is sent securely to {CONTACT_EMAIL}. See our{" "}
+            <Link
+              to="/privacy"
+              className="font-medium text-forest underline-offset-2 hover:underline"
+            >
+              Privacy Policy
+            </Link>{" "}
+            for how we handle enquiry data.
           </p>
+
+          <input
+            type="checkbox"
+            id={honeypotId}
+            name="botcheck"
+            tabIndex={-1}
+            autoComplete="off"
+            className="sr-only"
+            aria-hidden="true"
+          />
 
           <div
             id={formErrorId}
@@ -370,7 +384,7 @@ function Contact() {
               disabled={pending}
               className="btn-solid disabled:cursor-not-allowed disabled:opacity-70"
             >
-              {pending ? "Opening email…" : "Open email to send"}{" "}
+              {pending ? "Sending…" : "Send enquiry"}{" "}
               <PaperPlaneTilt className="h-4 w-4" />
             </button>
             <Link
@@ -381,17 +395,28 @@ function Contact() {
             </Link>
           </div>
 
-          {drafted && (
+          {submitted && (
             <div
               role="status"
               className="mt-6 rounded-[6px] border border-forest/15 bg-forest-soft/60 px-4 py-4 text-sm leading-relaxed text-forest"
             >
-              <p className="font-medium">Enquiry drafted in your email app</p>
-              <p className="mt-1 text-forest/80">
-                If nothing opened, copy{" "}
-                <span className="font-medium">{CONTACT_EMAIL}</span> and send
-                your message manually. We aim to reply within one working day.
-              </p>
+              {usedFallback ? (
+                <>
+                  <p className="font-medium">Enquiry opened in your email app</p>
+                  <p className="mt-1 text-forest/80">
+                    If nothing opened, copy{" "}
+                    <span className="font-medium">{CONTACT_EMAIL}</span> and send
+                    your message manually. We aim to reply within one working day.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="font-medium">Enquiry sent</p>
+                  <p className="mt-1 text-forest/80">
+                    Thank you. We aim to reply within one working day.
+                  </p>
+                </>
+              )}
               <button
                 type="button"
                 onClick={copyEmail}

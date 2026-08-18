@@ -79,6 +79,8 @@
 
 :root {
   --radius: 6px;
+  /* Keep in sync with Header bar (h-16 / md:h-[4.25rem]) */
+  --header-h: 4rem;
 
   /* Forest family: deep green + cool bone + amber
      Token names (--cream / --gold*) kept for class compatibility.
@@ -154,6 +156,25 @@
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
   --ring: var(--gold);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 4.25rem;
+  }
+}
+
+/* Full viewport band under the fixed/sticky header */
+@utility section-fill {
+  box-sizing: border-box;
+  height: calc(100dvh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h));
+  max-height: calc(100dvh - var(--header-h));
+  scroll-margin-top: var(--header-h);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @layer base {
@@ -341,6 +362,24 @@
   .animate-fade-up,
   .animate-hero-soft {
     animation: none !important;
+  }
+}
+
+/* Progressive scroll reveal — visible until JS opts into motion */
+.reveal {
+  will-change: auto;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal.reveal-ready:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .reveal.reveal-ready.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 

@@ -3,19 +3,16 @@ import { useEffect, useId, useRef, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 
-/** Persuade path: five doors. Gallery/Blog live in the footer until content-ready. */
 const nav = [
   { to: "/about", label: "About" },
   { to: "/programme", label: "Programme" },
   { to: "/services", label: "Services" },
   { to: "/events", label: "Events" },
+  { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
-const secondary = [
-  { to: "/gallery", label: "Gallery" },
-  { to: "/blog", label: "Blog" },
-] as const;
+const secondary = [{ to: "/blog", label: "Blog" }] as const;
 
 export function Header({ overlay = false }: { overlay?: boolean }) {
   const [open, setOpen] = useState(false);
@@ -128,7 +125,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         overlay ? "fixed inset-x-0 top-0" : "sticky top-0"
       } ${onDark ? "nav-mast is-over-hero" : "nav-mast is-solid"}`}
     >
-      <div className="mx-auto flex h-16 max-w-[90rem] items-center gap-4 px-4 sm:px-6 md:h-[4.25rem] md:gap-6 lg:gap-10 lg:px-10">
+      <div className="mx-auto flex h-[var(--header-h)] max-w-[90rem] items-center gap-4 px-4 sm:px-6 md:gap-6 lg:gap-10 lg:px-10">
         <div className="min-w-0 shrink">
           <Logo inverted={onDark} />
         </div>
@@ -195,7 +192,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
           aria-label="Site menu"
           className="fixed inset-0 z-[60] flex flex-col bg-forest lg:hidden"
         >
-          <div className="flex h-16 items-center justify-between border-b border-cream/15 px-4 sm:px-6 md:h-[4.25rem]">
+          <div className="flex h-[var(--header-h)] items-center justify-between border-b border-cream/15 px-4 sm:px-6">
             <Logo inverted size="sm" />
             <button
               type="button"

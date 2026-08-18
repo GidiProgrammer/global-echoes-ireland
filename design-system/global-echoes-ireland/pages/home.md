@@ -12,7 +12,7 @@ Overrides `MASTER.md` for the homepage first viewport only.
 
 ## Copy Hierarchy
 1. Brand in nav (logo) **and** hero lockup: **Global Echoes Ireland** (serif, cream, ~1.85–2.85rem)
-2. H1: Global Harmony / through Sound / and creative collaborations (cream / amber emphasis)
+2. H1: Global harmony / through sound / and creative collaborations (cream / amber emphasis)
 3. Supporting sentence quieter / shorter measure (~36ch)
 4. Primary CTA → `/contact` (Book a Taster Session), secondary text link → `/programme`
 

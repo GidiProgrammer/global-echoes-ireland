@@ -9,22 +9,16 @@ import {
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import stayHealthyImg from "@/assets/stay-healthy-with-the-beat.jpg";
+import { pageHead } from "@/lib/site";
 
 export const Route = createFileRoute("/programme")({
-  head: () => ({
-    meta: [
-      {
-        title: "Rhythmic Sound for Health & Wellbeing | Global Echoes Ireland",
-      },
-      {
-        name: "description",
-        content:
-          "Stay Healthy with the Beat: Rhythmic Sound for Health & Wellbeing. Traditional African drumming with wellbeing tips, led by Dr John Nutekpor.",
-      },
-      { property: "og:url", content: "/programme" },
-    ],
-    links: [{ rel: "canonical", href: "/programme" }],
-  }),
+  head: () =>
+    pageHead({
+      title: "Rhythmic Sound for Health & Wellbeing | Global Echoes Ireland",
+      description:
+        "Stay Healthy with the Beat: Rhythmic Sound for Health & Wellbeing. Traditional African drumming with wellbeing tips, led by Dr John Nutekpor.",
+      path: "/programme",
+    }),
   component: Programme,
 });
 
@@ -74,7 +68,7 @@ function Programme() {
     <PageShell>
       <PageHero
         title="Rhythmic Sound for Health & Wellbeing"
-        intro="Co-designed with care teams. Led by a PhD arts practitioner with senior clinical coordination."
+        intro="Co-designed with care teams. Led by a PhD arts practitioner with a senior clinical coordinator."
       >
         <Link
           to="/contact"
@@ -106,7 +100,7 @@ function Programme() {
             care homes, schools and community settings, led by Dr John Nutekpor.
           </p>
           <p className="mt-4 max-w-prose text-base leading-relaxed text-foreground/85">
-            Sessions combine rhythm, movement and simple health tips so groups
+            Sessions combine rhythm, movement and basic health tips so groups
             can take part together, seated or standing, with no musical
             experience required.
           </p>

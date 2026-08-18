@@ -14,7 +14,7 @@ export function CTASection() {
       <div className="absolute inset-0 bg-forest/75" aria-hidden="true" />
       <div className="container-x relative py-20 text-center md:py-28">
         <p className="mx-auto max-w-2xl text-sm font-medium text-gold-bright">
-          Global Harmony through Sound and creative collaborations
+          Global harmony through sound and creative collaborations
         </p>
         <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.1] text-cream md:text-5xl lg:text-6xl">
           Book a taster for your care home or community

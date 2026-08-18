@@ -45,7 +45,7 @@ export function Footer() {
         <div>
           <Logo inverted />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/75">
-            Global Harmony through Sound and creative collaborations. Wellbeing
+            Global harmony through sound and creative collaborations. Wellbeing
             music programmes for care homes, schools, universities and
             communities across Ireland and beyond.
           </p>

@@ -1,37 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import johnImg from "@/assets/drjohn.png";
+import johnImg from "@/assets/drjohn.jpg";
 import natalieImg from "@/assets/founder-natalie.jpg";
 import emmanuelImg from "@/assets/founder-emmanuel.jpg";
+import caoimheImg from "@/assets/caoimhe-doherty.jpg";
+import farisImg from "@/assets/faris-amin.jpg";
 import circleImg from "@/assets/community-circle.jpg";
+import { pageHead } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About | Global Echoes Ireland" },
-      {
-        name: "description",
-        content:
-          "Mission, vision and founders of Global Echoes Ireland, building global harmony through sound and rhythm.",
-      },
-      { property: "og:title", content: "About | Global Echoes Ireland" },
-      { property: "og:url", content: "/about" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
+  head: () =>
+    pageHead({
+      title: "About | Global Echoes Ireland",
+      description:
+        "Mission, vision and founders of Global Echoes Ireland, building global harmony through sound.",
+      path: "/about",
+    }),
   component: About,
 });
 
 function About() {
-  const founders = [
-    {
-      name: "Natalie Rodgers",
-      role: "Programme Coordinator, Senior Clinical Nurse",
-      img: natalieImg,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover",
-      bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
-    },
+  const people = [
     {
       name: "Dr John Nutekpor",
       role: "Founder & Artistic Director, PhD Arts Practice",
@@ -43,8 +33,29 @@ function About() {
       name: "Emmanuel Njume Sone",
       role: "Co-founder, Strategy & Partnerships",
       img: emmanuelImg,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover",
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_18%]",
       bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
+    },
+    {
+      name: "Natalie Rodgers",
+      role: "Programme Coordinator, Senior Clinical Nurse",
+      img: natalieImg,
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_18%]",
+      bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
+    },
+    {
+      name: "Faris Amin",
+      role: "Community Outreach Coordinator and Therapist",
+      img: farisImg,
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_30%]",
+      bio: "Faris Amin is our Community Outreach Coordinator and Therapist. He builds meaningful relationships with communities and partners, coordinates outreach activities, and supports inclusive engagement through therapeutic and creative programmes, helping individuals and communities connect, grow, and thrive.",
+    },
+    {
+      name: "Caoimhe Doherty",
+      role: "International Programmes and Events Coordinator",
+      img: caoimheImg,
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_20%]",
+      bio: "Caoimhe Doherty is an Ireland-based multi-instrumentalist, composer, and performer. She coordinates our international programmes and event curation, contributing her expertise and creative insight to the development and delivery of our global initiatives.",
     },
   ];
 
@@ -56,8 +67,8 @@ function About() {
       />
 
       <section className="container-x pb-16 md:pb-24">
-        <div className="grid gap-10 sm:grid-cols-3">
-          {founders.map((f) => (
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {people.map((f) => (
             <article key={f.name}>
               <img
                 src={f.img}
@@ -65,7 +76,7 @@ function About() {
                 alt={f.name}
                 className={f.imgClass}
               />
-              <h2 className="mt-5 font-serif text-2xl">{f.name}</h2>
+              <h2 className="mt-5 font-display text-2xl font-medium">{f.name}</h2>
               <p className="mt-1 text-sm text-forest">{f.role}</p>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
                 {f.bio}
@@ -81,7 +92,7 @@ function About() {
             Culture, care and community
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85">
-            Guided by Global Harmony through Sound and creative collaborations,
+            Guided by global harmony through sound and creative collaborations,
             we deliver structured wellbeing music experiences across care homes,
             schools, communities and HEA institutions.
           </p>
@@ -126,8 +137,8 @@ function About() {
               What we stand for
             </h2>
             <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
-              Through sound and rhythms, we build global harmony: celebrating
-              culture, promoting wellbeing, and connecting communities through
+              Through sound, we build global harmony: celebrating culture,
+              promoting wellbeing, and connecting communities through
               compassionate, coordinated care.
             </p>
           </div>
@@ -135,11 +146,11 @@ function About() {
             {[
               {
                 title: "Vision",
-                body: "To build global harmony through sound and rhythm, using music and cultural expression to promote wellbeing, connection, and belonging across Ireland and global communities.",
+                body: "To build global harmony through sound, using music and cultural expression to promote wellbeing, connection, and belonging across Ireland and global communities.",
               },
               {
                 title: "Mission",
-                body: "To harness the transformative power of rhythm, culture, and community to promote wellbeing, connection, and inclusion across Ireland and global communities.",
+                body: "To harness the transformative power of sound, culture, and community to promote wellbeing, connection, and inclusion across Ireland and global communities.",
               },
               {
                 title: "Core values",
