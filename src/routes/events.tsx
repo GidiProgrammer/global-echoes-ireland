@@ -27,14 +27,9 @@ const NATHAN_TRACK_URL =
 function Events() {
   return (
     <PageShell>
-      <PageHero
-        title="Events and communities"
-        intro="Community strands for creativity, intercultural dialogue, wellbeing and belonging across Ireland and beyond."
-      />
-
-      {/* CeltAfrik: split + video */}
-      <section id="celtafrik" className="scroll-mt-28 container-x py-16 md:py-24">
-        <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
+      <section id="celtafrik" className="scroll-mt-28 container-x pt-10 pb-16 md:pt-12 md:pb-24">
+        <PageHero title="Events and communities" />
+        <div className="mt-10 grid items-center gap-10 md:grid-cols-12 md:mt-12 md:gap-12">
           <div className="md:col-span-5">
             <div className="overflow-hidden rounded-xl">
               <Picture

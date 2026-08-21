@@ -88,23 +88,16 @@ function filmDomId(title: string, part: "title" | "transcript") {
 function Gallery() {
   return (
     <PageShell>
-      <PageHero
-        title="Gallery"
-        intro="Photography and session films from Global Echoes Ireland programmes in schools, communities and cultural settings."
-      />
-
       <section
         id="work-done"
-        aria-labelledby="work-done-heading"
+        aria-labelledby="gallery-heading"
         className="scroll-mt-28 border-b border-forest/10 bg-cream"
       >
-        <div className="container-x py-12 md:py-16">
-          <div className="max-w-2xl">
-            <h2
-              id="work-done-heading"
-              className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl"
-            >
-              Workshop Sessions
+        <div className="container-x pt-10 pb-12 md:pt-12 md:pb-16">
+          <PageHero title="Gallery" headingId="gallery-heading" />
+          <div className="mt-10 max-w-2xl">
+            <h2 className="font-display text-xl font-medium tracking-[-0.02em] text-ink md:text-2xl">
+              Workshop sessions
             </h2>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">
               African percussion and cultural information workshop with pupils.

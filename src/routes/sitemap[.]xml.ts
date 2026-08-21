@@ -7,6 +7,7 @@ const SITEMAP_URLS = [
   { path: "/about", changefreq: "monthly" },
   { path: "/programme", changefreq: "weekly" },
   { path: "/services", changefreq: "weekly" },
+  { path: "/funders", changefreq: "monthly" },
   { path: "/events", changefreq: "weekly" },
   { path: "/gallery", changefreq: "monthly" },
   { path: "/contact", changefreq: "monthly" },

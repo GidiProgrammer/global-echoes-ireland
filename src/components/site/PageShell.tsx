@@ -1,14 +1,8 @@
 import type { ReactNode } from "react";
-import { Header } from "./Header";
+import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 
-export function PageShell({
-  children,
-  overlayNav = false,
-}: {
-  children: ReactNode;
-  overlayNav?: boolean;
-}) {
+export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="relative flex min-h-dvh flex-col bg-cream">
       <a
@@ -17,7 +11,7 @@ export function PageShell({
       >
         Skip to content
       </a>
-      <Header overlay={overlayNav} />
+      <Nav />
       <main id="main" className="flex-1">
         {children}
       </main>
@@ -30,24 +24,46 @@ export function PageHero({
   title,
   intro,
   children,
+  className = "",
+  headingId,
 }: {
   title: ReactNode;
   intro?: ReactNode;
   children?: ReactNode;
+  className?: string;
+  headingId?: string;
 }) {
+  const hasAside = Boolean(intro || children);
+
   return (
-    <section className="border-b border-forest/10 bg-cream">
-      <div className="container-x pt-10 pb-8 md:pt-12 md:pb-10">
-        <h1 className="max-w-3xl font-display text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
-          {title}
-        </h1>
-        {intro && (
-          <p className="mt-3 max-w-xl text-base leading-relaxed text-foreground/80">
-            {intro}
-          </p>
-        )}
-        {children ? <div className="mt-6">{children}</div> : null}
+    <header className={`page-title ${className}`.trim()}>
+      <div
+        className={
+          hasAside
+            ? "flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-12"
+            : undefined
+        }
+      >
+        <div className="min-w-0">
+          <h1
+            id={headingId}
+            className="max-w-[16ch] text-balance font-display text-[2.25rem] font-medium leading-[1.05] tracking-[-0.03em] text-ink md:text-5xl lg:text-[3.35rem]"
+          >
+            {title}
+          </h1>
+          <span className="page-title-stave" aria-hidden="true" />
+        </div>
+        {hasAside ? (
+          <div className="flex max-w-sm shrink-0 flex-col items-start gap-4 md:items-end md:pb-1">
+            {intro ? (
+              <p className="text-sm leading-relaxed text-ink/80 md:text-right">
+                {intro}
+              </p>
+            ) : null}
+            {children}
+          </div>
+        ) : null}
       </div>
-    </section>
+    </header>
   );
 }

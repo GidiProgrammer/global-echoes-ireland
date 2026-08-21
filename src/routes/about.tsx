@@ -24,63 +24,81 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const featured = {
+    name: "Dr John Nutekpor",
+    role: "Founder & Artistic Director, PhD Arts Practice",
+    img: drJohn,
+    imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_15%]",
+    bio: "Dr Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
+  };
   const people = [
-    {
-      name: "Dr John Nutekpor",
-      role: "Founder & Artistic Director, PhD Arts Practice",
-      img: drJohn,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_15%]",
-      bio: "Dr. Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
-    },
     {
       name: "Emmanuel Njume Sone",
       role: "Co-founder, Strategy & Partnerships",
       img: emmanuelSone,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_18%]",
+      imgClass:
+        "aspect-square w-full rounded-xl object-cover object-[center_18%] sm:aspect-[5/4]",
       bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
     },
     {
-      name: "Natalie Rodgers",
+      name: "Natalie Sone",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieRodgers,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_38%]",
+      imgClass:
+        "aspect-square w-full rounded-xl object-cover object-[center_38%] sm:aspect-[5/4]",
       bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
     },
     {
       name: "Faris Amin",
       role: "Community Outreach Coordinator and Therapist",
       img: farisAmin,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_30%]",
-      bio: "Faris Amin is our Community Outreach Coordinator and Therapist. He builds meaningful relationships with communities and partners, coordinates outreach activities, and supports inclusive engagement through therapeutic and creative programmes, helping individuals and communities connect, grow, and thrive.",
+      imgClass:
+        "aspect-square w-full rounded-xl object-cover object-[center_30%] sm:aspect-[5/4]",
+      bio: "Faris coordinates community outreach and supports inclusive engagement through therapeutic and creative programmes.",
     },
     {
       name: "Caoimhe Doherty",
       role: "International Programmes and Events Coordinator",
       img: caoimheDoherty,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_20%]",
-      bio: "Caoimhe Doherty is an Ireland-based multi-instrumentalist, composer, and performer. She coordinates our international programmes and event curation, contributing her expertise and creative insight to the development and delivery of our global initiatives.",
+      imgClass:
+        "aspect-square w-full rounded-xl object-cover object-[center_20%] sm:aspect-[5/4]",
+      bio: "Caoimhe is an Ireland-based multi-instrumentalist and composer. She coordinates international programmes and event curation.",
     },
   ];
 
   return (
     <PageShell>
-      <PageHero
-        title="About Global Echoes Ireland"
-        intro="Clinical coordination, cultural mastery and partnership leadership behind wellbeing music programmes across Ireland."
-      />
-
-      <section className="container-x pb-16 md:pb-24">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {people.map((f) => (
-            <article key={f.name}>
-              <Picture {...f.img} alt={f.name} className={f.imgClass} />
-              <h2 className="mt-5 font-display text-2xl font-medium">{f.name}</h2>
-              <p className="mt-1 text-sm text-forest">{f.role}</p>
-              <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                {f.bio}
-              </p>
-            </article>
-          ))}
+      <section className="container-x pt-10 pb-16 md:pt-12 md:pb-24">
+        <PageHero title="About" />
+        <div className="mt-10 grid gap-10 md:grid-cols-12 md:gap-8 lg:mt-12 lg:gap-12">
+          <article className="md:col-span-6 lg:col-span-5">
+            <Picture
+              {...featured.img}
+              alt={featured.name}
+              className={featured.imgClass}
+            />
+            <h2 className="mt-5 font-display text-2xl font-medium md:text-3xl">
+              {featured.name}
+            </h2>
+            <p className="mt-1 text-sm text-forest">{featured.role}</p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              {featured.bio}
+            </p>
+          </article>
+          <div className="grid gap-8 sm:grid-cols-2 md:col-span-6 lg:col-span-7">
+            {people.map((f) => (
+              <article key={f.name}>
+                <Picture {...f.img} alt={f.name} className={f.imgClass} />
+                <h2 className="mt-4 font-display text-xl font-medium md:text-2xl">
+                  {f.name}
+                </h2>
+                <p className="mt-1 text-sm text-forest">{f.role}</p>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                  {f.bio}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -109,7 +127,7 @@ function About() {
           </div>
         </div>
         <div className="md:col-span-6 md:pl-6">
-          <h2 className="font-serif text-3xl md:text-4xl">
+          <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl">
             Culture as a doorway to wellbeing
           </h2>
           <p className="mt-5 text-base leading-relaxed text-foreground/85">
@@ -129,18 +147,16 @@ function About() {
       </section>
 
       <section className="bg-white">
-        <div className="container-x grid gap-12 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-4">
-            <h2 className="font-serif text-3xl md:text-4xl">
-              What we stand for
-            </h2>
-            <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-muted-foreground">
-              Through sound, we build global harmony: celebrating culture,
-              promoting wellbeing, and connecting communities through
-              compassionate, coordinated care.
-            </p>
-          </div>
-          <ol className="md:col-span-8 space-y-0">
+        <div className="container-x py-16 md:py-24">
+          <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl">
+            What we stand for
+          </h2>
+          <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-muted-foreground">
+            Through sound, we build global harmony: celebrating culture,
+            promoting wellbeing, and connecting communities through
+            compassionate, coordinated care.
+          </p>
+          <ol className="mt-10">
             {[
               {
                 title: "Vision",
@@ -159,7 +175,9 @@ function About() {
                 key={c.title}
                 className="border-t border-forest/12 py-6 md:grid md:grid-cols-[7rem_1fr] md:gap-8"
               >
-                <h3 className="font-serif text-xl text-forest">{c.title}</h3>
+                <h3 className="font-display text-xl font-medium text-forest">
+                  {c.title}
+                </h3>
                 <p className="mt-2 text-base leading-relaxed text-foreground/85 md:mt-0 md:text-[1.05rem]">
                   {c.body}
                 </p>

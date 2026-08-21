@@ -15,6 +15,7 @@ const quick = [
   { to: "/about", label: "About" },
   { to: "/programme", label: "Programme" },
   { to: "/services", label: "Services" },
+  { to: "/funders", label: "For Funders" },
   { to: "/events", label: "Events & Communities" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
@@ -46,7 +47,12 @@ export function Footer() {
       <div className="container-x py-10 md:py-12 lg:py-14">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         <div>
-          <Logo inverted />
+          <div className="flex items-center gap-3">
+            <Logo inverted />
+            <p className="font-display text-base font-medium leading-tight text-cream">
+              Global Echoes Ireland
+            </p>
+          </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/75">
             Global harmony through sound and creative collaborations. Wellbeing
             music programmes for care homes, schools, universities and

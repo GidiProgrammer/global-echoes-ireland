@@ -94,13 +94,12 @@ const cards = [
 function Services() {
   return (
     <PageShell>
-      <PageHero
-        title="Services and pricing"
-        intro="Indicative pricing to help you plan. Final quotes reflect setting, group size, travel and outcomes."
-      />
-
-      <section className="container-x py-16 md:py-24">
-        <div className="grid gap-8 md:grid-cols-12 md:gap-6">
+      <section className="container-x pt-10 pb-16 md:pt-12 md:pb-24">
+        <PageHero
+          title="Services and pricing"
+          intro="Indicative pricing to help you plan. Final quotes reflect setting, group size, travel and outcomes."
+        />
+        <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-12 md:gap-6">
           {cards.map((t) => (
             <article
               key={t.id}

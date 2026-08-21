@@ -33,11 +33,11 @@ function PrivacySection({
 function Privacy() {
   return (
     <PageShell>
-      <PageHero
-        title="Privacy Policy"
-        intro="How we handle personal information when you use this website or enquire about our programmes. Last updated August 2026."
-      />
-      <section className="container-x max-w-3xl space-y-8 pb-20 text-base leading-relaxed text-foreground/85">
+      <section className="container-x max-w-3xl space-y-8 pt-10 pb-20 text-base leading-relaxed text-foreground/85 md:pt-12">
+        <PageHero
+          title="Privacy"
+          intro="Last updated August 2026."
+        />
         <PrivacySection title="Who we are">
           <p>
             Global Echoes Ireland (GEI) provides wellbeing music programmes for
@@ -49,7 +49,7 @@ function Privacy() {
             >
               {CONTACT_EMAIL}
             </a>
-            . Natalie Rodgers is our Programme Coordinator for day-to-day
+            . Natalie Sone is our Programme Coordinator for day-to-day
             enquiries.
           </p>
         </PrivacySection>

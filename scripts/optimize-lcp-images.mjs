@@ -15,7 +15,7 @@ function pickWidths(native, candidates) {
 }
 
 const jobs = [
-  { src: "src/assets/new-hero.jpg", slug: "new-hero", widths: pickWidths(1822, [640, 960, 1280, 1822]) },
+  { src: "src/assets/new-hero.jpg", slug: "new-hero", widths: pickWidths(1024, [640, 960, 1024]) },
   {
     src: "src/assets/culture-wellbeing-drumming.jpg",
     slug: "culture-wellbeing-drumming",

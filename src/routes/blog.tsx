@@ -18,12 +18,9 @@ export const Route = createFileRoute("/blog")({
 function Blog() {
   return (
     <PageShell>
-      <PageHero
-        title="Blog"
-        intro="Session highlights, events and reflections from Global Echoes Ireland, coming as delivery begins."
-      />
-      <section className="container-x py-12 md:py-16">
-        <div className="mx-auto max-w-xl rounded-xl border border-forest/10 bg-white px-8 py-14 text-center">
+      <section className="container-x pt-10 pb-16 md:pt-12 md:pb-20">
+        <PageHero title="Blog" />
+        <div className="mx-auto mt-10 max-w-xl rounded-xl border border-forest/10 bg-white px-8 py-14 text-center md:mt-12">
           <h2 className="font-serif text-3xl">First updates on the way</h2>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             We are at the start of our delivery phase. As taster sessions and

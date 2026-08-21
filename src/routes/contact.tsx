@@ -26,6 +26,7 @@ export const INTEREST_OPTIONS = [
   "Schools, Universities & Education",
   "Festivals & Events",
   "Events & community",
+  "Funding and partnerships",
   "CeltAfrik",
   "The GETROS",
   "The GR Brothers",
@@ -63,7 +64,7 @@ export const Route = createFileRoute("/contact")({
   head: () =>
     pageHead({
       title: "Contact | Global Echoes Ireland",
-      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
+      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Sone at ${CONTACT_EMAIL}.`,
       path: "/contact",
     }),
   component: Contact,
@@ -163,17 +164,15 @@ function Contact() {
 
   return (
     <PageShell>
-      <PageHero
-        title="Contact Global Echoes Ireland"
-        intro="Book a taster session or send an enquiry. We aim to reply within one working day."
-      />
-
-      <section className="container-x grid gap-10 py-12 md:py-16 lg:grid-cols-12">
+      <section className="container-x grid gap-10 pt-10 pb-12 md:pt-12 md:pb-16 lg:grid-cols-12">
+        <div className="lg:col-span-12">
+          <PageHero title="Contact" />
+        </div>
         <div className="lg:col-span-5">
           <div className="rounded-xl border border-forest/10 bg-white p-8">
             <h2 className="font-display text-2xl font-medium">Direct contact</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Natalie Rodgers, Programme Coordinator
+              Natalie Sone, Programme Coordinator
             </p>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-3">
@@ -254,7 +253,8 @@ function Contact() {
         >
           <h2 className="font-display text-2xl font-medium">Send an enquiry</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Your message is sent securely to {CONTACT_EMAIL}. See our{" "}
+            We aim to reply within one working day. Your message is sent
+            securely to {CONTACT_EMAIL}. See our{" "}
             <Link
               to="/privacy"
               className="font-medium text-forest underline-offset-2 hover:underline"

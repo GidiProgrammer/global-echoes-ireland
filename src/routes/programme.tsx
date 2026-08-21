@@ -58,25 +58,25 @@ export const Route = createFileRoute("/programme")({
 const outcomes = [
   {
     title: "Physical wellbeing",
-    body: "Boost your energy, improve posture and coordination.",
+    body: "Drumming and movement that can support energy, posture and coordination.",
   },
   {
     title: "Mental wellbeing",
-    body: "Reduce stress, sharpen focus and lift your mood.",
+    body: "Sessions paced to support focus and a steadier mood.",
   },
   {
     title: "Emotional wellbeing",
-    body: "Express yourself, build confidence and find balance.",
+    body: "Room to take part, express, and build confidence in a group.",
   },
   {
     title: "Social wellbeing",
-    body: "Build community, strengthen bonds and feel connected.",
+    body: "Playing together so people can connect without needing a shared language.",
   },
 ] as const;
 
 const featured = {
   weeks: "8-Week",
-  tag: "Most booked",
+  tag: "Standard",
   interest: "8-week programme" as const,
   desc: "Our standard programme: deep enough to see meaningful change, practical for most care and community schedules.",
 };
@@ -99,21 +99,18 @@ const others = [
 function Programme() {
   return (
     <PageShell>
-      <PageHero
-        title="Rhythmic Sound for Health & Wellbeing"
-        intro="Co-designed with care teams. Led by a PhD arts practitioner with a senior clinical coordinator."
-      >
-        <Link
-          to="/contact"
-          search={{ interest: "Taster session" }}
-          className="btn-solid"
-        >
-          Book a Taster Session
-        </Link>
-      </PageHero>
-
-      {/* Split: media + programme intro */}
-      <section className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
+      <section className="container-x grid items-center gap-12 pt-10 pb-16 md:grid-cols-12 md:pt-12 md:pb-24">
+        <div className="md:col-span-12">
+          <PageHero title="Stay Healthy with the Beat">
+            <Link
+              to="/contact"
+              search={{ interest: "Taster session" }}
+              className="btn-solid"
+            >
+              Book a Taster Session
+            </Link>
+          </PageHero>
+        </div>
         <div className="md:col-span-5">
           <div className="overflow-hidden rounded-xl bg-forest/5">
             <Picture
@@ -124,9 +121,9 @@ function Programme() {
           </div>
         </div>
         <div className="md:col-span-7 md:pl-4 lg:pl-10">
-          <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl">
-            Stay Healthy with the Beat
-          </h2>
+          <p className="text-sm font-medium text-forest">
+            Rhythmic Sound for Health & Wellbeing
+          </p>
           <p className="mt-4 max-w-prose text-base leading-relaxed text-foreground/85">
             Traditional African drumming and practical wellbeing guidance for
             care homes, schools and community settings, led by Dr John Nutekpor.
@@ -163,8 +160,8 @@ function Programme() {
               What sessions support
             </h2>
             <p className="mt-4 max-w-[34ch] text-base leading-relaxed text-muted-foreground">
-              Therapeutic outcomes shaped for healthcare, care and community
-              settings.
+              What sessions are designed to support in care, education and
+              community settings.
             </p>
           </div>
           <ul className="mt-12 grid gap-0 border-t border-forest/12 sm:grid-cols-2">
@@ -285,7 +282,7 @@ function Programme() {
               {others.map((s) => (
                 <article
                   key={s.weeks}
-                  className="flex flex-1 flex-col border border-cream/20 bg-forest-deep/50 p-6 text-cream md:p-7"
+                  className="flex flex-1 flex-col rounded-xl border border-cream/20 bg-forest-deep/50 p-6 text-cream md:p-7"
                 >
                   <p className="text-sm font-medium text-gold-bright">{s.tag}</p>
                   <h3 className="mt-1 font-display text-3xl font-medium">
@@ -328,14 +325,14 @@ function FAQSection() {
 
   return (
     <section className="border-b border-forest/10 bg-white">
-      <div className="container-x py-16 md:py-24 max-w-4xl mx-auto">
-        <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl text-center">
-          Frequently Asked Questions
+      <div className="container-x py-16 md:py-24">
+        <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl">
+          Questions
         </h2>
-        <p className="mt-3 text-base text-muted-foreground text-center">
-          Clear answers to help you plan your rhythm and wellness session.
+        <p className="mt-3 max-w-[42ch] text-base text-muted-foreground">
+          Practical answers for planning a session in your setting.
         </p>
-        <div className="mt-12">
+        <div className="mt-10 max-w-3xl">
           <Accordion type="single" collapsible className="w-full">
             {PROGRAMME_FAQS.map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-forest/10">

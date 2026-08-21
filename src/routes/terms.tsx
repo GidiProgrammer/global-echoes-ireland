@@ -17,11 +17,11 @@ export const Route = createFileRoute("/terms")({
 function Terms() {
   return (
     <PageShell>
-      <PageHero
-        title="Terms & Conditions"
-        intro="Website use and enquiry terms. Programme delivery is governed by a separate written agreement with the booking organisation."
-      />
-      <section className="container-x max-w-3xl space-y-8 pb-20 text-base leading-relaxed text-foreground/85">
+      <section className="container-x max-w-3xl space-y-8 pt-10 pb-20 text-base leading-relaxed text-foreground/85 md:pt-12">
+        <PageHero
+          title="Terms"
+          intro="Programme delivery is governed by a separate written agreement with the booking organisation."
+        />
         <section>
           <h2 className="font-display text-xl font-medium text-ink">
             About this website

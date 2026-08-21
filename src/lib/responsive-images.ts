@@ -75,16 +75,16 @@ function srcsetHref(srcsetValue: string, minWidth: number) {
 }
 
 const heroPicture = picture("new-hero", {
-  width: 1822,
-  height: 863,
+  width: 1024,
+  height: 562,
   sizes: FULL,
-  fallback: 1280,
+  fallback: 960,
 });
 
 export const heroMasthead = heroPicture;
 
 export const heroPreload = {
-  href: srcsetHref(heroPicture.avifSrcSet, 960),
+  href: srcsetHref(heroPicture.avifSrcSet, 640),
   type: "image/avif" as const,
   imageSrcSet: heroPicture.avifSrcSet,
   imageSizes: FULL,
@@ -93,7 +93,7 @@ export const heroPreload = {
 export const logoMark = picture("gei-logo", {
   width: 256,
   height: 256,
-  sizes: "3.5rem",
+  sizes: "4rem",
   fallback: 128,
 });
 

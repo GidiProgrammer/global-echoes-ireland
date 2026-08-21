@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarBlank } from "@phosphor-icons/react";
+import { CalendarBlank } from "@phosphor-icons/react";
 import { PageShell } from "@/components/site/PageShell";
+import { Hero } from "@/components/site/Hero";
 import { CTASection } from "@/components/site/CTA";
 import { Reveal } from "@/components/site/Reveal";
 import { pageHead, SITE_DESCRIPTION } from "@/lib/site";
+import { homeHero } from "@/lib/hero";
 import {
   careHomes,
   caoimheDoherty,
@@ -13,7 +15,6 @@ import {
   emmanuelSone,
   farisAmin,
   festivalsEvents,
-  heroMasthead,
   heroPreload,
   natalieRodgers,
   photo1,
@@ -34,92 +35,34 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <PageShell overlayNav>
-      <Masthead />
-      <AboutPreview />
-      <Benefits />
-      <ServicesOverview />
-      <TeamPreview />
-      <ProgrammeOptions />
-      <GalleryPreview />
-      <Positioning />
-      <CTASection />
-    </PageShell>
-  );
-}
-
-/* Hero | headline, sub, CTA pair — bottom-anchored editorial stack */
-function Masthead() {
-  return (
-    <section
-      aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-dvh flex-col overflow-hidden bg-forest-deep"
-    >
-      <Picture
-        {...heroMasthead}
-        alt="Djembe drum with flute, violin, piano and stethoscope, symbolising culture and care"
-        className="animate-hero-soft absolute inset-0 h-full w-full object-cover object-center"
-        priority
-      />
-      <div className="hero-scrim absolute inset-0" aria-hidden="true" />
-      <div className="hero-grain absolute inset-0" aria-hidden="true" />
-
-      <div className="relative z-10 flex flex-1 items-center">
-        <div className="mx-auto w-full max-w-[90rem] px-5 py-24 sm:px-6 md:px-8 lg:px-10 xl:px-14">
-          <div className="hero-copy-field max-w-[36rem] lg:max-w-[42rem]">
-            <h1
-              id="hero-heading"
-              className="max-w-[34rem] font-display text-[clamp(2.375rem,5vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.035em] text-cream"
-            >
-              <span className="animate-fade-up block" style={{ animationDelay: "0.12s" }}>
-                Global harmony{" "}
-                <span className="font-semibold text-gold-bright">through sound</span>
-              </span>
-              <span className="animate-fade-up mt-1 block" style={{ animationDelay: "0.2s" }}>
-                and creative collaborations
-              </span>
-            </h1>
-
-            <p
-              className="animate-fade-up mt-6 max-w-[36ch] font-sans text-base leading-[1.6] text-cream/85 md:text-[1.0625rem]"
-              style={{ animationDelay: "0.32s" }}
-            >
-              Wellbeing music programmes for care homes, schools, universities
-              and communities across Ireland and beyond.
-            </p>
-
-            <div
-              className="animate-fade-up mt-8 flex flex-wrap items-center gap-x-8 gap-y-4"
-              style={{ animationDelay: "0.44s" }}
-            >
-              <Link
-                to="/contact"
-                search={{ interest: "Taster session" }}
-                className="btn-gold group"
-              >
-                Book a Taster Session
-                <ArrowRight
-                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-                />
-              </Link>
-              <Link
-                to="/programme"
-                className="inline-flex min-h-11 items-center border-b border-cream/70 pb-0.5 font-sans text-sm font-medium text-cream transition-colors duration-200 hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
-              >
-                See the programme
-              </Link>
-            </div>
-          </div>
+    <PageShell>
+      <div className="relative">
+        <Hero {...homeHero} />
+        <div className="relative z-10">
+          <AboutPreview />
+          <Benefits />
+          <ServicesOverview />
+          <TeamPreview />
+          <ProgrammeOptions />
+          <GalleryPreview />
+          <Positioning />
+          <CTASection
+            headline="See community programmes and public sessions"
+            body="Festivals, cultural events and group work across Ireland."
+            showDetails={false}
+            showBookCta={false}
+            showTagline={false}
+          />
         </div>
       </div>
-    </section>
+    </PageShell>
   );
 }
 
 /* Split: media left, copy right */
 function AboutPreview() {
   return (
-    <section className="border-b border-forest/10 bg-cream">
+    <section id="after-hero" className="border-b border-forest/10 bg-cream">
       <div className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
         <Reveal className="md:col-span-6">
           <div className="overflow-hidden rounded-xl bg-forest/5">
@@ -155,19 +98,19 @@ function Benefits() {
   const items = [
     {
       title: "Wellbeing",
-      body: "Mood elevation, reduced agitation and calm after shared rhythm.",
+      body: "Shared rhythm sessions designed to support mood and a calmer room.",
     },
     {
       title: "Connection",
-      body: "Bonding across residents, staff and families without needing words.",
+      body: "A way for residents, staff and families to take part in the same activity.",
     },
     {
       title: "Engagement",
-      body: "Memory, attention and sensory stimulation in adaptable sessions.",
+      body: "Pacing that can flex for different energy levels and attention spans.",
     },
     {
       title: "Movement",
-      body: "Fine and gross motor stimulation for seated or standing formats.",
+      body: "Drumming and percussion that can be done seated or standing.",
     },
   ];
 
@@ -304,7 +247,7 @@ function TeamPreview() {
         "aspect-square w-full object-cover object-[center_18%] sm:aspect-[5/4]",
     },
     {
-      name: "Natalie Rodgers",
+      name: "Natalie Sone",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieRodgers,
       imgClass:
@@ -387,7 +330,7 @@ function TeamPreview() {
 function ProgrammeOptions() {
   const featured = {
     weeks: "8-Week",
-    tag: "Most booked",
+    tag: "Standard",
     interest: "8-week programme" as const,
     body: "Our standard programme: deep enough to see meaningful change.",
   };
@@ -444,7 +387,7 @@ function ProgrammeOptions() {
             {others.map((o) => (
               <article
                 key={o.weeks}
-                className="flex min-h-0 flex-1 flex-col border border-cream/20 bg-forest-deep/50 p-5 text-cream md:p-6 lg:p-7"
+                className="flex min-h-0 flex-1 flex-col rounded-xl border border-cream/20 bg-forest-deep/50 p-5 text-cream md:p-6 lg:p-7"
               >
                 <p className="text-sm font-medium text-gold-bright">{o.tag}</p>
                 <h3 className="mt-1 font-display text-2xl font-medium md:text-3xl">
@@ -516,32 +459,32 @@ function GalleryPreview() {
 function Positioning() {
   return (
     <section className="border-b border-forest/10 bg-cream">
-      <div className="container-x py-16 md:py-24">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-balance font-display text-2xl font-medium leading-snug text-ink md:text-3xl lg:text-4xl">
+      <div className="container-x grid items-center gap-10 py-16 md:grid-cols-12 md:gap-12 md:py-24">
+        <div className="md:col-span-5">
+          <p className="font-display text-2xl font-medium leading-snug text-ink md:text-3xl">
             Stay Healthy with the Beat is a structured programme co-designed with
             care teams and delivered by a PhD-qualified arts practitioner with a
             senior clinical coordinator.
           </p>
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-5 text-sm text-muted-foreground">
             <span className="font-medium text-ink">
               Rhythmic Sound for Health &amp; Wellbeing
             </span>
-            <span className="mx-2 text-forest/30">|</span>
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
             Global Echoes Ireland
           </p>
-          
-          <div className="mt-12 aspect-video max-w-2xl mx-auto overflow-hidden rounded-xl bg-ink shadow-md">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube-nocookie.com/embed/MNlUXrV83xE?start=2"
-              title="Rhythmic Sound for Health & Wellbeing, Global Echoes Ireland"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-          </div>
+        </div>
+        <div className="aspect-video overflow-hidden rounded-xl bg-ink md:col-span-7">
+          <iframe
+            className="h-full w-full"
+            src="https://www.youtube-nocookie.com/embed/MNlUXrV83xE?start=2"
+            title="Rhythmic Sound for Health & Wellbeing, Global Echoes Ireland"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </div>
       </div>
     </section>
