@@ -64,6 +64,49 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<SubmitResu
   }
 }
 
+export async function submitNewsletter(email: string): Promise<SubmitResult> {
+  try {
+    const response = await fetch(FORMSUBMIT_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        _subject: "Newsletter subscription, Global Echoes Ireland",
+        _template: "table",
+        _captcha: "false",
+        _honey: "",
+      }),
+    });
+
+    const data = (await response.json()) as {
+      success?: boolean | string;
+      message?: string;
+    };
+
+    const success = data.success === true || data.success === "true";
+    if (success) return { ok: true };
+
+    const message =
+      data.message ?? "We could not add that address. Please try again.";
+    const needsActivation = /activat|confirm your email/i.test(message);
+
+    return {
+      ok: false,
+      reason: needsActivation ? "activation" : "rejected",
+      message,
+    };
+  } catch {
+    return {
+      ok: false,
+      reason: "network",
+      message: "Connection failed. Please try again.",
+    };
+  }
+}
+
 /** Fallback when hosted submit is unavailable. */
 export function openMailtoDraft(payload: EnquiryPayload): void {
   const subject = encodeURIComponent(`Enquiry: ${payload.interest}`);

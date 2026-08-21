@@ -11,9 +11,23 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import outfit600 from "@fontsource/outfit/files/outfit-latin-600-normal.woff2?url";
 import workSans400 from "@fontsource/work-sans/files/work-sans-latin-400-normal.woff2?url";
-import { CONTACT_EMAIL } from "../lib/contact";
-import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME, SITE_ORIGIN } from "../lib/site";
+import {
+  noIndexHead,
+  organizationJsonLd,
+  SITE_NAME,
+} from "../lib/site";
 import { Toaster } from "@/components/ui/sonner";
+
+function isUnindexedDocument(
+  matches: Array<{ status: string; globalNotFound?: boolean }>,
+) {
+  return matches.some(
+    (match) =>
+      match.status === "notFound" ||
+      match.status === "error" ||
+      match.globalNotFound,
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -53,77 +67,73 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const TITLE =
-  "Global Echoes Ireland | Global harmony through sound and creative collaborations";
-const DESC =
-  "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.";
-
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { name: "author", content: "Global Echoes Ireland" },
-      { name: "theme-color", content: "#1B3F24" },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: SITE_NAME },
-      { property: "og:url", content: SITE_ORIGIN },
-      { property: "og:image", content: absoluteUrl(DEFAULT_OG_IMAGE) },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Global Echoes Ireland - wellbeing music programmes" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESC },
-      { name: "twitter:image", content: absoluteUrl(DEFAULT_OG_IMAGE) },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      {
-        rel: "preload",
-        href: outfit600,
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "preload",
-        href: workSans400,
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous",
-      },
-      { rel: "canonical", href: SITE_ORIGIN },
-      { rel: "icon", href: "/favicon.ico?v=3", sizes: "any" },
-      { rel: "icon", href: "/favicon-48x48.png?v=3", type: "image/png", sizes: "48x48" },
-      { rel: "icon", href: "/favicon-32x32.png?v=3", type: "image/png", sizes: "32x32" },
-      { rel: "icon", href: "/favicon-16x16.png?v=3", type: "image/png", sizes: "16x16" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=3", sizes: "180x180" },
-      { rel: "manifest", href: "/site.webmanifest?v=3" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Global Echoes Ireland",
-          url: SITE_ORIGIN,
-          description: DESC,
-          email: CONTACT_EMAIL,
-          logo: absoluteUrl("/gei-logo.jpg"),
-          image: absoluteUrl(DEFAULT_OG_IMAGE),
-          areaServed: "IE",
-          slogan:
-            "Global harmony through sound and creative collaborations",
-        }),
-      },
-    ],
-  }),
+  head: ({ matches }) => {
+    const unindexed = isUnindexedDocument(matches);
+    const notFound = matches.some(
+      (match) => match.status === "notFound" || match.globalNotFound,
+    );
+    const documentHead = unindexed
+      ? noIndexHead(
+          notFound
+            ? {
+                title: "Page not found | Global Echoes Ireland",
+                description:
+                  "This page does not exist. Return to Global Echoes Ireland for wellbeing music programmes and taster sessions.",
+              }
+            : {
+                title: "This page didn't load | Global Echoes Ireland",
+                description:
+                  "Something went wrong loading this page. Try again or return to Global Echoes Ireland.",
+              },
+        )
+      : { meta: [] as Array<Record<string, string>> };
+
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "author", content: SITE_NAME },
+        { name: "theme-color", content: "#1B3F24" },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: SITE_NAME },
+        ...documentHead.meta,
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        {
+          rel: "preload",
+          href: outfit600,
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
+        {
+          rel: "preload",
+          href: workSans400,
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
+        { rel: "icon", href: "/favicon.ico?v=3", sizes: "any" },
+        { rel: "icon", href: "/favicon-48x48.png?v=3", type: "image/png", sizes: "48x48" },
+        { rel: "icon", href: "/favicon-32x32.png?v=3", type: "image/png", sizes: "32x32" },
+        { rel: "icon", href: "/favicon-16x16.png?v=3", type: "image/png", sizes: "16x16" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=3", sizes: "180x180" },
+        { rel: "manifest", href: "/site.webmanifest?v=3" },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(organizationJsonLd()),
+        },
+      ],
+    };
+  },
+  headers: ({ matches }) =>
+    isUnindexedDocument(matches)
+      ? { "X-Robots-Tag": "noindex, nofollow" }
+      : undefined,
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

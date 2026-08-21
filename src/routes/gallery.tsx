@@ -17,7 +17,7 @@ export const Route = createFileRoute("/gallery")({
     pageHead({
       title: "Gallery | Global Echoes Ireland",
       description:
-        "Work done gallery from Global Echoes Ireland: session photography and films from schools, communities and cultural programmes.",
+        "Photography and films from Global Echoes Ireland sessions in schools, communities and cultural programmes.",
       path: "/gallery",
     }),
   component: Gallery,

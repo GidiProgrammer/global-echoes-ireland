@@ -387,7 +387,9 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .animate-hero-soft {
+  .animate-hero-soft,
+  .animate-accordion-up,
+  .animate-accordion-down {
     animation: none !important;
   }
 }

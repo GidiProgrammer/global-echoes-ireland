@@ -10,6 +10,7 @@ export const Route = createFileRoute("/blog")({
       description:
         "Programme updates, session highlights and community news from Global Echoes Ireland.",
       path: "/blog",
+      robots: "noindex, follow",
     }),
   component: Blog,
 });
@@ -18,7 +19,7 @@ function Blog() {
   return (
     <PageShell>
       <PageHero
-        title="Stories and programme updates"
+        title="Blog"
         intro="Session highlights, events and reflections from Global Echoes Ireland, coming as delivery begins."
       />
       <section className="container-x py-12 md:py-16">

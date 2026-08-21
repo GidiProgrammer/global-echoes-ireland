@@ -13,6 +13,25 @@ import { stayHealthy } from "@/lib/responsive-images";
 import { Picture } from "@/components/site/Picture";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
+const PROGRAMME_FAQS = [
+  {
+    q: "What happens during a taster session?",
+    a: "A taster session is a 45-60 minute introductory workshop. We bring all instruments (djembe drums and percussion) to your setting. We run a light, participatory rhythm circle and share practical wellness insights, ensuring everyone can participate regardless of previous musical experience.",
+  },
+  {
+    q: "Do we need to provide instruments?",
+    a: "No, we provide all instruments required for the session, including high-quality African hand drums (djembes) and supplementary percussion instruments.",
+  },
+  {
+    q: "Are the sessions suitable for people with cognitive or mobility challenges?",
+    a: "Yes, our programmes are explicitly co-designed with care teams and activity coordinators to be inclusive. We adapt tempos, physical movements, and sensory volumes to accommodate mobility limits, cognitive needs, and varying energy levels.",
+  },
+  {
+    q: "How do we book or get a final pricing quote?",
+    a: "You can start by sending an enquiry via our contact form or calling us. Since travel, group sizes, and setting specific details vary, we provide customized final quotes after a brief initial consultation.",
+  },
+] as const;
+
 export const Route = createFileRoute("/programme")({
   head: () =>
     pageHead({
@@ -20,6 +39,18 @@ export const Route = createFileRoute("/programme")({
       description:
         "Stay Healthy with the Beat: Rhythmic Sound for Health & Wellbeing. Traditional African drumming with wellbeing tips, led by Dr John Nutekpor.",
       path: "/programme",
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: PROGRAMME_FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a,
+          },
+        })),
+      },
     }),
   component: Programme,
 });
@@ -294,24 +325,6 @@ function Programme() {
 }
 
 function FAQSection() {
-  const faqs = [
-    {
-      q: "What happens during a taster session?",
-      a: "A taster session is a 45-60 minute introductory workshop. We bring all instruments (djembe drums and percussion) to your setting. We run a light, participatory rhythm circle and share practical wellness insights, ensuring everyone can participate regardless of previous musical experience."
-    },
-    {
-      q: "Do we need to provide instruments?",
-      a: "No, we provide all instruments required for the session, including high-quality African hand drums (djembes) and supplementary percussion instruments."
-    },
-    {
-      q: "Are the sessions suitable for people with cognitive or mobility challenges?",
-      a: "Yes, our programmes are explicitly co-designed with care teams and activity coordinators to be inclusive. We adapt tempos, physical movements, and sensory volumes to accommodate mobility limits, cognitive needs, and varying energy levels."
-    },
-    {
-      q: "How do we book or get a final pricing quote?",
-      a: "You can start by sending an enquiry via our contact form or calling us. Since travel, group sizes, and setting specific details vary, we provide customized final quotes after a brief initial consultation."
-    }
-  ];
 
   return (
     <section className="border-b border-forest/10 bg-white">
@@ -324,7 +337,7 @@ function FAQSection() {
         </p>
         <div className="mt-12">
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, i) => (
+            {PROGRAMME_FAQS.map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-forest/10">
                 <AccordionTrigger className="font-display text-base md:text-lg text-ink hover:no-underline hover:text-forest">
                   {faq.q}

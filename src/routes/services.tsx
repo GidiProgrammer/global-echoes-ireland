@@ -95,7 +95,7 @@ function Services() {
   return (
     <PageShell>
       <PageHero
-        title="Programmes for your setting"
+        title="Services and pricing"
         intro="Indicative pricing to help you plan. Final quotes reflect setting, group size, travel and outcomes."
       />
 

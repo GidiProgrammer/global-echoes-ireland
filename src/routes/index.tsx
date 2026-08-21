@@ -3,7 +3,7 @@ import { ArrowRight, CalendarBlank } from "@phosphor-icons/react";
 import { PageShell } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import { Reveal } from "@/components/site/Reveal";
-import { pageHead } from "@/lib/site";
+import { pageHead, SITE_DESCRIPTION } from "@/lib/site";
 import {
   careHomes,
   caoimheDoherty,
@@ -21,16 +21,11 @@ import {
 } from "@/lib/responsive-images";
 import { Picture } from "@/components/site/Picture";
 
-import { Testimonials } from "@/components/site/Testimonials";
-import { ImpactNumbers } from "@/components/site/ImpactNumbers";
-
 export const Route = createFileRoute("/")({
   head: () =>
     pageHead({
-      title:
-        "Global Echoes Ireland | Global harmony through sound and creative collaborations",
-      description:
-        "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.",
+      title: "Global Echoes Ireland | Wellbeing music programmes",
+      description: SITE_DESCRIPTION,
       path: "/",
       preloadImages: [heroPreload],
     }),
@@ -42,9 +37,7 @@ function Home() {
     <PageShell overlayNav>
       <Masthead />
       <AboutPreview />
-      <ImpactNumbers />
       <Benefits />
-      <Testimonials />
       <ServicesOverview />
       <TeamPreview />
       <ProgrammeOptions />

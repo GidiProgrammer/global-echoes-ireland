@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
+import { submitNewsletter } from "@/lib/enquiry";
 
 const quick = [
   { to: "/about", label: "About" },
@@ -41,8 +42,8 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="flex max-h-dvh flex-col overflow-hidden bg-forest text-cream">
-      <div className="container-x min-h-0 flex-1 overflow-y-auto overscroll-y-contain py-10 md:py-12 lg:py-14">
+    <footer className="bg-forest text-cream">
+      <div className="container-x py-10 md:py-12 lg:py-14">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         <div>
           <Logo inverted />
@@ -51,7 +52,7 @@ export function Footer() {
             music programmes for care homes, schools, universities and
             communities across Ireland and beyond.
           </p>
-          <p className="mt-2 text-xs text-cream/55">@globalechoesireland</p>
+          <p className="mt-2 text-xs text-cream/80">@globalechoesireland</p>
           
           {/* Newsletter Form */}
           <NewsletterForm />
@@ -63,7 +64,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="grid h-10 w-10 place-items-center rounded-[6px] border border-cream/20 text-cream/85 transition-colors hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
+                className="grid h-11 w-11 min-h-11 min-w-11 place-items-center rounded-[6px] border border-cream/20 text-cream/85 transition-colors hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -137,8 +138,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-cream/15">
-        <div className="container-x flex flex-col gap-3 py-5 text-[11px] tracking-[0.04em] text-cream/55 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-cream/15">
+        <div className="container-x flex flex-col gap-3 py-5 text-[11px] tracking-[0.04em] text-cream/80 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Global Echoes Ireland</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link
@@ -161,41 +162,46 @@ export function Footer() {
 }
 
 function NewsletterForm() {
-  const [subscribed, setSubscribed] = useState(false);
-  const [pending, setPending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">(
+    "idle",
+  );
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setPending(true);
-    // Simulate lightweight subscription logic or using FormSubmit
     const form = e.currentTarget;
-    const email = new FormData(form).get("email");
-    if (email) {
-      try {
-        await fetch("https://formsubmit.co/ajax/info@globalechoesireland.ie", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            subject: "New Newsletter Subscription - Global Echoes Ireland",
-          }),
-        });
-      } catch (err) {
-        // Fallback silently if it fails, since it's a newsletter
-      }
-      setSubscribed(true);
+    const email = String(new FormData(form).get("email") ?? "").trim();
+    if (!email || status === "pending") return;
+
+    setStatus("pending");
+    setErrorMessage("");
+
+    const result = await submitNewsletter(email);
+
+    if (result.ok) {
+      setStatus("success");
+      return;
     }
-    setPending(false);
+
+    setStatus("error");
+    setErrorMessage(
+      result.reason === "activation"
+        ? `We could not add that address yet. Email ${CONTACT_EMAIL} to join the list.`
+        : result.message,
+    );
   };
 
-  if (subscribed) {
+  if (status === "success") {
     return (
-      <div className="mt-5 rounded-[6px] bg-forest-deep/50 border border-cream/15 p-3 text-xs text-cream/90">
-        <p className="font-semibold text-gold-bright">Thank you for subscribing!</p>
-        <p className="mt-0.5 text-cream/70">We will keep you updated with news and events.</p>
+      <div
+        className="mt-5 rounded-[6px] border border-cream/15 bg-forest-deep/50 p-3 text-xs text-cream/90"
+        role="status"
+        aria-live="polite"
+      >
+        <p className="font-semibold text-gold-bright">You are on the list</p>
+        <p className="mt-0.5 text-cream/80">
+          We will send news and events to that address.
+        </p>
       </div>
     );
   }
@@ -203,7 +209,7 @@ function NewsletterForm() {
   return (
     <form onSubmit={handleSubmit} className="mt-5 max-w-xs">
       <label htmlFor="newsletter-email" className="block text-xs font-semibold text-gold-bright">
-        Stay connected — news & updates
+        News and updates
       </label>
       <div className="mt-2 flex gap-2">
         <input
@@ -211,17 +217,25 @@ function NewsletterForm() {
           name="email"
           type="email"
           required
-          disabled={pending}
+          disabled={status === "pending"}
           placeholder="Your email"
-          className="min-h-11 min-w-0 flex-1 rounded-[6px] border border-cream/20 bg-forest-deep px-3 text-sm text-cream placeholder-cream/40 focus-visible:border-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright disabled:opacity-60"
+          autoComplete="email"
+          aria-invalid={status === "error"}
+          aria-describedby={status === "error" ? "newsletter-error" : undefined}
+          className="min-h-11 min-w-0 flex-1 rounded-[6px] border border-cream/20 bg-forest-deep px-3 text-sm text-cream placeholder-cream/70 focus-visible:border-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright disabled:opacity-60"
         />
         <button
           type="submit"
-          disabled={pending}
+          disabled={status === "pending"}
           className="inline-flex min-h-11 min-w-11 shrink-0 cursor-pointer items-center justify-center rounded-[6px] bg-gold px-4 text-sm font-semibold text-ink transition-colors hover:bg-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream disabled:opacity-75"
         >
-          {pending ? "..." : "Join"}
+          {status === "pending" ? "Joining" : "Join"}
         </button>
+      </div>
+      <div id="newsletter-error" role="alert" aria-live="polite">
+        {status === "error" ? (
+          <p className="mt-2 text-xs text-gold-bright">{errorMessage}</p>
+        ) : null}
       </div>
     </form>
   );

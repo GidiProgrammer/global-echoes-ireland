@@ -65,8 +65,8 @@ function About() {
   return (
     <PageShell>
       <PageHero
-        title="The people behind the work"
-        intro="Clinical coordination, cultural mastery and partnership leadership in one team."
+        title="About Global Echoes Ireland"
+        intro="Clinical coordination, cultural mastery and partnership leadership behind wellbeing music programmes across Ireland."
       />
 
       <section className="container-x pb-16 md:pb-24">

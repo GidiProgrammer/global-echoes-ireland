@@ -164,8 +164,8 @@ function Contact() {
   return (
     <PageShell>
       <PageHero
-        title="Book a Taster Session"
-        intro="Send an enquiry below. We aim to reply within one working day."
+        title="Contact Global Echoes Ireland"
+        intro="Book a taster session or send an enquiry. We aim to reply within one working day."
       />
 
       <section className="container-x grid gap-10 py-12 md:py-16 lg:grid-cols-12">

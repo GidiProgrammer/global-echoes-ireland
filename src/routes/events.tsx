@@ -28,7 +28,7 @@ function Events() {
   return (
     <PageShell>
       <PageHero
-        title="Events and community"
+        title="Events and communities"
         intro="Community strands for creativity, intercultural dialogue, wellbeing and belonging across Ireland and beyond."
       />
 
