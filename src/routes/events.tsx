@@ -208,7 +208,11 @@ function Events() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection
+        headline="Host a workshop or performance"
+        body="Bring CeltAfrik, the GETROS or Global Roots Brothers to your next community project, festival or event."
+        interest="Events & community"
+      />
     </PageShell>
   );
 }

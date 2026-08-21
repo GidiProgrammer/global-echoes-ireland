@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 
@@ -19,7 +19,15 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
   const [pastHero, setPastHero] = useState(false);
   const menuId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerBarRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  const closeMenu = useCallback((returnFocus = true) => {
+    setOpen(false);
+    if (returnFocus) {
+      requestAnimationFrame(() => toggleRef.current?.focus());
+    }
+  }, []);
 
   useEffect(() => {
     if (!overlay) {
@@ -65,16 +73,20 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
   useEffect(() => {
     const main = document.getElementById("main");
     const footer = document.querySelector("footer");
+    const headerBar = headerBarRef.current;
     if (open) {
       main?.setAttribute("inert", "");
       footer?.setAttribute("inert", "");
+      headerBar?.setAttribute("inert", "");
     } else {
       main?.removeAttribute("inert");
       footer?.removeAttribute("inert");
+      headerBar?.removeAttribute("inert");
     }
     return () => {
       main?.removeAttribute("inert");
       footer?.removeAttribute("inert");
+      headerBar?.removeAttribute("inert");
     };
   }, [open]);
 
@@ -87,8 +99,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setOpen(false);
-        toggleRef.current?.focus();
+        closeMenu();
         return;
       }
       if (e.key !== "Tab" || !panel) return;
@@ -113,7 +124,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
 
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, closeMenu]);
 
   const onDark = overlay && !pastHero;
   const linkTone = onDark ? "nav-link is-dark" : "nav-link";
@@ -125,7 +136,10 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         overlay ? "fixed inset-x-0 top-0" : "sticky top-0"
       } ${onDark ? "nav-mast is-over-hero" : "nav-mast is-solid"}`}
     >
-      <div className="mx-auto flex h-[var(--header-h)] max-w-[90rem] items-center gap-4 px-4 sm:px-6 md:gap-6 lg:gap-10 lg:px-10">
+      <div
+        ref={headerBarRef}
+        className="mx-auto flex h-[var(--header-h)] max-w-[90rem] items-center gap-4 px-4 sm:px-6 md:gap-6 lg:gap-8 lg:px-10"
+      >
         <div className="min-w-0 shrink">
           <Logo inverted={onDark} />
         </div>
@@ -134,7 +148,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
           className="hidden min-w-0 flex-1 items-center lg:flex"
           aria-label="Primary"
         >
-          <ul className="flex flex-wrap items-center gap-x-0.5">
+          <ul className="flex items-center gap-x-1">
             {nav.map((n) => (
               <li key={n.to}>
                 <Link
@@ -196,10 +210,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
             <Logo inverted size="sm" />
             <button
               type="button"
-              onClick={() => {
-                setOpen(false);
-                toggleRef.current?.focus();
-              }}
+              onClick={() => closeMenu()}
               aria-label="Close menu"
               className="grid h-11 w-11 min-h-11 min-w-11 cursor-pointer place-items-center rounded-[6px] border border-cream/25 text-cream transition-colors duration-200 hover:bg-cream/10 focus-ring-brand-on-dark"
             >

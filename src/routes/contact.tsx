@@ -332,11 +332,27 @@ function Contact() {
                 <option value="" disabled>
                   Select an option
                 </option>
-                {INTEREST_OPTIONS.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
+                <optgroup label="Taster & General">
+                  <option value="Taster session">Taster session</option>
+                  <option value="General enquiry">General enquiry</option>
+                </optgroup>
+                <optgroup label="Programmes">
+                  <option value="4-week programme">4-week programme</option>
+                  <option value="8-week programme">8-week programme</option>
+                  <option value="12-week programme">12-week programme</option>
+                </optgroup>
+                <optgroup label="Settings">
+                  <option value="Care Homes & Healthcare">Care Homes & Healthcare</option>
+                  <option value="Community & Wellbeing">Community & Wellbeing</option>
+                  <option value="Schools, Universities & Education">Schools, Universities & Education</option>
+                  <option value="Festivals & Events">Festivals & Events</option>
+                  <option value="Events & community">Events & community</option>
+                </optgroup>
+                <optgroup label="Cultural Initiatives">
+                  <option value="CeltAfrik">CeltAfrik</option>
+                  <option value="The GETROS">The GETROS</option>
+                  <option value="The GR Brothers">The GR Brothers</option>
+                </optgroup>
               </select>
               {errors.interest && (
                 <span

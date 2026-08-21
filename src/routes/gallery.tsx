@@ -78,6 +78,10 @@ const films = [
   },
 ] as const;
 
+function filmDomId(title: string, part: "title" | "transcript") {
+  return `film-${title.replace(/\s+/g, "-").toLowerCase()}-${part}`;
+}
+
 function Gallery() {
   return (
     <PageShell>
@@ -141,7 +145,11 @@ function Gallery() {
           </div>
 
           <ul className="mt-12 grid gap-8 sm:grid-cols-2">
-            {films.map((film) => (
+            {films.map((film) => {
+              const titleId = filmDomId(film.title, "title");
+              const transcriptId = filmDomId(film.title, "transcript");
+
+              return (
               <li key={film.title}>
                 <article className="overflow-hidden rounded-xl border border-forest/10 bg-cream">
                   <div className="aspect-video bg-ink">
@@ -155,14 +163,15 @@ function Gallery() {
                       playsInline
                       preload="none"
                       poster={film.poster}
-                      aria-describedby={`${film.title.replace(/\s+/g, "-").toLowerCase()}-transcript`}
+                      aria-labelledby={titleId}
+                      aria-describedby={transcriptId}
                     >
                       <source src={film.src} type="video/mp4" />
                       Your browser does not support embedded video.
                     </video>
                   </div>
                   <div className="px-5 py-4 md:px-6">
-                    <h3 className="font-display text-xl font-medium">
+                    <h3 id={titleId} className="font-display text-xl font-medium">
                       {film.title}
                     </h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
@@ -173,7 +182,7 @@ function Gallery() {
                         Read transcript
                       </summary>
                       <p
-                        id={`${film.title.replace(/\s+/g, "-").toLowerCase()}-transcript`}
+                        id={transcriptId}
                         className="mt-2 leading-relaxed text-muted-foreground"
                       >
                         {film.transcript}
@@ -182,7 +191,8 @@ function Gallery() {
                   </div>
                 </article>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       </section>

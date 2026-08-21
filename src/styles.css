@@ -426,12 +426,12 @@
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  padding: 0 0.85rem;
+  padding: 0 0.8rem;
   border-radius: 2px;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
   line-height: 1;
   color: color-mix(in srgb, var(--forest) 88%, transparent);
   white-space: nowrap;
@@ -482,7 +482,7 @@
 }
 
 .nav-link.is-dark {
-  color: color-mix(in srgb, var(--cream) 86%, transparent);
+  color: var(--cream);
 }
 .nav-link.is-dark:hover {
   color: var(--cream);
@@ -521,19 +521,42 @@
   background:
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--hero-scrim) 48%, transparent) 0%,
-      color-mix(in srgb, var(--hero-scrim) 18%, transparent) 36%,
-      color-mix(in srgb, var(--hero-scrim) 38%, transparent) 68%,
-      color-mix(in srgb, var(--hero-scrim) 72%, transparent) 100%
+      color-mix(in srgb, var(--hero-scrim) 35%, transparent) 0%,
+      color-mix(in srgb, var(--hero-scrim) 12%, transparent) 36%,
+      color-mix(in srgb, var(--hero-scrim) 25%, transparent) 68%,
+      color-mix(in srgb, var(--hero-scrim) 45%, transparent) 100%
     ),
     linear-gradient(
       90deg,
-      color-mix(in srgb, var(--hero-scrim) 78%, transparent) 0%,
-      color-mix(in srgb, var(--hero-scrim) 52%, transparent) 28%,
-      color-mix(in srgb, var(--hero-scrim) 18%, transparent) 52%,
-      color-mix(in srgb, var(--hero-scrim) 6%, transparent) 72%,
-      color-mix(in srgb, var(--hero-scrim) 12%, transparent) 100%
+      color-mix(in srgb, var(--hero-scrim) 50%, transparent) 0%,
+      color-mix(in srgb, var(--hero-scrim) 35%, transparent) 32%,
+      color-mix(in srgb, var(--hero-scrim) 15%, transparent) 56%,
+      color-mix(in srgb, var(--hero-scrim) 2%, transparent) 72%,
+      color-mix(in srgb, var(--hero-scrim) 5%, transparent) 100%
     );
+}
+
+/* A quiet reading field preserves the instrument detail while keeping the
+   title over a consistently dark part of the image at every viewport. */
+.hero-copy-field {
+  text-shadow: 0 1px 18px rgb(0 0 0 / 0.28);
+}
+
+@media (max-width: 767px) {
+  .hero-scrim {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--hero-scrim) 35%, transparent) 0%,
+        color-mix(in srgb, var(--hero-scrim) 25%, transparent) 32%,
+        color-mix(in srgb, var(--hero-scrim) 45%, transparent) 100%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--hero-scrim) 25%, transparent) 0%,
+        color-mix(in srgb, var(--hero-scrim) 5%, transparent) 100%
+      );
+  }
 }
 
 /* Static noise tile — avoids SVG feTurbulence (paint cost / a11y noise). */

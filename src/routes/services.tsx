@@ -154,7 +154,10 @@ function Services() {
         </p>
       </section>
 
-      <CTASection />
+      <CTASection
+        headline="Ready to bring rhythm to your setting?"
+        body="A short on-site session for care homes, schools, universities and community groups across Ireland."
+      />
     </PageShell>
   );
 }

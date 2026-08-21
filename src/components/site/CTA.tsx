@@ -1,7 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import heroCurveImg from "@/assets/hero-drumming-curve.jpg";
+import heroCurveImg from "@/assets/hero-care-drumming.jpg";
 
-export function CTASection() {
+interface CTASectionProps {
+  headline?: string;
+  body?: string;
+  interest?: string;
+  showDetails?: boolean;
+}
+
+export function CTASection({
+  headline = "Book a taster for your care home or community",
+  body = "A short on-site session for care homes, schools, universities and community groups across Ireland.",
+  interest = "Taster session",
+  showDetails = true
+}: CTASectionProps = {}) {
   return (
     <section className="relative overflow-hidden bg-forest text-cream">
       <img
@@ -17,19 +29,23 @@ export function CTASection() {
           Global harmony through sound and creative collaborations
         </p>
         <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.1] text-cream md:text-5xl lg:text-6xl">
-          Book a taster for your care home or community
+          {headline}
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/80">
-          A short on-site session for care homes, schools, universities and
-          community groups across Ireland.
+          {body}
         </p>
+        {showDetails && interest === "Taster session" && (
+          <p className="mx-auto mt-3 max-w-xl text-xs text-cream/65">
+            A free 45-minute on-site session with all instruments provided. No prior experience is needed.
+          </p>
+        )}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/contact"
-            search={{ interest: "Taster session" }}
+            search={{ interest }}
             className="btn-gold"
           >
-            Book a Taster Session
+            {interest === "Taster session" ? "Book a Taster Session" : `Enquire about ${interest}`}
           </Link>
           <Link
             to="/events"

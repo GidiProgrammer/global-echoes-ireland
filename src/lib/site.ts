@@ -16,11 +16,18 @@ export function pageHead({
   description,
   path,
   ogImage = DEFAULT_OG_IMAGE,
+  preloadImages = [],
 }: {
   title: string;
   description: string;
   path: string;
   ogImage?: string;
+  preloadImages?: Array<{
+    href: string;
+    type?: string;
+    imageSrcSet?: string;
+    imageSizes?: string;
+  }>;
 }) {
   const url = absoluteUrl(path);
   const image = absoluteUrl(ogImage);
@@ -39,6 +46,17 @@ export function pageHead({
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: image },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      ...preloadImages.map((asset) => ({
+        rel: "preload",
+        as: "image",
+        href: asset.href,
+        type: asset.type,
+        imageSrcSet: asset.imageSrcSet,
+        imageSizes: asset.imageSizes,
+        fetchPriority: "high" as const,
+      })),
+    ],
   };
 }

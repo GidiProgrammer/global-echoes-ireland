@@ -6,8 +6,9 @@ import natalieImg from "@/assets/founder-natalie.jpg";
 import emmanuelImg from "@/assets/founder-emmanuel.jpg";
 import caoimheImg from "@/assets/caoimhe-doherty.jpg";
 import farisImg from "@/assets/faris-amin.jpg";
-import circleImg from "@/assets/community-circle.jpg";
 import { pageHead } from "@/lib/site";
+import { cultureWellbeingDrumming } from "@/lib/responsive-images";
+import { Picture } from "@/components/site/Picture";
 
 export const Route = createFileRoute("/about")({
   head: () =>
@@ -40,7 +41,7 @@ function About() {
       name: "Natalie Rodgers",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieImg,
-      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_18%]",
+      imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_38%]",
       bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
     },
     {
@@ -103,11 +104,10 @@ function About() {
       <section className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-6">
           <div className="overflow-hidden rounded-xl">
-            <img
-              src={circleImg}
-              loading="lazy"
-              alt="Community drumming circle"
-              className="aspect-[4/5] w-full object-cover"
+            <Picture
+              {...cultureWellbeingDrumming}
+              alt="Group of people smiling and playing djembe drums together in a community hall"
+              className="aspect-[3/2] w-full object-cover"
             />
           </div>
         </div>

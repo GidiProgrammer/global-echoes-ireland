@@ -10,6 +10,7 @@ import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import stayHealthyImg from "@/assets/stay-healthy-with-the-beat.jpg";
 import { pageHead } from "@/lib/site";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/programme")({
   head: () =>
@@ -284,7 +285,58 @@ function Programme() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQSection />
+
       <CTASection />
     </PageShell>
+  );
+}
+
+function FAQSection() {
+  const faqs = [
+    {
+      q: "What happens during a taster session?",
+      a: "A taster session is a 45-60 minute introductory workshop. We bring all instruments (djembe drums and percussion) to your setting. We run a light, participatory rhythm circle and share practical wellness insights, ensuring everyone can participate regardless of previous musical experience."
+    },
+    {
+      q: "Do we need to provide instruments?",
+      a: "No, we provide all instruments required for the session, including high-quality African hand drums (djembes) and supplementary percussion instruments."
+    },
+    {
+      q: "Are the sessions suitable for people with cognitive or mobility challenges?",
+      a: "Yes, our programmes are explicitly co-designed with care teams and activity coordinators to be inclusive. We adapt tempos, physical movements, and sensory volumes to accommodate mobility limits, cognitive needs, and varying energy levels."
+    },
+    {
+      q: "How do we book or get a final pricing quote?",
+      a: "You can start by sending an enquiry via our contact form or calling us. Since travel, group sizes, and setting specific details vary, we provide customized final quotes after a brief initial consultation."
+    }
+  ];
+
+  return (
+    <section className="border-b border-forest/10 bg-white">
+      <div className="container-x py-16 md:py-24 max-w-4xl mx-auto">
+        <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl text-center">
+          Frequently Asked Questions
+        </h2>
+        <p className="mt-3 text-base text-muted-foreground text-center">
+          Clear answers to help you plan your rhythm and wellness session.
+        </p>
+        <div className="mt-12">
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`item-${i}`} className="border-forest/10">
+                <AccordionTrigger className="font-display text-base md:text-lg text-ink hover:no-underline hover:text-forest">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-foreground/80 leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+    </section>
   );
 }

@@ -1,11 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarBlank } from "@phosphor-icons/react";
-import { WordsPullUpMultiStyle } from "@/components/ui/words-pull-up";
 import { PageShell } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import { Reveal } from "@/components/site/Reveal";
-import heroExperimentImg from "@/assets/hero-image.jpg";
-import heroImg from "@/assets/hero-care-drumming.jpg";
+import heroImg from "@/assets/community-care-culture.jpg";
 import schoolsEducationImg from "@/assets/schools-education.jpg";
 import careHomesImg from "@/assets/carehomes.jpg";
 import communityWellbeingImg from "@/assets/community-wellbeing.jpg";
@@ -17,6 +15,11 @@ import caoimheImg from "@/assets/caoimhe-doherty.jpg";
 import farisImg from "@/assets/faris-amin.jpg";
 import workPhoto from "@/assets/photo1.jpg";
 import { pageHead } from "@/lib/site";
+import { heroMasthead } from "@/lib/responsive-images";
+import { Picture } from "@/components/site/Picture";
+
+import { Testimonials } from "@/components/site/Testimonials";
+import { ImpactNumbers } from "@/components/site/ImpactNumbers";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -26,6 +29,7 @@ export const Route = createFileRoute("/")({
       description:
         "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.",
       path: "/",
+      preloadImages: [heroMasthead.preload],
     }),
   component: Home,
 });
@@ -35,7 +39,9 @@ function Home() {
     <PageShell overlayNav>
       <Masthead />
       <AboutPreview />
+      <ImpactNumbers />
       <Benefits />
+      <Testimonials />
       <ServicesOverview />
       <TeamPreview />
       <ProgrammeOptions />
@@ -46,63 +52,49 @@ function Home() {
   );
 }
 
-/* Hero | brand, headline, short sub, CTA pair */
+/* Hero | headline, sub, CTA pair — bottom-anchored editorial stack */
 function Masthead() {
   return (
     <section
       aria-labelledby="hero-heading"
       className="relative isolate flex min-h-dvh flex-col overflow-hidden bg-forest-deep"
     >
-      <img
-        src={heroExperimentImg}
+      <Picture
+        {...heroMasthead}
         alt="Djembe drum with flute, violin, piano and stethoscope, symbolising culture and care"
-        className="animate-hero-soft absolute inset-0 h-full w-full object-cover object-[center_40%]"
-        width={1536}
-        height={1024}
-        fetchPriority="high"
-        decoding="async"
+        className="animate-hero-soft absolute inset-0 h-full w-full object-cover object-center"
+        priority
       />
       <div className="hero-scrim absolute inset-0" aria-hidden="true" />
       <div className="hero-grain absolute inset-0" aria-hidden="true" />
 
       <div className="relative z-10 flex flex-1 items-center">
-        <div className="mx-auto w-full max-w-[90rem] px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-20 md:px-8 md:pt-24 lg:px-10 xl:px-14">
-          <div className="max-w-[34rem] lg:max-w-[40rem]">
-            <p className="animate-fade-up font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-medium leading-[1.1] tracking-[-0.02em] text-cream">
-              Global Echoes Ireland
-            </p>
-
+        <div className="mx-auto w-full max-w-[90rem] px-5 py-24 sm:px-6 md:px-8 lg:px-10 xl:px-14">
+          <div className="hero-copy-field max-w-[36rem] lg:max-w-[42rem]">
             <h1
               id="hero-heading"
-              className="mt-6 font-display font-medium leading-[1.1] tracking-[-0.03em] text-[clamp(2.25rem,5.5vw,3.75rem)] text-balance"
+              className="max-w-[34rem] font-display text-[clamp(2.375rem,5vw,4.5rem)] font-medium leading-[1.04] tracking-[-0.035em] text-cream"
             >
-              <WordsPullUpMultiStyle
-                delay={0.12}
-                segments={[
-                  { text: "Global harmony", className: "text-cream" },
-                  {
-                    text: "through sound",
-                    className: "font-semibold text-gold-bright",
-                  },
-                  {
-                    text: "and creative collaborations",
-                    className: "text-cream",
-                  },
-                ]}
-              />
+              <span className="animate-fade-up block" style={{ animationDelay: "0.12s" }}>
+                Global harmony{" "}
+                <span className="font-semibold text-gold-bright">through sound</span>
+              </span>
+              <span className="animate-fade-up mt-1 block" style={{ animationDelay: "0.2s" }}>
+                and creative collaborations
+              </span>
             </h1>
 
             <p
-              className="animate-fade-up mt-6 max-w-[36ch] font-sans text-[0.9375rem] leading-[1.65] text-gold-bright/90 md:text-base"
-              style={{ animationDelay: "0.42s" }}
+              className="animate-fade-up mt-6 max-w-[36ch] font-sans text-base leading-[1.6] text-cream/85 md:text-[1.0625rem]"
+              style={{ animationDelay: "0.32s" }}
             >
               Wellbeing music programmes for care homes, schools, universities
               and communities across Ireland and beyond.
             </p>
 
             <div
-              className="animate-fade-up mt-9 flex flex-wrap items-center gap-x-8 gap-y-4"
-              style={{ animationDelay: "0.55s" }}
+              className="animate-fade-up mt-8 flex flex-wrap items-center gap-x-8 gap-y-4"
+              style={{ animationDelay: "0.44s" }}
             >
               <Link
                 to="/contact"
@@ -137,11 +129,11 @@ function AboutPreview() {
           <div className="overflow-hidden rounded-xl bg-forest/5">
             <img
               src={heroImg}
-              alt="A care home resident and practitioner sharing a drumming session"
-              className="aspect-[4/5] h-full w-full object-cover"
+              alt="Diverse group playing djembe drums together at a Global Echoes Ireland community session"
+              className="aspect-[3/2] w-full object-cover"
               loading="lazy"
               width={900}
-              height={1125}
+              height={600}
             />
           </div>
         </Reveal>
@@ -187,8 +179,8 @@ function Benefits() {
   ];
 
   return (
-    <section className="section-fill border-b border-forest/10 bg-white">
-      <div className="container-x flex min-h-0 flex-1 flex-col justify-center py-8 md:py-10">
+    <section className="border-b border-forest/10 bg-white py-16 md:py-24">
+      <div className="container-x flex flex-col justify-center">
         <div className="max-w-xl shrink-0">
           <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl lg:text-5xl">
             Why rhythm works here
@@ -254,8 +246,8 @@ function ServicesOverview() {
   ] as const;
 
   return (
-    <section className="section-fill border-b border-forest/10 bg-cream">
-      <div className="container-x flex min-h-0 flex-1 flex-col justify-center py-8 md:py-10">
+    <section className="border-b border-forest/10 bg-cream py-16 md:py-24">
+      <div className="container-x flex flex-col justify-center">
         <div className="flex shrink-0 flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
             <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl lg:text-5xl">
@@ -324,7 +316,7 @@ function TeamPreview() {
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieImg,
       imgClass:
-        "aspect-square w-full object-cover object-[center_18%] sm:aspect-[5/4]",
+        "aspect-square w-full object-cover object-[center_38%] sm:aspect-[5/4]",
     },
     {
       name: "Faris Amin",
@@ -425,8 +417,8 @@ function ProgrammeOptions() {
   ];
 
   return (
-    <section className="section-fill border-b border-forest/10 bg-forest text-cream">
-      <div className="container-x flex min-h-0 flex-1 flex-col justify-center py-8 md:py-10">
+    <section className="border-b border-forest/10 bg-forest text-cream py-16 md:py-24">
+      <div className="container-x flex flex-col justify-center">
         <div className="max-w-2xl shrink-0">
           <h2 className="font-display text-3xl font-medium tracking-[-0.02em] text-cream md:text-4xl lg:text-5xl">
             Programme options
@@ -532,7 +524,6 @@ function GalleryPreview() {
   );
 }
 
-/* Centered manifesto band */
 function Positioning() {
   return (
     <section className="border-b border-forest/10 bg-cream">
@@ -550,6 +541,18 @@ function Positioning() {
             <span className="mx-2 text-forest/30">|</span>
             Global Echoes Ireland
           </p>
+          
+          <div className="mt-12 aspect-video max-w-2xl mx-auto overflow-hidden rounded-xl bg-ink shadow-md">
+            <iframe
+              className="h-full w-full"
+              src="https://www.youtube-nocookie.com/embed/MNlUXrV83xE?start=2"
+              title="Rhythmic Sound for Health & Wellbeing, Global Echoes Ireland"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -45,7 +45,7 @@
 ## Typography
 - **Display:** Outfit (self-hosted)
 - **UI / Body:** Work Sans (self-hosted)
-- **Mantra:** Global harmony through sound and creative collaborations
+- **Mantra:** Global Harmony through Sound and creative collaborations
 
 ## Effects
 - Editorial mast header (transparent over hero → solid cream on scroll); no liquid-glass tray
