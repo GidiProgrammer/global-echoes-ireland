@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import heroCurveImg from "@/assets/hero-care-drumming.jpg";
+import { Picture } from "./Picture";
+import { heroCareDrumming } from "@/lib/responsive-images";
 
 interface CTASectionProps {
   headline?: string;
@@ -16,12 +17,11 @@ export function CTASection({
 }: CTASectionProps = {}) {
   return (
     <section className="relative overflow-hidden bg-forest text-cream">
-      <img
-        src={heroCurveImg}
+      <Picture
+        {...heroCareDrumming}
         alt=""
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25"
-        loading="lazy"
       />
       <div className="absolute inset-0 bg-forest/75" aria-hidden="true" />
       <div className="container-x relative py-20 text-center md:py-28">

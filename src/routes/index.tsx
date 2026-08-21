@@ -3,19 +3,21 @@ import { ArrowRight, CalendarBlank } from "@phosphor-icons/react";
 import { PageShell } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import { Reveal } from "@/components/site/Reveal";
-import heroImg from "@/assets/community-care-culture.jpg";
-import schoolsEducationImg from "@/assets/schools-education.jpg";
-import careHomesImg from "@/assets/carehomes.jpg";
-import communityWellbeingImg from "@/assets/community-wellbeing.jpg";
-import festivalsEventsImg from "@/assets/festivals-and-events.jpg";
-import johnImg from "@/assets/drjohn.jpg";
-import natalieImg from "@/assets/founder-natalie.jpg";
-import emmanuelImg from "@/assets/founder-emmanuel.jpg";
-import caoimheImg from "@/assets/caoimhe-doherty.jpg";
-import farisImg from "@/assets/faris-amin.jpg";
-import workPhoto from "@/assets/photo1.jpg";
 import { pageHead } from "@/lib/site";
-import { heroMasthead } from "@/lib/responsive-images";
+import {
+  careHomes,
+  caoimheDoherty,
+  communityCareCulture,
+  communityWellbeing,
+  drJohn,
+  emmanuelSone,
+  farisAmin,
+  festivalsEvents,
+  heroMasthead,
+  natalieRodgers,
+  photo1,
+  schoolsEducation,
+} from "@/lib/responsive-images";
 import { Picture } from "@/components/site/Picture";
 
 import { Testimonials } from "@/components/site/Testimonials";
@@ -127,13 +129,10 @@ function AboutPreview() {
       <div className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
         <Reveal className="md:col-span-6">
           <div className="overflow-hidden rounded-xl bg-forest/5">
-            <img
-              src={heroImg}
+            <Picture
+              {...communityCareCulture}
               alt="Diverse group playing djembe drums together at a Global Echoes Ireland community session"
               className="aspect-[3/2] w-full object-cover"
-              loading="lazy"
-              width={900}
-              height={600}
             />
           </div>
         </Reveal>
@@ -218,28 +217,28 @@ function ServicesOverview() {
     {
       title: "Care Homes & Healthcare",
       hash: "care-homes",
-      img: careHomesImg,
+      img: careHomes,
       alt: "Caregiver holding an older person's hands in a care setting",
       span: "md:col-span-7",
     },
     {
       title: "Community & Wellbeing",
       hash: "community",
-      img: communityWellbeingImg,
+      img: communityWellbeing,
       alt: "Facilitated drumming circle with older participants",
       span: "md:col-span-5",
     },
     {
       title: "Schools, Universities & Education",
       hash: "schools",
-      img: schoolsEducationImg,
+      img: schoolsEducation,
       alt: "School percussion workshop with facilitator and pupils around djembes",
       span: "md:col-span-5",
     },
     {
       title: "Festivals & Events",
       hash: "festivals",
-      img: festivalsEventsImg,
+      img: festivalsEvents,
       alt: "Outdoor festival performance with djembe and audience",
       span: "md:col-span-7",
     },
@@ -276,11 +275,10 @@ function ServicesOverview() {
             >
               <article className="flex h-full min-h-0 flex-col">
                 <div className="min-h-0 flex-1 overflow-hidden rounded-xl bg-forest/5">
-                  <img
-                    src={s.img}
+                  <Picture
+                    {...s.img}
                     alt={s.alt}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                    loading="lazy"
                   />
                 </div>
                 <h3 className="mt-2 shrink-0 font-display text-lg font-medium text-ink md:mt-3 md:text-xl">
@@ -300,35 +298,35 @@ function TeamPreview() {
   const featured = {
     name: "Dr John Nutekpor",
     role: "Founder & Artistic Director, PhD Arts Practice",
-    img: johnImg,
+    img: drJohn,
     imgClass: "aspect-[4/5] w-full object-cover object-[center_15%]",
   };
   const others = [
     {
       name: "Emmanuel Njume Sone",
       role: "Co-founder, Strategy & Partnerships",
-      img: emmanuelImg,
+      img: emmanuelSone,
       imgClass:
         "aspect-square w-full object-cover object-[center_18%] sm:aspect-[5/4]",
     },
     {
       name: "Natalie Rodgers",
       role: "Programme Coordinator, Senior Clinical Nurse",
-      img: natalieImg,
+      img: natalieRodgers,
       imgClass:
         "aspect-square w-full object-cover object-[center_38%] sm:aspect-[5/4]",
     },
     {
       name: "Faris Amin",
       role: "Community Outreach Coordinator and Therapist",
-      img: farisImg,
+      img: farisAmin,
       imgClass:
         "aspect-square w-full object-cover object-[center_28%] sm:aspect-[5/4]",
     },
     {
       name: "Caoimhe Doherty",
       role: "International Programmes and Events Coordinator",
-      img: caoimheImg,
+      img: caoimheDoherty,
       imgClass:
         "aspect-square w-full object-cover object-[center_20%] sm:aspect-[5/4]",
     },
@@ -350,11 +348,10 @@ function TeamPreview() {
         <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-8 lg:gap-12">
           <Reveal className="md:col-span-6 lg:col-span-5">
             <article>
-              <img
-                src={featured.img}
+              <Picture
+                {...featured.img}
                 alt={featured.name}
                 className={`${featured.imgClass} rounded-xl`}
-                loading="lazy"
               />
               <h3 className="mt-5 font-display text-2xl font-medium md:text-3xl">
                 {featured.name}
@@ -367,11 +364,10 @@ function TeamPreview() {
             {others.map((f, i) => (
               <Reveal key={f.name} delayMs={80 + i * 50}>
                 <article>
-                  <img
-                    src={f.img}
+                  <Picture
+                    {...f.img}
                     alt={f.name}
                     className={`${f.imgClass} rounded-xl`}
-                    loading="lazy"
                   />
                   <h3 className="mt-4 font-display text-xl font-medium md:text-2xl">
                     {f.name}
@@ -487,12 +483,11 @@ function ProgrammeOptions() {
 function GalleryPreview() {
   return (
     <section className="relative isolate overflow-hidden bg-ink">
-      <img
-        src={workPhoto}
+      <Picture
+        {...photo1}
         alt=""
-        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover opacity-55"
-        loading="lazy"
+        aria-hidden="true"
       />
       <div
         className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/35"

@@ -1,13 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import workPhoto from "@/assets/photo1.jpg";
-import schoolsEducationImg from "@/assets/schools-education.jpg";
-import video2Poster from "@/assets/video2-poster.jpg";
-import video3Poster from "@/assets/video3-poster.jpg";
-import video4Poster from "@/assets/video4-poster.jpg";
-import video5Poster from "@/assets/video5-poster.jpg";
 import { pageHead } from "@/lib/site";
+import {
+  photo1,
+  schoolsEducation,
+  video2Poster,
+  video3Poster,
+  video4Poster,
+  video5Poster,
+} from "@/lib/responsive-images";
+import { Picture } from "@/components/site/Picture";
 
 export const Route = createFileRoute("/gallery")({
   head: () =>
@@ -22,14 +25,14 @@ export const Route = createFileRoute("/gallery")({
 
 const photos = [
   {
-    src: workPhoto,
+    image: photo1,
     alt: "Children seated in a semi-circle with djembe drums during a Global Echoes Ireland workshop",
     caption: "African percussion and cultural information workshop with pupils.",
     span: "md:col-span-7",
     aspect: "aspect-[16/10] md:aspect-[5/3]",
   },
   {
-    src: schoolsEducationImg,
+    image: schoolsEducation,
     alt: "School percussion workshop with facilitator and pupils around djembes",
     caption: "Schools, universities and education.",
     span: "md:col-span-5",
@@ -40,7 +43,7 @@ const photos = [
 const films = [
   {
     src: "/media/video2.mp4",
-    poster: video2Poster,
+    poster: video2Poster.src,
     orientation: "landscape" as const,
     title: "Africa Day 2026",
     caption:
@@ -50,7 +53,7 @@ const films = [
   },
   {
     src: "/media/video3.mp4",
-    poster: video3Poster,
+    poster: video3Poster.src,
     orientation: "landscape" as const,
     title: "African Percussion Workshop",
     caption:
@@ -60,7 +63,7 @@ const films = [
   },
   {
     src: "/media/video4.mp4",
-    poster: video4Poster,
+    poster: video4Poster.src,
     orientation: "portrait" as const,
     title: "Community creative arts",
     caption: "Engagement with cluster of schools in Balbriggan.",
@@ -69,7 +72,7 @@ const films = [
   },
   {
     src: "/media/video5.mp4",
-    poster: video5Poster,
+    poster: video5Poster.src,
     orientation: "portrait" as const,
     title: "Senegal cultural heritage",
     caption: "Interactive stage performance with audience.",
@@ -112,12 +115,10 @@ function Gallery() {
             {photos.map((photo) => (
               <li key={photo.alt} className={photo.span}>
                 <figure className="flex h-full flex-col overflow-hidden rounded-xl border border-forest/10 bg-white">
-                  <img
-                    src={photo.src}
+                  <Picture
+                    {...photo.image}
                     alt={photo.alt}
                     className={`${photo.aspect} w-full object-cover object-center`}
-                    loading="lazy"
-                    decoding="async"
                   />
                   <figcaption className="px-5 py-3 text-sm text-muted-foreground md:px-6">
                     {photo.caption}

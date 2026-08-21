@@ -11,7 +11,7 @@ type PictureProps = {
   height: number;
   className?: string;
   priority?: boolean;
-} & Pick<ImgHTMLAttributes<HTMLImageElement>, "decoding">;
+} & Pick<ImgHTMLAttributes<HTMLImageElement>, "decoding" | "loading" | "aria-hidden">;
 
 export function Picture({
   avifSrcSet,
@@ -25,6 +25,8 @@ export function Picture({
   className,
   priority = false,
   decoding = "async",
+  loading,
+  ...imgAttrs
 }: PictureProps) {
   return (
     <picture>
@@ -39,8 +41,9 @@ export function Picture({
         height={height}
         className={className}
         decoding={decoding}
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "low"}
+        loading={priority ? "eager" : loading ?? "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        {...imgAttrs}
       />
     </picture>
   );

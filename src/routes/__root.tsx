@@ -1,8 +1,7 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
+  createRootRoute,
   useRouter,
   HeadContent,
   Scripts,
@@ -10,6 +9,8 @@ import {
 import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import outfit600 from "@fontsource/outfit/files/outfit-latin-600-normal.woff2?url";
+import workSans400 from "@fontsource/work-sans/files/work-sans-latin-400-normal.woff2?url";
 import { CONTACT_EMAIL } from "../lib/contact";
 import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME, SITE_ORIGIN } from "../lib/site";
 import { Toaster } from "@/components/ui/sonner";
@@ -57,7 +58,7 @@ const TITLE =
 const DESC =
   "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.";
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -82,11 +83,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      {
+        rel: "preload",
+        href: outfit600,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        href: workSans400,
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
       { rel: "canonical", href: SITE_ORIGIN },
-      { rel: "icon", href: "/favicon.png?v=2", type: "image/png", sizes: "32x32" },
-      { rel: "icon", href: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
-      { rel: "icon", href: "/favicon.ico?v=2", sizes: "any" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=2", sizes: "180x180" },
+      { rel: "icon", href: "/favicon.ico?v=3", sizes: "any" },
+      { rel: "icon", href: "/favicon-48x48.png?v=3", type: "image/png", sizes: "48x48" },
+      { rel: "icon", href: "/favicon-32x32.png?v=3", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16x16.png?v=3", type: "image/png", sizes: "16x16" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=3", sizes: "180x180" },
+      { rel: "manifest", href: "/site.webmanifest?v=3" },
     ],
     scripts: [
       {
@@ -128,11 +145,10 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Outlet />
       <Toaster position="top-center" richColors />
-    </QueryClientProvider>
+    </>
   );
 }

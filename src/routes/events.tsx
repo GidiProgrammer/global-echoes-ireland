@@ -2,10 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarBlank } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import celtafrikImg from "@/assets/celtafrik-quartet.png";
-import grBrothersImg from "@/assets/globalroutebrothers.jpg";
-import nathanImg from "@/assets/nathan-harllels.jpg";
 import { pageHead } from "@/lib/site";
+import {
+  celtafrikQuartet,
+  globalRouteBrothers,
+  nathanHarllels,
+} from "@/lib/responsive-images";
+import { Picture } from "@/components/site/Picture";
 
 export const Route = createFileRoute("/events")({
   head: () =>
@@ -34,11 +37,10 @@ function Events() {
         <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-5">
             <div className="overflow-hidden rounded-xl">
-              <img
-                src={celtafrikImg}
+              <Picture
+                {...celtafrikQuartet}
                 alt="CeltAfrik Quartet: four musicians with guitar, kora and bodhrán"
-                className="aspect-square w-full object-contain bg-ink"
-                loading="lazy"
+                className="aspect-square w-full bg-ink object-contain"
               />
             </div>
           </div>
@@ -112,11 +114,10 @@ function Events() {
       {/* GR Brothers: full-bleed image band + featured profile */}
       <section id="gr-brothers" className="scroll-mt-28 bg-cream">
         <div className="overflow-hidden">
-          <img
-            src={grBrothersImg}
+          <Picture
+            {...globalRouteBrothers}
             alt="Global Roots Brothers: Nathan Harllels with bandmates outdoors"
             className="aspect-[21/9] w-full object-cover object-[center_30%] md:aspect-[2.4/1]"
-            loading="lazy"
           />
         </div>
         <div className="container-x grid items-start gap-10 py-16 md:grid-cols-12 md:gap-12 md:py-24">
@@ -145,11 +146,10 @@ function Events() {
           </div>
           <aside className="md:col-span-5">
             <figure>
-              <img
-                src={nathanImg}
+              <Picture
+                {...nathanHarllels}
                 alt="Nathan Harllels, leader of Global Roots Brothers"
                 className="aspect-[4/5] w-full rounded-xl object-cover object-top"
-                loading="lazy"
               />
               <figcaption className="mt-4">
                 <p className="font-display text-2xl font-medium">

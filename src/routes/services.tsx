@@ -2,11 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import careHomesImg from "@/assets/carehomes.jpg";
-import communityWellbeingImg from "@/assets/community-wellbeing.jpg";
-import schoolsEducationImg from "@/assets/schools-education.jpg";
-import festivalsEventsImg from "@/assets/festivals-and-events.jpg";
 import { pageHead } from "@/lib/site";
+import {
+  careHomes,
+  communityWellbeing,
+  festivalsEvents,
+  schoolsEducation,
+} from "@/lib/responsive-images";
+import { Picture } from "@/components/site/Picture";
 
 export const Route = createFileRoute("/services")({
   head: () =>
@@ -24,7 +27,7 @@ const cards = [
     id: "care-homes",
     name: "Care Homes & Healthcare" as const,
     ask: "care homes",
-    img: careHomesImg,
+    img: careHomes,
     alt: "Caregiver holding an older person's hands in a care setting",
     price: "From €240",
     unit: "per session",
@@ -41,7 +44,7 @@ const cards = [
     id: "community",
     name: "Community & Wellbeing" as const,
     ask: "community",
-    img: communityWellbeingImg,
+    img: communityWellbeing,
     alt: "Facilitated drumming circle with older participants",
     price: "From €200",
     unit: "per session",
@@ -58,7 +61,7 @@ const cards = [
     id: "schools",
     name: "Schools, Universities & Education" as const,
     ask: "schools",
-    img: schoolsEducationImg,
+    img: schoolsEducation,
     alt: "School percussion workshop with facilitator and pupils around djembes",
     price: "From €220",
     unit: "per session",
@@ -74,7 +77,7 @@ const cards = [
     id: "festivals",
     name: "Festivals & Events" as const,
     ask: "festivals",
-    img: festivalsEventsImg,
+    img: festivalsEvents,
     alt: "Outdoor festival performance with djembe and audience",
     price: "Upon request",
     unit: "",
@@ -105,11 +108,10 @@ function Services() {
               className={`flex scroll-mt-28 flex-col ${t.span}`}
             >
               <div className="overflow-hidden rounded-xl bg-forest/5">
-                <img
-                  src={t.img}
+                <Picture
+                  {...t.img}
                   alt={t.alt}
                   className={`${t.aspect} w-full object-cover`}
-                  loading="lazy"
                 />
               </div>
               <h2 className="mt-5 font-display text-2xl font-medium text-ink">

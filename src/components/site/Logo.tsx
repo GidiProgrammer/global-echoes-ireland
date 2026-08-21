@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import logoImg from "@/assets/gei-logo.jpg";
+import { Picture } from "./Picture";
+import { logoMark } from "@/lib/responsive-images";
 
 type LogoSize = "sm" | "md";
 
@@ -26,13 +27,11 @@ export function Logo({
       aria-label="Global Echoes Ireland home"
       className={`group inline-flex min-h-11 max-w-full cursor-pointer items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${ring}`}
     >
-      <img
-        src={logoImg}
+      <Picture
+        {...logoMark}
         alt="Global Echoes Ireland"
-        width={1024}
-        height={1024}
         className={`${sizeClass[size]} rounded-full object-cover shadow-[0_1px_0_rgb(0_0_0/0.06)]`}
-        decoding="async"
+        loading="eager"
       />
     </Link>
   );

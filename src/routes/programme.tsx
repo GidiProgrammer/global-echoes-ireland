@@ -8,8 +8,9 @@ import {
 } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import stayHealthyImg from "@/assets/stay-healthy-with-the-beat.jpg";
 import { pageHead } from "@/lib/site";
+import { stayHealthy } from "@/lib/responsive-images";
+import { Picture } from "@/components/site/Picture";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/programme")({
@@ -84,9 +85,8 @@ function Programme() {
       <section className="container-x grid items-center gap-12 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-5">
           <div className="overflow-hidden rounded-xl bg-forest/5">
-            <img
-              src={stayHealthyImg}
-              loading="lazy"
+            <Picture
+              {...stayHealthy}
               alt="Stay Healthy with the Beat: traditional African drumming with wellbeing tips"
               className="w-full object-cover object-top"
             />

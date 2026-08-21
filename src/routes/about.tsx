@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
-import johnImg from "@/assets/drjohn.jpg";
-import natalieImg from "@/assets/founder-natalie.jpg";
-import emmanuelImg from "@/assets/founder-emmanuel.jpg";
-import caoimheImg from "@/assets/caoimhe-doherty.jpg";
-import farisImg from "@/assets/faris-amin.jpg";
 import { pageHead } from "@/lib/site";
-import { cultureWellbeingDrumming } from "@/lib/responsive-images";
+import {
+  caoimheDoherty,
+  cultureWellbeingDrumming,
+  drJohn,
+  emmanuelSone,
+  farisAmin,
+  natalieRodgers,
+} from "@/lib/responsive-images";
 import { Picture } from "@/components/site/Picture";
 
 export const Route = createFileRoute("/about")({
@@ -26,35 +28,35 @@ function About() {
     {
       name: "Dr John Nutekpor",
       role: "Founder & Artistic Director, PhD Arts Practice",
-      img: johnImg,
+      img: drJohn,
       imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_15%]",
       bio: "Dr. Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
     },
     {
       name: "Emmanuel Njume Sone",
       role: "Co-founder, Strategy & Partnerships",
-      img: emmanuelImg,
+      img: emmanuelSone,
       imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_18%]",
       bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
     },
     {
       name: "Natalie Rodgers",
       role: "Programme Coordinator, Senior Clinical Nurse",
-      img: natalieImg,
+      img: natalieRodgers,
       imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_38%]",
       bio: "Natalie coordinates the clinical alignment of every programme, drawing on years of senior nursing experience across Irish healthcare.",
     },
     {
       name: "Faris Amin",
       role: "Community Outreach Coordinator and Therapist",
-      img: farisImg,
+      img: farisAmin,
       imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_30%]",
       bio: "Faris Amin is our Community Outreach Coordinator and Therapist. He builds meaningful relationships with communities and partners, coordinates outreach activities, and supports inclusive engagement through therapeutic and creative programmes, helping individuals and communities connect, grow, and thrive.",
     },
     {
       name: "Caoimhe Doherty",
       role: "International Programmes and Events Coordinator",
-      img: caoimheImg,
+      img: caoimheDoherty,
       imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_20%]",
       bio: "Caoimhe Doherty is an Ireland-based multi-instrumentalist, composer, and performer. She coordinates our international programmes and event curation, contributing her expertise and creative insight to the development and delivery of our global initiatives.",
     },
@@ -71,12 +73,7 @@ function About() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {people.map((f) => (
             <article key={f.name}>
-              <img
-                src={f.img}
-                loading="lazy"
-                alt={f.name}
-                className={f.imgClass}
-              />
+              <Picture {...f.img} alt={f.name} className={f.imgClass} />
               <h2 className="mt-5 font-display text-2xl font-medium">{f.name}</h2>
               <p className="mt-1 text-sm text-forest">{f.role}</p>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
