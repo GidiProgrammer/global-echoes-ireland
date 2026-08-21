@@ -14,6 +14,7 @@ import {
   farisAmin,
   festivalsEvents,
   heroMasthead,
+  heroPreload,
   natalieRodgers,
   photo1,
   schoolsEducation,
@@ -31,7 +32,7 @@ export const Route = createFileRoute("/")({
       description:
         "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.",
       path: "/",
-      preloadImages: [heroMasthead.preload],
+      preloadImages: [heroPreload],
     }),
   component: Home,
 });

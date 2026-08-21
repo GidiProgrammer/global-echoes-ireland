@@ -81,14 +81,13 @@ const heroPicture = picture("new-hero", {
   fallback: 1280,
 });
 
-export const heroMasthead = {
-  ...heroPicture,
-  preload: {
-    href: srcsetHref(heroPicture.avifSrcSet, 960),
-    type: "image/avif" as const,
-    imageSrcSet: heroPicture.avifSrcSet,
-    imageSizes: FULL,
-  },
+export const heroMasthead = heroPicture;
+
+export const heroPreload = {
+  href: srcsetHref(heroPicture.avifSrcSet, 960),
+  type: "image/avif" as const,
+  imageSrcSet: heroPicture.avifSrcSet,
+  imageSizes: FULL,
 };
 
 export const logoMark = picture("gei-logo", {

@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Picture } from "./Picture";
 import { heroCareDrumming } from "@/lib/responsive-images";
+import type { InterestOption } from "@/routes/contact";
 
 interface CTASectionProps {
   headline?: string;
   body?: string;
-  interest?: string;
+  interest?: InterestOption;
   showDetails?: boolean;
 }
 
