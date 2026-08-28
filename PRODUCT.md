@@ -34,7 +34,7 @@ Wellbeing music programmes for care homes, schools, universities and communities
 - Community strands: CeltAfrik; Global Echoes Troubadours (GETROS); Global Roots Brothers (led by Nathan Harllels)
 - Contact is enquiry-led (form / mailto)
 - Newsletter is a MailerLite list (double opt-in, unsubscribe in every send)
-- Website analytics: Vercel Web Analytics + Speed Insights (no advertising cookies)
+- Website analytics: Vercel (cookieless) plus Google Analytics after cookie consent
 - Gallery may retain AI/stock photography until client supplies consented session media and video
 
 ## Capabilities and Constraints

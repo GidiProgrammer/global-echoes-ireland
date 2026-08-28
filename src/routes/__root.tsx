@@ -17,6 +17,7 @@ import {
   SITE_NAME,
 } from "../lib/site";
 import { Toaster } from "@/components/ui/sonner";
+import { CookieBanner } from "@/components/site/CookieBanner";
 import { WebAnalytics } from "@/components/site/WebAnalytics";
 
 function isUnindexedDocument(
@@ -161,6 +162,7 @@ function RootComponent() {
       <Outlet />
       <Toaster position="top-center" richColors />
       <WebAnalytics />
+      <CookieBanner />
     </>
   );
 }

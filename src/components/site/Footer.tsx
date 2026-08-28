@@ -9,7 +9,8 @@ import {
 } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
-import { trackEvent } from "@/lib/analytics";
+import { requestCookieSettings } from "@/lib/cookie-consent";
+import { isGoogleAnalyticsConfigured, trackEvent } from "@/lib/analytics";
 import { submitNewsletter } from "@/lib/enquiry";
 
 const quick = [
@@ -169,6 +170,15 @@ export function Footer() {
             >
               Terms &amp; Conditions
             </Link>
+            {isGoogleAnalyticsConfigured() ? (
+              <button
+                type="button"
+                onClick={requestCookieSettings}
+                className="cursor-pointer text-left hover:text-gold-bright focus-ring-brand-on-dark"
+              >
+                Cookie settings
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

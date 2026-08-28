@@ -2,7 +2,12 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { trackEvent } from "@/lib/analytics";
+import {
+  loadGoogleAnalytics,
+  trackEvent,
+  trackGooglePageview,
+} from "@/lib/analytics";
+import { CONSENT_EVENT, readCookieConsent } from "@/lib/cookie-consent";
 
 function currentPath(pathname: string, searchStr: string, hash: string) {
   return `${pathname}${searchStr}${hash}`;
@@ -33,6 +38,21 @@ export function WebAnalytics() {
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
   }, []);
+
+  useEffect(() => {
+    const syncGoogle = () => {
+      if (readCookieConsent()?.analytics) loadGoogleAnalytics();
+    };
+    syncGoogle();
+    window.addEventListener(CONSENT_EVENT, syncGoogle);
+    return () => window.removeEventListener(CONSENT_EVENT, syncGoogle);
+  }, []);
+
+  useEffect(() => {
+    const path = currentPath(pathname, searchStr, hash);
+    if (path.includes("/api/")) return;
+    trackGooglePageview(path);
+  }, [pathname, searchStr, hash]);
 
   const path = currentPath(pathname, searchStr, hash);
 

@@ -75,11 +75,10 @@ function Privacy() {
             <li>
               <strong>Technical data:</strong> basic server logs from our
               hosting provider (such as IP address, browser type and pages
-              visited). We also use Vercel Web Analytics and Speed Insights to
-              understand which pages are used and which buttons are clicked
-              (for example Book a Taster Session, contact form, newsletter).
-              That measurement does not use advertising cookies and does not
-              identify you by name or email.
+              visited). Vercel Web Analytics and Speed Insights measure page
+              use without advertising cookies. If you accept analytics cookies,
+              we also use Google Analytics to understand which pages and buttons
+              are used. Google Analytics cookies are not set until you accept.
             </li>
           </ul>
         </PrivacySection>
@@ -108,7 +107,7 @@ function Privacy() {
           <ul className="list-disc space-y-2 pl-5">
             <li>
               <strong>Consent</strong> when you submit an enquiry form, join the
-              mailing list, or email us voluntarily
+              mailing list, email us voluntarily, or accept analytics cookies
             </li>
             <li>
               <strong>Contract</strong> when processing is necessary to discuss
@@ -189,17 +188,40 @@ function Privacy() {
           </p>
         </PrivacySection>
 
+        <PrivacySection title="Cookies and Google Analytics">
+          <p>
+            A banner asks whether you accept analytics cookies. You can change
+            that choice at any time with Cookie settings in the footer. Rejecting
+            analytics does not affect using the site.
+          </p>
+          <p>
+            If you accept, we load Google Analytics (Google Ireland Limited /
+            Google LLC). Google may process measurement data in the United
+            States. Google’s privacy policy is at{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-forest underline-offset-2 hover:underline"
+            >
+              policies.google.com/privacy
+            </a>
+            . We do not use Google advertising cookies or ads personalisation on
+            this site.
+          </p>
+        </PrivacySection>
+
         <PrivacySection title="Sharing and transfers">
           <p>
             We share personal data only with service providers who help us
             operate (such as hosting, website analytics, form delivery and the
             mailing list), with booking organisations where needed for delivery,
-            or when required by law. The site is hosted on Vercel. Vercel’s
-            analytics product is first-party to that hosting and is designed not
-            to use advertising cookies. We do not routinely transfer enquiry or
-            mailing-list data outside the European Economic Area. If that
-            changes for a specific programme, we will explain it at the time of
-            booking.
+            or when required by law. The site is hosted on Vercel. If you accept
+            analytics cookies, Google Analytics is also used and measurement
+            data may be processed in the United States. We do not routinely
+            transfer enquiry or mailing-list data outside the European Economic
+            Area. If that changes for a specific programme, we will explain it
+            at the time of booking.
           </p>
         </PrivacySection>
 

@@ -20,7 +20,7 @@ The contact form uses FormSubmit (free, no API key) and delivers to info@globale
 
 The footer newsletter uses MailerLite. Set `MAILERLITE_API_TOKEN` (and optionally `MAILERLITE_GROUP_ID`) in Vercel. Enable double opt-in in MailerLite so new signups confirm by email. Send campaigns from the MailerLite dashboard.
 
-Website usage is measured with Vercel Web Analytics and Speed Insights (page views, CTA clicks, enquiry and newsletter completions). Enable **Analytics** and **Speed Insights** on the Vercel project. Custom events need a Vercel Pro plan; page views work on Hobby.
+Website usage is measured with Vercel Web Analytics and Speed Insights (no cookies). Google Analytics 4 (`G-9J718MWMGV`) runs only after the visitor accepts the cookie banner. Localhost is not sent to Google. Enable **Analytics** and **Speed Insights** on the Vercel project as well.
 
 ## Deployment
 
