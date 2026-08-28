@@ -15,6 +15,7 @@ import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
 import { openMailtoDraft, submitEnquiry } from "@/lib/enquiry";
 import { pageHead } from "@/lib/site";
+import { trackEvent } from "@/lib/analytics";
 
 export const INTEREST_OPTIONS = [
   "Taster session",
@@ -26,7 +27,6 @@ export const INTEREST_OPTIONS = [
   "Schools, Universities & Education",
   "Festivals & Events",
   "Events & community",
-  "Funding and partnerships",
   "CeltAfrik",
   "The GETROS",
   "The GR Brothers",
@@ -64,7 +64,7 @@ export const Route = createFileRoute("/contact")({
   head: () =>
     pageHead({
       title: "Contact | Global Echoes Ireland",
-      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Sone at ${CONTACT_EMAIL}.`,
+      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rogers at ${CONTACT_EMAIL}.`,
       path: "/contact",
     }),
   component: Contact,
@@ -139,12 +139,15 @@ function Contact() {
     const result = await submitEnquiry(payload);
 
     if (result.ok) {
+      trackEvent("enquiry_submit", { interest: payload.interest });
       setSubmitted(true);
       form.reset();
       toast.success("Enquiry sent. We aim to reply within one working day.");
       setPending(false);
       return;
     }
+
+    trackEvent("enquiry_mailto_fallback", { interest: payload.interest });
 
     openMailtoDraft(payload);
     setUsedFallback(true);
@@ -172,7 +175,7 @@ function Contact() {
           <div className="rounded-xl border border-forest/10 bg-white p-8">
             <h2 className="font-display text-2xl font-medium">Direct contact</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Natalie Sone, Programme Coordinator
+              Natalie Rogers, Programme Coordinator
             </p>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-3">
@@ -183,6 +186,9 @@ function Contact() {
                   <p className="text-sm text-muted-foreground">Email</p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
+                    data-analytics="outbound"
+                    data-analytics-place="contact"
+                    data-analytics-label="email"
                     className="break-all font-medium hover:text-forest focus-ring-brand"
                   >
                     {CONTACT_EMAIL}
@@ -206,6 +212,9 @@ function Contact() {
                   <div className="flex flex-col gap-1 font-medium">
                     <a
                       href={CONTACT_PHONE.href}
+                      data-analytics="outbound"
+                      data-analytics-place="contact"
+                      data-analytics-label="phone"
                       className="hover:text-forest focus-ring-brand"
                     >
                       {CONTACT_PHONE.display}
@@ -236,6 +245,9 @@ function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
+                    data-analytics="outbound"
+                    data-analytics-place="contact"
+                    data-analytics-label={label}
                     className="grid h-10 w-10 place-items-center rounded-[6px] border border-forest/20 text-forest transition-colors hover:bg-forest hover:text-cream focus-ring-brand"
                   >
                     <Icon className="h-4 w-4" />

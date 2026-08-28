@@ -537,6 +537,9 @@
 
 /* Transparent over the hero; forest chrome once the next section covers the bar. */
 .nav-mast {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   background: transparent;
   border-bottom: 1px solid transparent;
   backdrop-filter: none;

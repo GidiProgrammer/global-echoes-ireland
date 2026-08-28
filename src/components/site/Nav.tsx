@@ -130,7 +130,13 @@ export function Nav() {
   }, [open, closeMenu]);
 
   return (
-    <header className={`nav-mast sticky top-0 z-50${covered ? " is-solid" : ""}`}>
+    <header
+      className={
+        covered
+          ? "nav-mast sticky top-0 z-50 is-solid"
+          : "nav-mast sticky top-0 z-50"
+      }
+    >
       <div
         ref={headerBarRef}
         className="mx-auto flex h-[var(--header-h)] max-w-[90rem] items-center gap-3 px-4 sm:px-6 lg:gap-6 lg:px-10"
@@ -168,6 +174,9 @@ export function Nav() {
             to={tasterCta.to}
             search={tasterCta.search}
             className="btn-nav-ghost hidden lg:inline-flex"
+            data-analytics="cta"
+            data-analytics-place="nav"
+            data-analytics-label={tasterCta.label}
           >
             {tasterCta.label}
           </Link>
@@ -250,6 +259,9 @@ export function Nav() {
               search={tasterCta.search}
               onClick={() => setOpen(false)}
               className="btn-gold flex w-full min-h-11"
+              data-analytics="cta"
+              data-analytics-place="nav-mobile"
+              data-analytics-label={tasterCta.label}
             >
               {tasterCta.label}
             </Link>

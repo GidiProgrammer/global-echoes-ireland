@@ -17,6 +17,7 @@ import {
   SITE_NAME,
 } from "../lib/site";
 import { Toaster } from "@/components/ui/sonner";
+import { WebAnalytics } from "@/components/site/WebAnalytics";
 
 function isUnindexedDocument(
   matches: Array<{ status: string; globalNotFound?: boolean }>,
@@ -159,6 +160,7 @@ function RootComponent() {
     <>
       <Outlet />
       <Toaster position="top-center" richColors />
+      <WebAnalytics />
     </>
   );
 }

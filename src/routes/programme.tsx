@@ -37,7 +37,7 @@ export const Route = createFileRoute("/programme")({
     pageHead({
       title: "Rhythmic Sound for Health & Wellbeing | Global Echoes Ireland",
       description:
-        "Stay Healthy with the Beat: Rhythmic Sound for Health & Wellbeing. Traditional African drumming with wellbeing tips, led by Dr John Nutekpor.",
+        "Stay Healthy with the Beat: Rhythmic Sound for Health & Wellbeing. Traditional African drumming with wellbeing tips, led by Dr. John Nutekpor.",
       path: "/programme",
       jsonLd: {
         "@context": "https://schema.org",
@@ -106,6 +106,9 @@ function Programme() {
               to="/contact"
               search={{ interest: "Taster session" }}
               className="btn-solid"
+              data-analytics="cta"
+              data-analytics-place="programme"
+              data-analytics-label="Book a Taster Session"
             >
               Book a Taster Session
             </Link>
@@ -126,7 +129,7 @@ function Programme() {
           </p>
           <p className="mt-4 max-w-prose text-base leading-relaxed text-foreground/85">
             Traditional African drumming and practical wellbeing guidance for
-            care homes, schools and community settings, led by Dr John Nutekpor.
+            care homes, schools and community settings, led by Dr. John Nutekpor.
           </p>
           <p className="mt-4 max-w-prose text-base leading-relaxed text-foreground/85">
             Sessions combine rhythm, movement and basic health tips so groups
@@ -187,7 +190,7 @@ function Programme() {
             Watch the programme
           </h2>
           <p className="mt-3 text-base text-muted-foreground">
-            A short look at rhythmic sound for health and wellbeing with Dr John
+            A short look at rhythmic sound for health and wellbeing with Dr. John
             Nutekpor.
           </p>
         </div>
@@ -307,6 +310,9 @@ function Programme() {
             to="/contact"
             search={{ interest: "Taster session" }}
             className="btn-gold mt-10"
+            data-analytics="cta"
+            data-analytics-place="programme"
+            data-analytics-label="Book a Taster Session"
           >
             Book a Taster Session
           </Link>

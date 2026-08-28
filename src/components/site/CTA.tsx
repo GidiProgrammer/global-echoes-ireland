@@ -58,6 +58,13 @@ export function CTASection({
                 to="/contact"
                 search={{ interest }}
                 className="btn-gold"
+                data-analytics="cta"
+                data-analytics-place="cta-band"
+                data-analytics-label={
+                  interest === "Taster session"
+                    ? "Book a Taster Session"
+                    : `Enquire about ${interest}`
+                }
               >
                 {interest === "Taster session"
                   ? "Book a Taster Session"

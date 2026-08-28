@@ -27,6 +27,9 @@ function HeroCta({
         to="/contact"
         search={cta.search ?? { interest: undefined }}
         className={className}
+        data-analytics="cta"
+        data-analytics-place="hero"
+        data-analytics-label={cta.label}
       >
         {label}
       </Link>
@@ -34,7 +37,14 @@ function HeroCta({
   }
 
   return (
-    <Link to={cta.to} hash={cta.hash} className={className}>
+    <Link
+      to={cta.to}
+      hash={cta.hash}
+      className={className}
+      data-analytics="cta"
+      data-analytics-place="hero"
+      data-analytics-label={cta.label}
+    >
       {label}
     </Link>
   );
@@ -43,21 +53,17 @@ function HeroCta({
 export function Hero({
   image,
   imageAlt,
-  name,
   tagline,
   subhead,
-  trustLine,
-  proofLine,
-  phones,
   primaryCta,
   secondaryCta,
   scrollTargetId,
 }: HeroContent) {
-  const taglineBreak = tagline.indexOf(" and ");
+  const accent = "creative collaborations";
+  const accentAt = tagline.lastIndexOf(accent);
   const taglineLead =
-    taglineBreak >= 0 ? tagline.slice(0, taglineBreak) : tagline;
-  const taglineRest =
-    taglineBreak >= 0 ? tagline.slice(taglineBreak + 1) : "";
+    accentAt >= 0 ? tagline.slice(0, accentAt).trimEnd() : tagline;
+  const taglineAccent = accentAt >= 0 ? accent : "";
 
   return (
     <section
@@ -78,29 +84,20 @@ export function Hero({
         <div className="hero-copy-field mx-auto flex w-full max-w-[90rem] flex-col px-5 pb-16 pt-[calc(var(--header-h)+1.5rem)] sm:px-6 sm:pb-20 md:px-8 lg:px-10 lg:pb-24 xl:px-14">
           <h1
             id="hero-heading"
-            className="max-w-[18ch] font-display text-[1.85rem] font-medium leading-[1.12] tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl xl:text-[3.25rem]"
+            className="max-w-[22rem] text-pretty font-display text-[2.35rem] font-medium leading-[1.08] tracking-[-0.03em] text-cream sm:max-w-[28rem] sm:text-5xl md:max-w-[36rem] md:text-6xl lg:max-w-[44rem] lg:text-[4.15rem] xl:max-w-[48rem] xl:text-[4.5rem]"
           >
-            {name}
-          </h1>
-          <p className="mt-3 max-w-[22ch] font-display text-xl font-medium leading-[1.2] tracking-[-0.02em] text-white sm:mt-4 sm:max-w-[28ch] sm:text-2xl lg:text-[1.75rem]">
             {taglineLead}
-            {taglineRest ? (
+            {taglineAccent ? (
               <>
-                <br />
-                {taglineRest}
+                {" "}
+                <span className="text-gold-bright">{taglineAccent}</span>
               </>
             ) : null}
-          </p>
-          <p className="mt-4 max-w-[42ch] font-sans text-sm leading-relaxed text-white/95 sm:mt-5 sm:text-base">
+          </h1>
+          <p className="mt-5 max-w-[40rem] font-sans text-base leading-relaxed text-cream/90 sm:mt-6 sm:text-lg md:max-w-[46rem] md:text-xl lg:mt-7">
             {subhead}
           </p>
-          <p className="mt-4 max-w-[46ch] font-sans text-sm font-medium leading-snug text-white">
-            {trustLine}
-          </p>
-          <p className="mt-1.5 max-w-[46ch] font-sans text-sm leading-snug text-white/90 sm:mt-2">
-            {proofLine}
-          </p>
-          <div className="mt-5 flex w-full flex-col gap-3 sm:mt-7 md:w-auto md:flex-row md:flex-wrap md:items-center">
+          <div className="mt-7 flex w-full flex-col gap-3 sm:mt-9 md:w-auto md:flex-row md:flex-wrap md:items-center">
             <HeroCta
               cta={primaryCta}
               showArrow
@@ -111,22 +108,6 @@ export function Hero({
               className="btn-hero-secondary w-full md:w-auto"
             />
           </div>
-          {phones.length > 0 ? (
-            <p className="mt-1 flex min-h-11 flex-wrap items-center gap-x-1 text-sm font-normal text-white/85">
-              <span>or call</span>
-              {phones.map((phone, i) => (
-                <span key={phone.href} className="inline-flex items-center">
-                  {i > 0 ? <span className="px-1">/</span> : null}
-                  <a
-                    href={phone.href}
-                    className="inline-flex min-h-11 items-center underline-offset-2 hover:underline focus-ring-brand-on-dark"
-                  >
-                    {phone.display}
-                  </a>
-                </span>
-              ))}
-            </p>
-          ) : null}
         </div>
       </div>
 

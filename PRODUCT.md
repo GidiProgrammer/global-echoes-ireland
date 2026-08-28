@@ -25,7 +25,7 @@ Global Echoes Ireland (GEI) establishes professional credibility for the parent 
 
 **Primary tagline:** Global harmony through sound and creative collaborations.
 
-Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond — bringing culture, care, and connection together. Flagship: Building Global Connections Through Music, Culture, and Creative Collaboration (Rhythms for Wellbeing), delivered by a PhD-level arts practitioner (Dr John Nutekpor, Founder & Artistic Director) with senior clinical coordination (Natalie Rodgers).
+Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond — bringing culture, care, and connection together. Flagship: Building Global Connections Through Music, Culture, and Creative Collaboration (Rhythms for Wellbeing), delivered by a PhD-level arts practitioner (Dr. John Nutekpor, Founder & Artistic Director) with senior clinical coordination (Natalie Rogers).
 
 ## Operating Context
 
@@ -33,6 +33,8 @@ Wellbeing music programmes for care homes, schools, universities and communities
 - Settings: care homes & healthcare, community & wellbeing, schools/universities/Higher Education Authority (HEA), festivals & events
 - Community strands: CeltAfrik; Global Echoes Troubadours (GETROS); Global Roots Brothers (led by Nathan Harllels)
 - Contact is enquiry-led (form / mailto)
+- Newsletter is a MailerLite list (double opt-in, unsubscribe in every send)
+- Website analytics: Vercel Web Analytics + Speed Insights (no advertising cookies)
 - Gallery may retain AI/stock photography until client supplies consented session media and video
 
 ## Capabilities and Constraints
@@ -45,7 +47,7 @@ Contact facts:
 
 - Email: info@globalechoesireland.ie
 - Phone: +353 86 893 1903
-- Contact person: Natalie Rodgers, Programme Coordinator
+- Contact person: Natalie Rogers, Programme Coordinator
 
 ## Brand Commitments
 
@@ -59,7 +61,7 @@ Contact facts:
 
 ## Evidence on Hand
 
-- Founder/team bios for Natalie Rodgers, Dr John Nutekpor, Emmanuel Njume Sone, Caoimhe Doherty, Faris Amin
+- Founder/team bios for Natalie Rogers, Dr. John Nutekpor, Emmanuel Njume Sone, Caoimhe Doherty, Faris Amin
 - Community initiative copy for CeltAfrik, GETROS, GR Brothers
 - Do not fabricate: named client testimonials, partner endorsement logos, clinical outcome claims beyond evidence-informed language
 

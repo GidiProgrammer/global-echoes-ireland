@@ -49,7 +49,7 @@ function Events() {
             <div className="mt-6 max-w-prose space-y-4 text-base leading-relaxed text-foreground/85">
               <p>
                 CeltAfrik brings Celtic and African traditions together through
-                performance, workshops and community engagement, led by Dr John
+                performance, workshops and community engagement, led by Dr. John
                 Nutekpor.
               </p>
               <p>
@@ -188,6 +188,9 @@ function Events() {
                 to="/contact"
                 search={{ interest: "Events & community" }}
                 className="btn-solid"
+                data-analytics="cta"
+                data-analytics-place="events"
+                data-analytics-label="Ask about an event"
               >
                 Ask about an event
               </Link>
@@ -195,6 +198,9 @@ function Events() {
                 to="/contact"
                 search={{ interest: "Taster session" }}
                 className="btn-outline"
+                data-analytics="cta"
+                data-analytics-place="events"
+                data-analytics-label="Book a Taster Session"
               >
                 Book a Taster Session
               </Link>

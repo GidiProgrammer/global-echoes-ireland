@@ -1,5 +1,4 @@
 import { heroMasthead, type PictureImage } from "@/lib/responsive-images";
-import { CONTACT_PHONES } from "@/lib/contact";
 
 export type HeroLink = {
   label: string;
@@ -9,15 +8,9 @@ export type HeroLink = {
     | "/about"
     | "/services"
     | "/gallery"
-    | "/funders"
     | "/events";
   search?: { interest: "Taster session" };
   hash?: string;
-};
-
-export type HeroPhone = {
-  display: string;
-  href: string;
 };
 
 export type HeroContent = {
@@ -28,7 +21,6 @@ export type HeroContent = {
   subhead: string;
   trustLine: string;
   proofLine: string;
-  phones: readonly HeroPhone[];
   primaryCta: HeroLink;
   secondaryCta: HeroLink;
   scrollTargetId: string;
@@ -37,16 +29,15 @@ export type HeroContent = {
 export const homeHero: HeroContent = {
   image: heroMasthead,
   imageAlt:
-    "Djembe drum with flute, violin, piano and stethoscope, symbolising culture and care",
+    "Sunlit room with a Yamaha piano, djembe with a stethoscope, wooden flute and violin",
   name: "Global Echoes Ireland",
   tagline: "Global harmony through sound and creative collaborations",
   subhead:
     "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.",
   trustLine:
-    "Led by Dr John Nutekpor (PhD) and Natalie Sone, Programme Coordinator.",
+    "Led by Dr. John Nutekpor (PhD) and Natalie Rogers, Programme Coordinator.",
   proofLine:
     "Delivering therapeutic drumming programmes in care homes across Ireland.",
-  phones: CONTACT_PHONES,
   primaryCta: {
     label: "Book a Taster Session",
     to: "/contact",

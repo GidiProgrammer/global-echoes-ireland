@@ -30,6 +30,9 @@ function Blog() {
             to="/contact"
             search={{ interest: "Taster session" }}
             className="btn-solid mt-8"
+            data-analytics="cta"
+            data-analytics-place="blog"
+            data-analytics-label="Book a Taster Session"
           >
             Book a Taster Session
           </Link>

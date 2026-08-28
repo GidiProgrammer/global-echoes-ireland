@@ -182,14 +182,14 @@ function ServicesOverview() {
   ] as const;
 
   return (
-    <section className="border-b border-forest/10 bg-cream py-16 md:py-24">
-      <div className="container-x flex flex-col justify-center">
-        <div className="flex shrink-0 flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <section className="section-fill overflow-hidden border-b border-forest/10 bg-cream">
+      <div className="container-x flex h-full min-h-0 flex-col justify-center py-6 md:py-8">
+        <div className="flex shrink-0 flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <h2 className="font-display text-3xl font-medium tracking-[-0.02em] md:text-4xl lg:text-5xl">
+            <h2 className="font-display text-2xl font-medium tracking-[-0.02em] md:text-3xl lg:text-4xl">
               Where we work
             </h2>
-            <p className="mt-3 max-w-lg text-base text-muted-foreground">
+            <p className="mt-2 max-w-lg text-sm text-muted-foreground md:text-base">
               Care homes, schools and universities, communities, and cultural
               events. Programmes tailored to each setting.
             </p>
@@ -202,7 +202,7 @@ function ServicesOverview() {
           </Link>
         </div>
 
-        <div className="mt-6 grid min-h-0 flex-1 grid-cols-1 gap-3 sm:grid-cols-2 md:mt-8 md:grid-cols-12 md:grid-rows-2 md:gap-4">
+        <div className="mt-4 grid min-h-0 flex-1 grid-cols-2 grid-rows-2 gap-2 md:mt-5 md:grid-cols-12 md:gap-3">
           {services.map((s) => (
             <Link
               key={s.title}
@@ -211,14 +211,14 @@ function ServicesOverview() {
               className={`group min-h-0 focus-ring-brand ${s.span}`}
             >
               <article className="flex h-full min-h-0 flex-col">
-                <div className="min-h-0 flex-1 overflow-hidden rounded-xl bg-forest/5">
+                <div className="min-h-0 flex-1 overflow-hidden rounded-lg bg-forest/5">
                   <Picture
                     {...s.img}
                     alt={s.alt}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
                   />
                 </div>
-                <h3 className="mt-2 shrink-0 font-display text-lg font-medium text-ink md:mt-3 md:text-xl">
+                <h3 className="mt-1.5 shrink-0 font-display text-sm font-medium leading-snug text-ink md:mt-2 md:text-base">
                   {s.title}
                 </h3>
               </article>
@@ -233,7 +233,7 @@ function ServicesOverview() {
 /* Featured founder + supporting team */
 function TeamPreview() {
   const featured = {
-    name: "Dr John Nutekpor",
+    name: "Dr. John Nutekpor",
     role: "Founder & Artistic Director, PhD Arts Practice",
     img: drJohn,
     imgClass: "aspect-[4/5] w-full object-cover object-[center_15%]",
@@ -247,7 +247,7 @@ function TeamPreview() {
         "aspect-square w-full object-cover object-[center_18%] sm:aspect-[5/4]",
     },
     {
-      name: "Natalie Sone",
+      name: "Natalie Rogers",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieRodgers,
       imgClass:
@@ -255,7 +255,7 @@ function TeamPreview() {
     },
     {
       name: "Faris Amin",
-      role: "Community Outreach Coordinator and Therapist",
+      role: "Community outreach and Wellbeing facilitator",
       img: farisAmin,
       imgClass:
         "aspect-square w-full object-cover object-[center_28%] sm:aspect-[5/4]",
@@ -408,7 +408,13 @@ function ProgrammeOptions() {
           </div>
         </div>
 
-        <Link to="/programme" className="btn-gold mt-6 shrink-0 md:mt-8">
+        <Link
+          to="/programme"
+          className="btn-gold mt-6 shrink-0 md:mt-8"
+          data-analytics="cta"
+          data-analytics-place="home"
+          data-analytics-label="View full details"
+        >
           View full details
         </Link>
       </div>
@@ -443,6 +449,9 @@ function GalleryPreview() {
             to="/gallery"
             hash="work-done"
             className="btn-gold mt-8"
+            data-analytics="cta"
+            data-analytics-place="home"
+            data-analytics-label="Open gallery"
           >
             Open gallery
           </Link>

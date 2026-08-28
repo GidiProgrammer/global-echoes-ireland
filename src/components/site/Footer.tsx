@@ -9,13 +9,13 @@ import {
 } from "@phosphor-icons/react";
 import { Logo } from "./Logo";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact";
+import { trackEvent } from "@/lib/analytics";
 import { submitNewsletter } from "@/lib/enquiry";
 
 const quick = [
   { to: "/about", label: "About" },
   { to: "/programme", label: "Programme" },
   { to: "/services", label: "Services" },
-  { to: "/funders", label: "For Funders" },
   { to: "/events", label: "Events & Communities" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
@@ -70,6 +70,9 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
+                data-analytics="outbound"
+                data-analytics-place="footer"
+                data-analytics-label={label}
                 className="grid h-11 w-11 min-h-11 min-w-11 place-items-center rounded-[6px] border border-cream/20 text-cream/85 transition-colors hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
               >
                 <Icon className="h-4 w-4" />
@@ -121,6 +124,9 @@ export function Footer() {
               <EnvelopeSimple className="mt-0.5 h-4 w-4 shrink-0 text-gold-bright" />
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
+                data-analytics="outbound"
+                data-analytics-place="footer"
+                data-analytics-label="email"
                 className="break-all hover:text-gold-bright focus-ring-brand-on-dark"
               >
                 {CONTACT_EMAIL}
@@ -130,6 +136,9 @@ export function Footer() {
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-bright" />
               <a
                 href={CONTACT_PHONE.href}
+                data-analytics="outbound"
+                data-analytics-place="footer"
+                data-analytics-label="phone"
                 className="hover:text-gold-bright focus-ring-brand-on-dark"
               >
                 {CONTACT_PHONE.display}
@@ -176,23 +185,26 @@ function NewsletterForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const email = String(new FormData(form).get("email") ?? "").trim();
+    const data = new FormData(form);
+    const email = String(data.get("email") ?? "").trim();
+    const website = String(data.get("website") ?? "").trim();
     if (!email || status === "pending") return;
 
     setStatus("pending");
     setErrorMessage("");
 
-    const result = await submitNewsletter(email);
+    const result = await submitNewsletter(email, website);
 
     if (result.ok) {
+      trackEvent("newsletter_join", { place: "footer" });
       setStatus("success");
       return;
     }
 
     setStatus("error");
     setErrorMessage(
-      result.reason === "activation"
-        ? `We could not add that address yet. Email ${CONTACT_EMAIL} to join the list.`
+      result.reason === "unconfigured"
+        ? `The list is not connected yet. Email ${CONTACT_EMAIL} and we will add you.`
         : result.message,
     );
   };
@@ -204,16 +216,17 @@ function NewsletterForm() {
         role="status"
         aria-live="polite"
       >
-        <p className="font-semibold text-gold-bright">You are on the list</p>
+        <p className="font-semibold text-gold-bright">Check your inbox</p>
         <p className="mt-0.5 text-cream/80">
-          We will send news and events to that address.
+          Confirm the email we just sent, then you will receive news and events.
+          You can unsubscribe in any message.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-5 max-w-xs">
+    <form onSubmit={handleSubmit} className="relative mt-5 max-w-xs">
       <label htmlFor="newsletter-email" className="block text-xs font-semibold text-gold-bright">
         News and updates
       </label>
@@ -227,7 +240,9 @@ function NewsletterForm() {
           placeholder="Your email"
           autoComplete="email"
           aria-invalid={status === "error"}
-          aria-describedby={status === "error" ? "newsletter-error" : undefined}
+          aria-describedby={
+            status === "error" ? "newsletter-hint newsletter-error" : "newsletter-hint"
+          }
           className="min-h-11 min-w-0 flex-1 rounded-[6px] border border-cream/20 bg-forest-deep px-3 text-sm text-cream placeholder-cream/70 focus-visible:border-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright disabled:opacity-60"
         />
         <button
@@ -238,6 +253,23 @@ function NewsletterForm() {
           {status === "pending" ? "Joining" : "Join"}
         </button>
       </div>
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="newsletter-website">Website</label>
+        <input
+          id="newsletter-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+      <p id="newsletter-hint" className="mt-2 text-[11px] leading-relaxed text-cream/70">
+        We will email news and events. Confirm once, unsubscribe anytime. See our{" "}
+        <Link to="/privacy" className="underline underline-offset-2 hover:text-gold-bright">
+          privacy policy
+        </Link>
+        .
+      </p>
       <div id="newsletter-error" role="alert" aria-live="polite">
         {status === "error" ? (
           <p className="mt-2 text-xs text-gold-bright">{errorMessage}</p>

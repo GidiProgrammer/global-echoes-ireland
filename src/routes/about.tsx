@@ -25,11 +25,11 @@ export const Route = createFileRoute("/about")({
 
 function About() {
   const featured = {
-    name: "Dr John Nutekpor",
+    name: "Dr. John Nutekpor",
     role: "Founder & Artistic Director, PhD Arts Practice",
     img: drJohn,
     imgClass: "aspect-[4/5] w-full rounded-xl object-cover object-[center_15%]",
-    bio: "Dr Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
+    bio: "Dr. Nutekpor leads events and directs Global Echoes artistic initiatives, creating intercultural performances and fostering creative collaborations that connect communities across the globe.",
   };
   const people = [
     {
@@ -41,7 +41,7 @@ function About() {
       bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
     },
     {
-      name: "Natalie Sone",
+      name: "Natalie Rogers",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieRodgers,
       imgClass:
@@ -50,11 +50,11 @@ function About() {
     },
     {
       name: "Faris Amin",
-      role: "Community Outreach Coordinator and Therapist",
+      role: "Community outreach and Wellbeing facilitator",
       img: farisAmin,
       imgClass:
         "aspect-square w-full rounded-xl object-cover object-[center_30%] sm:aspect-[5/4]",
-      bio: "Faris coordinates community outreach and supports inclusive engagement through therapeutic and creative programmes.",
+      bio: "Faris coordinates community outreach and supports inclusive engagement through Wellbeing and creative programmes.",
     },
     {
       name: "Caoimhe Doherty",

@@ -10,9 +10,22 @@ export type EnquiryPayload = {
 
 type SubmitResult =
   | { ok: true }
-  | { ok: false; reason: "activation" | "network" | "rejected"; message: string };
+  | {
+      ok: false;
+      reason: "activation" | "network" | "rejected" | "unconfigured";
+      message: string;
+    };
 
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+
+/** Sent by FormSubmit to the enquirer. Keep short; this is an acknowledgement, not the staff reply. */
+export const ENQUIRY_AUTORESPONSE = [
+  "Thank you for contacting Global Echoes Ireland. We have received your enquiry and aim to reply within one working day.",
+  "",
+  "If your message is urgent, please call Natalie Rogers, Programme Coordinator, on +353 86 893 1903.",
+  "",
+  "This is an automatic acknowledgement. Our team will follow up from info@globalechoesireland.ie.",
+].join("\n");
 
 /** Primary path: FormSubmit to info@. Free, no API key. First live send activates the inbox. */
 export async function submitEnquiry(payload: EnquiryPayload): Promise<SubmitResult> {
@@ -27,6 +40,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<SubmitResu
     _template: "table",
     _captcha: "false",
     _honey: "",
+    _autoresponse: ENQUIRY_AUTORESPONSE,
   };
 
   try {
@@ -64,39 +78,37 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<SubmitResu
   }
 }
 
-export async function submitNewsletter(email: string): Promise<SubmitResult> {
+export async function submitNewsletter(
+  email: string,
+  website = "",
+): Promise<SubmitResult> {
   try {
-    const response = await fetch(FORMSUBMIT_ENDPOINT, {
+    const response = await fetch("/api/newsletter", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({
-        email,
-        _subject: "Newsletter subscription, Global Echoes Ireland",
-        _template: "table",
-        _captcha: "false",
-        _honey: "",
-      }),
+      body: JSON.stringify({ email, website }),
     });
 
-    const data = (await response.json()) as {
-      success?: boolean | string;
+    const data = (await response.json().catch(() => null)) as {
+      ok?: boolean;
+      reason?: string;
       message?: string;
-    };
+    } | null;
 
-    const success = data.success === true || data.success === "true";
-    if (success) return { ok: true };
+    if (data?.ok) return { ok: true };
 
-    const message =
-      data.message ?? "We could not add that address. Please try again.";
-    const needsActivation = /activat|confirm your email/i.test(message);
+    const reason =
+      data?.reason === "unconfigured" || data?.reason === "network"
+        ? data.reason
+        : "rejected";
 
     return {
       ok: false,
-      reason: needsActivation ? "activation" : "rejected",
-      message,
+      reason,
+      message: data?.message ?? "We could not add that address. Please try again.",
     };
   } catch {
     return {

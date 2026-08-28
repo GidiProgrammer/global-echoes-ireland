@@ -76,7 +76,7 @@ function srcsetHref(srcsetValue: string, minWidth: number) {
 
 const heroPicture = picture("new-hero", {
   width: 1024,
-  height: 562,
+  height: 576,
   sizes: FULL,
   fallback: 960,
 });

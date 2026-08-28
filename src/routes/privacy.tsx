@@ -49,7 +49,7 @@ function Privacy() {
             >
               {CONTACT_EMAIL}
             </a>
-            . Natalie Sone is our Programme Coordinator for day-to-day
+            . Natalie Rogers is our Programme Coordinator for day-to-day
             enquiries.
           </p>
         </PrivacySection>
@@ -57,6 +57,11 @@ function Privacy() {
         <PrivacySection title="What we collect">
           <p>We collect personal information only when there is a clear reason:</p>
           <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <strong>Newsletter:</strong> email address when you join the
+              mailing list in the footer. You must confirm the address before we
+              send news or events.
+            </li>
             <li>
               <strong>Website enquiries:</strong> name, email address,
               organisation (optional), interest area and message content when
@@ -70,8 +75,11 @@ function Privacy() {
             <li>
               <strong>Technical data:</strong> basic server logs from our
               hosting provider (such as IP address, browser type and pages
-              visited). We do not use advertising or analytics cookies on this
-              site at present.
+              visited). We also use Vercel Web Analytics and Speed Insights to
+              understand which pages are used and which buttons are clicked
+              (for example Book a Taster Session, contact form, newsletter).
+              That measurement does not use advertising cookies and does not
+              identify you by name or email.
             </li>
           </ul>
         </PrivacySection>
@@ -79,10 +87,15 @@ function Privacy() {
         <PrivacySection title="How we use your information">
           <p>We use personal data to:</p>
           <ul className="list-disc space-y-2 pl-5">
+            <li>Send news and event updates if you join the mailing list</li>
             <li>Respond to enquiries and schedule taster sessions or programmes</li>
             <li>Coordinate delivery with the organisation that booked us</li>
             <li>Meet contractual, safeguarding and reporting obligations</li>
             <li>Keep this website secure and working correctly</li>
+            <li>
+              Understand how the site is used so we can improve it (aggregated
+              page views and interaction counts)
+            </li>
           </ul>
           <p>
             We do not sell personal data. We do not use your enquiry details for
@@ -94,8 +107,8 @@ function Privacy() {
           <p>For visitors in Ireland and the EU, we rely on:</p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>Consent</strong> when you submit an enquiry form or email
-              us voluntarily
+              <strong>Consent</strong> when you submit an enquiry form, join the
+              mailing list, or email us voluntarily
             </li>
             <li>
               <strong>Contract</strong> when processing is necessary to discuss
@@ -112,14 +125,16 @@ function Privacy() {
           <p>
             Enquiries submitted through our website are sent using FormSubmit, a
             free form delivery service. FormSubmit processes your submission on
-            our behalf and forwards it to{" "}
+            our behalf, forwards it to{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="font-medium text-forest underline-offset-2 hover:underline"
             >
               {CONTACT_EMAIL}
             </a>
-            . FormSubmit acts as a data processor under our instructions. Their
+            , and sends you a short automatic acknowledgement at the email
+            address you provide. FormSubmit acts as a data processor under our
+            instructions. Their
             privacy policy is available at{" "}
             <a
               href="https://formsubmit.co/privacy.pdf"
@@ -138,6 +153,32 @@ function Privacy() {
           </p>
         </PrivacySection>
 
+        <PrivacySection title="Mailing list processor">
+          <p>
+            If you join the newsletter, we store your email with MailerLite (UAB,
+            Lithuania), an EU mailing-list service. MailerLite sends a
+            confirmation email, holds the subscriber list, and includes an
+            unsubscribe link in every message. Their privacy policy is available
+            at{" "}
+            <a
+              href="https://www.mailerlite.com/legal/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-forest underline-offset-2 hover:underline"
+            >
+              mailerlite.com/legal/privacy-policy
+            </a>
+            . You can also email{" "}
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=Unsubscribe`}
+              className="font-medium text-forest underline-offset-2 hover:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>{" "}
+            to be removed.
+          </p>
+        </PrivacySection>
+
         <PrivacySection title="How long we keep data">
           <p>
             Enquiry records are kept for as long as needed to respond, follow up
@@ -151,11 +192,14 @@ function Privacy() {
         <PrivacySection title="Sharing and transfers">
           <p>
             We share personal data only with service providers who help us
-            operate (such as hosting and form delivery), with booking
-            organisations where needed for delivery, or when required by law. We
-            do not routinely transfer data outside the European Economic Area.
-            If that changes for a specific programme, we will explain it at the
-            time of booking.
+            operate (such as hosting, website analytics, form delivery and the
+            mailing list), with booking organisations where needed for delivery,
+            or when required by law. The site is hosted on Vercel. Vercel’s
+            analytics product is first-party to that hosting and is designed not
+            to use advertising cookies. We do not routinely transfer enquiry or
+            mailing-list data outside the European Economic Area. If that
+            changes for a specific programme, we will explain it at the time of
+            booking.
           </p>
         </PrivacySection>
 
