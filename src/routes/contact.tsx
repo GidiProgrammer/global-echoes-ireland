@@ -64,7 +64,7 @@ export const Route = createFileRoute("/contact")({
   head: () =>
     pageHead({
       title: "Contact | Global Echoes Ireland",
-      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rogers at ${CONTACT_EMAIL}.`,
+      description: `Book a Taster Session or partner with Global Echoes Ireland. Contact Natalie Rodgers at ${CONTACT_EMAIL}.`,
       path: "/contact",
     }),
   component: Contact,
@@ -163,7 +163,7 @@ function Contact() {
   };
 
   const fieldClass =
-    "mt-2 w-full rounded-[6px] border border-forest/20 bg-cream px-4 py-3 text-sm transition-colors focus-visible:border-forest focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest disabled:cursor-not-allowed disabled:opacity-60";
+    "mt-2 w-full rounded-[6px] border border-forest/20 bg-cream px-4 py-3 text-sm transition-colors hover:border-forest/50 focus-visible:border-forest focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest disabled:cursor-not-allowed disabled:opacity-60";
 
   return (
     <PageShell>
@@ -175,7 +175,7 @@ function Contact() {
           <div className="rounded-xl border border-forest/10 bg-white p-8">
             <h2 className="font-display text-2xl font-medium">Direct contact</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Natalie Rogers, Programme Coordinator
+              Natalie Rodgers, Programme Coordinator
             </p>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-3">
@@ -189,14 +189,14 @@ function Contact() {
                     data-analytics="outbound"
                     data-analytics-place="contact"
                     data-analytics-label="email"
-                    className="break-all font-medium hover:text-forest focus-ring-brand"
+                    className="link-quiet break-all font-medium"
                   >
                     {CONTACT_EMAIL}
                   </a>
                   <button
                     type="button"
                     onClick={copyEmail}
-                    className="mt-2 inline-flex min-h-9 items-center gap-1.5 text-xs font-medium text-forest underline-offset-2 hover:underline focus-ring-brand"
+                    className="link-quiet mt-2 inline-flex min-h-9 items-center gap-1.5 text-xs font-medium text-forest"
                   >
                     <Copy className="h-3.5 w-3.5" />
                     Copy email address
@@ -215,7 +215,7 @@ function Contact() {
                       data-analytics="outbound"
                       data-analytics-place="contact"
                       data-analytics-label="phone"
-                      className="hover:text-forest focus-ring-brand"
+                      className="link-quiet"
                     >
                       {CONTACT_PHONE.display}
                     </a>
@@ -248,7 +248,7 @@ function Contact() {
                     data-analytics="outbound"
                     data-analytics-place="contact"
                     data-analytics-label={label}
-                    className="grid h-10 w-10 place-items-center rounded-[6px] border border-forest/20 text-forest transition-colors hover:bg-forest hover:text-cream focus-ring-brand"
+                    className="press grid h-10 w-10 place-items-center rounded-full border border-forest/20 text-forest hover:bg-forest hover:text-cream focus-ring-brand"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -269,7 +269,7 @@ function Contact() {
             securely to {CONTACT_EMAIL}. See our{" "}
             <Link
               to="/privacy"
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               Privacy Policy
             </Link>{" "}
@@ -417,7 +417,7 @@ function Contact() {
             </button>
             <Link
               to="/programme"
-              className="text-sm font-medium text-forest underline-offset-2 hover:underline focus-ring-brand"
+              className="link-quiet text-sm font-medium text-forest"
             >
               Review the programme first
             </Link>
@@ -448,7 +448,7 @@ function Contact() {
               <button
                 type="button"
                 onClick={copyEmail}
-                className="mt-3 inline-flex min-h-9 items-center gap-1.5 text-sm font-medium text-forest underline-offset-2 hover:underline focus-ring-brand"
+                className="link-quiet mt-3 inline-flex min-h-9 items-center gap-1.5 text-sm font-medium text-forest"
               >
                 <Copy className="h-3.5 w-3.5" />
                 Copy email address

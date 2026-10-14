@@ -1,4 +1,5 @@
 const STORAGE_KEY = "gei-cookie-consent";
+export const COOKIE_CONSENT_STORAGE_KEY = STORAGE_KEY;
 export const CONSENT_EVENT = "gei-cookie-consent";
 
 export type CookieConsent = {

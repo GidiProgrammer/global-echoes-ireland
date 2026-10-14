@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { denyGoogleAnalytics, isGoogleAnalyticsConfigured, loadGoogleAnalytics } from "@/lib/analytics";
+import { denyGoogleAnalytics, grantGoogleAnalyticsConsent, isGoogleAnalyticsConfigured } from "@/lib/analytics";
 import {
   CONSENT_EVENT,
   readCookieConsent,
@@ -26,7 +26,7 @@ export function CookieBanner() {
 
   const accept = () => {
     writeCookieConsent({ analytics: true });
-    loadGoogleAnalytics();
+    grantGoogleAnalyticsConsent();
     setOpen(false);
   };
 
@@ -57,7 +57,7 @@ export function CookieBanner() {
             our{" "}
             <Link
               to="/privacy"
-              className="underline underline-offset-2 hover:text-gold-bright focus-ring-brand-on-dark"
+              className="link-quiet link-quiet-on-dark underline"
             >
               privacy policy
             </Link>
@@ -68,12 +68,12 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={reject}
-            className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-[6px] border border-cream/50 bg-transparent px-5 text-sm font-medium text-cream transition-colors hover:border-cream hover:bg-cream/10 focus-ring-brand-on-dark"
+            className="press inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border border-cream/50 bg-transparent px-5 text-sm font-medium text-cream hover:border-cream hover:bg-cream/10 focus-ring-brand-on-dark"
           >
-            Reject analytics
+            Reject cookies
           </button>
           <button type="button" onClick={accept} className="btn-gold min-h-11">
-            Accept analytics
+            Accept cookies
           </button>
         </div>
       </div>

@@ -75,7 +75,7 @@ export function CTASection({
               to="/events"
               className={
                 showBookCta
-                  ? "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-[6px] border border-cream/50 bg-transparent px-5 text-sm font-medium text-cream transition-colors duration-200 hover:border-cream hover:bg-cream/10 focus-ring-brand-on-dark"
+                  ? "press inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border border-cream/50 bg-transparent px-5 text-sm font-medium text-cream hover:border-cream hover:bg-cream/10 focus-ring-brand-on-dark"
                   : "btn-gold"
               }
             >

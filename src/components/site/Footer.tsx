@@ -49,7 +49,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         <div>
           <div className="flex items-center gap-3">
-            <Logo inverted />
+            <Logo inverted tight />
             <p className="font-display text-base font-medium leading-tight text-cream">
               Global Echoes Ireland
             </p>
@@ -74,7 +74,7 @@ export function Footer() {
                 data-analytics="outbound"
                 data-analytics-place="footer"
                 data-analytics-label={label}
-                className="grid h-11 w-11 min-h-11 min-w-11 place-items-center rounded-[6px] border border-cream/20 text-cream/85 transition-colors hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
+                className="press grid h-11 w-11 min-h-11 min-w-11 place-items-center rounded-full border border-cream/20 text-cream/85 hover:border-gold-bright hover:text-gold-bright focus-ring-brand-on-dark"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -92,7 +92,7 @@ export function Footer() {
                   {...(item.to === "/contact"
                     ? { search: { interest: undefined } }
                     : {})}
-                  className="transition-colors duration-200 hover:text-gold-bright focus-ring-brand-on-dark"
+                  className="link-quiet link-quiet-on-dark"
                 >
                   {item.label}
                 </Link>
@@ -109,7 +109,7 @@ export function Footer() {
                 <Link
                   to="/services"
                   hash={item.hash}
-                  className="transition-colors duration-200 hover:text-gold-bright focus-ring-brand-on-dark"
+                  className="link-quiet link-quiet-on-dark"
                 >
                   {item.label}
                 </Link>
@@ -128,7 +128,7 @@ export function Footer() {
                 data-analytics="outbound"
                 data-analytics-place="footer"
                 data-analytics-label="email"
-                className="break-all hover:text-gold-bright focus-ring-brand-on-dark"
+                className="link-quiet link-quiet-on-dark break-all"
               >
                 {CONTACT_EMAIL}
               </a>
@@ -140,7 +140,7 @@ export function Footer() {
                 data-analytics="outbound"
                 data-analytics-place="footer"
                 data-analytics-label="phone"
-                className="hover:text-gold-bright focus-ring-brand-on-dark"
+                className="link-quiet link-quiet-on-dark"
               >
                 {CONTACT_PHONE.display}
               </a>
@@ -160,13 +160,13 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link
               to="/privacy"
-              className="hover:text-gold-bright focus-ring-brand-on-dark"
+              className="link-quiet link-quiet-on-dark"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms"
-              className="hover:text-gold-bright focus-ring-brand-on-dark"
+              className="link-quiet link-quiet-on-dark"
             >
               Terms &amp; Conditions
             </Link>
@@ -174,7 +174,7 @@ export function Footer() {
               <button
                 type="button"
                 onClick={requestCookieSettings}
-                className="cursor-pointer text-left hover:text-gold-bright focus-ring-brand-on-dark"
+                className="link-quiet link-quiet-on-dark cursor-pointer text-left"
               >
                 Cookie settings
               </button>
@@ -253,12 +253,12 @@ function NewsletterForm() {
           aria-describedby={
             status === "error" ? "newsletter-hint newsletter-error" : "newsletter-hint"
           }
-          className="min-h-11 min-w-0 flex-1 rounded-[6px] border border-cream/20 bg-forest-deep px-3 text-sm text-cream placeholder-cream/70 focus-visible:border-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright disabled:opacity-60"
+          className="min-h-11 min-w-0 flex-1 rounded-[6px] border border-cream/20 bg-forest-deep px-3 text-sm text-cream transition-colors placeholder-cream/70 hover:border-cream/50 focus-visible:border-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright disabled:opacity-60"
         />
         <button
           type="submit"
           disabled={status === "pending"}
-          className="inline-flex min-h-11 min-w-11 shrink-0 cursor-pointer items-center justify-center rounded-[6px] bg-gold px-4 text-sm font-semibold text-ink transition-colors hover:bg-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream disabled:opacity-75"
+          className="press inline-flex min-h-11 min-w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gold px-4 text-sm font-semibold text-ink hover:bg-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream disabled:opacity-75"
         >
           {status === "pending" ? "Joining" : "Join"}
         </button>
@@ -275,7 +275,7 @@ function NewsletterForm() {
       </div>
       <p id="newsletter-hint" className="mt-2 text-[11px] leading-relaxed text-cream/70">
         We will email news and events. Confirm once, unsubscribe anytime. See our{" "}
-        <Link to="/privacy" className="underline underline-offset-2 hover:text-gold-bright">
+        <Link to="/privacy" className="link-quiet link-quiet-on-dark underline">
           privacy policy
         </Link>
         .

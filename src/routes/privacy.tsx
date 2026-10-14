@@ -45,11 +45,11 @@ function Privacy() {
             beyond. For privacy questions or requests, contact us at{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Privacy%20request`}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               {CONTACT_EMAIL}
             </a>
-            . Natalie Rogers is our Programme Coordinator for day-to-day
+            . Natalie Rodgers is our Programme Coordinator for day-to-day
             enquiries.
           </p>
         </PrivacySection>
@@ -127,7 +127,7 @@ function Privacy() {
             our behalf, forwards it to{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               {CONTACT_EMAIL}
             </a>
@@ -139,7 +139,7 @@ function Privacy() {
               href="https://formsubmit.co/privacy.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               formsubmit.co/privacy.pdf
             </a>
@@ -163,14 +163,14 @@ function Privacy() {
               href="https://www.mailerlite.com/legal/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               mailerlite.com/legal/privacy-policy
             </a>
             . You can also email{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Unsubscribe`}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               {CONTACT_EMAIL}
             </a>{" "}
@@ -202,7 +202,7 @@ function Privacy() {
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               policies.google.com/privacy
             </a>
@@ -235,14 +235,14 @@ function Privacy() {
               href="https://www.dataprotection.ie"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               dataprotection.ie
             </a>
             ). To exercise your rights, email{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Privacy%20request`}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               {CONTACT_EMAIL}
             </a>
@@ -270,7 +270,7 @@ function Privacy() {
             <Link
               to="/contact"
               search={{ interest: undefined }}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               Contact us
             </Link>{" "}

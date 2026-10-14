@@ -41,7 +41,7 @@ function About() {
       bio: "Emmanuel leads partnerships with care providers, cultural organisations and academic institutions across Ireland and beyond.",
     },
     {
-      name: "Natalie Rogers",
+      name: "Natalie Rodgers",
       role: "Programme Coordinator, Senior Clinical Nurse",
       img: natalieRodgers,
       imgClass:

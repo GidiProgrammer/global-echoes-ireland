@@ -3,7 +3,7 @@
   "short_name": "Global Echoes",
   "description": "Wellbeing music programmes for care homes, schools, universities and communities across Ireland.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#f2f5f1",
   "theme_color": "#1b3f24",
   "icons": [

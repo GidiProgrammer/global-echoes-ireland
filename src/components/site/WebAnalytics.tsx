@@ -3,7 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 import {
-  loadGoogleAnalytics,
+  grantGoogleAnalyticsConsent,
   trackEvent,
   trackGooglePageview,
 } from "@/lib/analytics";
@@ -41,7 +41,7 @@ export function WebAnalytics() {
 
   useEffect(() => {
     const syncGoogle = () => {
-      if (readCookieConsent()?.analytics) loadGoogleAnalytics();
+      if (readCookieConsent()?.analytics) grantGoogleAnalyticsConsent();
     };
     syncGoogle();
     window.addEventListener(CONSENT_EVENT, syncGoogle);

@@ -1,15 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  CalendarBlank,
+  ArrowRight,
+  Check,
   CheckCircle,
   Clock,
   Heart,
+  Leaf,
   UsersThree,
 } from "@phosphor-icons/react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { CTASection } from "@/components/site/CTA";
 import { pageHead } from "@/lib/site";
-import { stayHealthy } from "@/lib/responsive-images";
+import {
+  communityWellbeing,
+  cultureWellbeingDrumming,
+  heroCareDrumming,
+  stayHealthy,
+} from "@/lib/responsive-images";
 import { Picture } from "@/components/site/Picture";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -78,7 +85,14 @@ const featured = {
   weeks: "8-Week",
   tag: "Standard",
   interest: "8-week programme" as const,
-  desc: "Our standard programme: deep enough to see meaningful change, practical for most care and community schedules.",
+  body: "Our standard programme: deep enough to see meaningful change.",
+  points: [
+    "Weekly guided sessions",
+    "Progressive skills building",
+    "Group connection and support",
+  ],
+  image: heroCareDrumming,
+  alt: "Facilitator and an older participant smiling during a drumming session",
 };
 
 const others = [
@@ -86,13 +100,27 @@ const others = [
     weeks: "4-Week",
     tag: "Introductory",
     interest: "4-week programme" as const,
-    desc: "A short structured engagement to introduce rhythmic wellbeing to your setting.",
+    body: "A short structured engagement to introduce rhythmic wellbeing.",
+    points: [
+      "Ideal for new participants",
+      "Foundational skills",
+      "A supportive group environment",
+    ],
+    image: communityWellbeing,
+    alt: "Facilitated drumming circle with older participants",
   },
   {
     weeks: "12-Week",
     tag: "Advanced",
     interest: "12-week programme" as const,
-    desc: "A full therapeutic engagement including baseline and outcome reporting.",
+    body: "Full therapeutic engagement with baseline and outcome reporting.",
+    points: [
+      "Deeper learning and practice",
+      "Personal and group development",
+      "Progress tracking and outcomes",
+    ],
+    image: cultureWellbeingDrumming,
+    alt: "Group of older adults playing djembes together",
   },
 ] as const;
 
@@ -249,58 +277,140 @@ function Programme() {
         </div>
       </section>
 
-      {/* Forest options band (matches home) */}
-      <section className="bg-forest text-cream">
-        <div className="container-x py-16 md:py-24">
-          <div className="max-w-2xl">
-            <h2 className="font-display text-3xl font-medium tracking-[-0.02em] text-cream md:text-4xl">
-              Programme options
-            </h2>
-            <p className="mt-4 text-base text-cream/75">
-              Most partners start with a taster, then the 8-week standard. Asking
-              about a length opens contact with that interest selected.
-            </p>
-          </div>
+      <section className="relative overflow-hidden border-b border-forest/10 bg-cream py-16 md:py-24">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <svg
+            className="absolute -top-28 -right-36 h-72 w-72 text-forest-soft lg:-top-16 lg:-right-10"
+            viewBox="0 0 200 200"
+            fill="currentColor"
+          >
+            <path d="M40 20c40-30 120-10 140 40 24 60-10 110-60 120-55 12-120-20-130-80C-18 40 0 50 40 20z" />
+          </svg>
+          <svg
+            className="absolute -bottom-24 -left-24 h-72 w-72 text-gold-soft"
+            viewBox="0 0 200 200"
+            fill="currentColor"
+          >
+            <path d="M30 80c10-50 80-90 130-60 40 24 50 90 20 130-36 48-110 40-140-10-18-30-22-30-10-60z" />
+          </svg>
+          <Leaf
+            className="absolute bottom-8 left-6 h-16 w-16 text-forest/25"
+            weight="duotone"
+          />
+        </div>
+        <div className="container-x relative">
+          <p className="text-xs font-semibold tracking-[0.16em] text-forest/70 uppercase">
+            Programme options
+          </p>
+          <h2 className="mt-3 whitespace-nowrap font-display text-[clamp(1.2rem,3.1vw,3rem)] leading-none font-medium tracking-[-0.03em] text-ink">
+            Choose a depth of engagement
+          </h2>
+          <span
+            aria-hidden="true"
+            className="mt-3 block h-1 w-16 rounded-full bg-gold"
+          />
+          <p className="mt-4 text-[clamp(0.82rem,1.55vw,1rem)] leading-relaxed text-muted-foreground">
+            <span className="block md:whitespace-nowrap">
+              Enquiring about a programme you are interested in will open a
+              conversation with our team.
+            </span>
+            <span className="block md:whitespace-nowrap">
+              Your selected option will already be shared.
+            </span>
+          </p>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-12 md:gap-6">
-            <article className="flex flex-col rounded-xl bg-gold p-8 text-ink md:col-span-7 md:p-10">
-              <CalendarBlank className="h-7 w-7 opacity-90" weight="regular" />
-              <p className="mt-6 text-sm font-medium text-ink/70">{featured.tag}</p>
-              <h3 className="mt-1 font-display text-3xl font-medium md:text-4xl">
-                {featured.weeks}
-              </h3>
-              <p className="mt-4 max-w-[42ch] flex-1 text-base leading-relaxed opacity-90">
-                {featured.desc}
-              </p>
-              <Link
-                to="/contact"
-                search={{ interest: featured.interest }}
-                className="mt-8 inline-flex min-h-11 w-fit items-center justify-center rounded-[6px] bg-ink px-5 text-sm font-medium text-cream transition-colors hover:bg-ink/90 focus-ring-brand"
-              >
-                Ask about {featured.weeks}
-              </Link>
+          <div className="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-12 lg:gap-5">
+            <article className="relative flex flex-col overflow-hidden rounded-2xl bg-ink text-cream lg:col-span-7">
+              <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8 lg:max-w-[58%] lg:p-10">
+                <p className="text-xs font-semibold tracking-[0.14em] text-gold uppercase">
+                  {featured.tag}
+                </p>
+                <h3 className="mt-2 font-display text-4xl font-medium text-cream md:text-5xl">
+                  {featured.weeks}
+                </h3>
+                <p className="mt-3 max-w-[36ch] text-sm leading-relaxed text-cream/80 md:text-base">
+                  {featured.body}
+                </p>
+                <ul className="mt-5 flex flex-col gap-2 text-sm text-cream/90">
+                  {featured.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <Check
+                        className="mt-0.5 h-4 w-4 shrink-0 text-gold"
+                        weight="bold"
+                        aria-hidden="true"
+                      />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/contact"
+                  search={{ interest: featured.interest }}
+                  className="btn-gold relative z-10 mt-8 w-fit rounded-full px-5"
+                >
+                  Ask about {featured.weeks}
+                  <ArrowRight className="h-4 w-4" weight="bold" aria-hidden="true" />
+                </Link>
+              </div>
+              <div className="relative h-52 sm:h-64 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]">
+                <Picture
+                  {...featured.image}
+                  alt={featured.alt}
+                  sizes="(min-width: 1024px) 32vw, 100vw"
+                  className="h-full w-full object-cover"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent lg:bg-gradient-to-r lg:from-ink lg:via-ink/55 lg:to-transparent"
+                />
+              </div>
             </article>
 
-            <div className="flex flex-col gap-5 md:col-span-5">
-              {others.map((s) => (
+            <div className="flex flex-col gap-4 lg:col-span-5">
+              {others.map((o) => (
                 <article
-                  key={s.weeks}
-                  className="flex flex-1 flex-col rounded-xl border border-cream/20 bg-forest-deep/50 p-6 text-cream md:p-7"
+                  key={o.weeks}
+                  className="flex flex-1 flex-col gap-4 rounded-2xl border border-forest/12 bg-white p-6 sm:flex-row sm:items-stretch"
                 >
-                  <p className="text-sm font-medium text-gold-bright">{s.tag}</p>
-                  <h3 className="mt-1 font-display text-3xl font-medium">
-                    {s.weeks}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-cream/70">
-                    {s.desc}
-                  </p>
-                  <Link
-                    to="/contact"
-                    search={{ interest: s.interest }}
-                    className="mt-5 inline-flex min-h-11 w-fit items-center justify-center rounded-[6px] bg-cream px-4 text-sm font-medium text-forest transition-colors hover:bg-gold-soft focus-ring-brand-on-dark"
-                  >
-                    Ask about {s.weeks}
-                  </Link>
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <p className="text-xs font-semibold tracking-[0.14em] text-forest/60 uppercase">
+                      {o.tag}
+                    </p>
+                    <h3 className="mt-2 font-display text-3xl font-medium text-ink">
+                      {o.weeks}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {o.body}
+                    </p>
+                    <ul className="mt-4 flex flex-1 flex-col gap-1.5 text-sm text-ink/80">
+                      {o.points.map((point) => (
+                        <li key={point} className="flex items-start gap-2">
+                          <Check
+                            className="mt-0.5 h-4 w-4 shrink-0 text-forest"
+                            weight="bold"
+                            aria-hidden="true"
+                          />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      to="/contact"
+                      search={{ interest: o.interest }}
+                      className="btn-outline mt-6 w-fit rounded-full px-4"
+                    >
+                      Ask about {o.weeks}
+                      <ArrowRight className="h-4 w-4" weight="bold" aria-hidden="true" />
+                    </Link>
+                  </div>
+                  <div className="overflow-hidden rounded-xl sm:w-36 sm:shrink-0">
+                    <Picture
+                      {...o.image}
+                      alt={o.alt}
+                      sizes="(min-width: 640px) 9rem, 100vw"
+                      className="aspect-[16/10] h-full w-full object-cover sm:aspect-auto sm:min-h-full"
+                    />
+                  </div>
                 </article>
               ))}
             </div>
@@ -309,12 +419,13 @@ function Programme() {
           <Link
             to="/contact"
             search={{ interest: "Taster session" }}
-            className="btn-gold mt-10"
+            className="btn-solid mt-5 w-full"
             data-analytics="cta"
             data-analytics-place="programme"
             data-analytics-label="Book a Taster Session"
           >
             Book a Taster Session
+            <ArrowRight className="h-4 w-4" weight="bold" aria-hidden="true" />
           </Link>
         </div>
       </section>

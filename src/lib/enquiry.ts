@@ -22,7 +22,7 @@ const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 export const ENQUIRY_AUTORESPONSE = [
   "Thank you for contacting Global Echoes Ireland. We have received your enquiry and aim to reply within one working day.",
   "",
-  "If your message is urgent, please call Natalie Rogers, Programme Coordinator, on +353 86 893 1903.",
+  "If your message is urgent, please call Natalie Rodgers, Programme Coordinator, on +353 86 893 1903.",
   "",
   "This is an automatic acknowledgement. Our team will follow up from info@globalechoesireland.ie.",
 ].join("\n");

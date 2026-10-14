@@ -7,12 +7,22 @@ import { moreNav, primaryNav, tasterCta } from "@/lib/nav";
 export function Nav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
-  const [covered, setCovered] = useState(!isHome);
+  const [pastHero, setPastHero] = useState(false);
+  const [trackedPath, setTrackedPath] = useState(pathname);
+  if (pathname !== trackedPath) {
+    setTrackedPath(pathname);
+    setPastHero(false);
+    setHidden(false);
+  }
+  const solid = !isHome || pastHero;
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const headerBarRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const lastScrollY = useRef(0);
 
   const closeMenu = useCallback((returnFocus = true) => {
     setOpen(false);
@@ -22,39 +32,64 @@ export function Nav() {
   }, []);
 
   useEffect(() => {
-    if (!isHome) {
-      setCovered(true);
-      return;
-    }
+    if (!isHome) return;
 
-    setCovered(false);
     const next = document.getElementById("after-hero");
     if (!next) return;
 
-    let io: IntersectionObserver | undefined;
-
-    const connect = () => {
-      io?.disconnect();
+    const update = () => {
       const navH = headerBarRef.current?.getBoundingClientRect().height ?? 72;
-      const inset = Math.max(window.innerHeight - navH, 0);
-      io = new IntersectionObserver(
-        ([entry]) => setCovered(entry.isIntersecting),
-        {
-          root: null,
-          rootMargin: `0px 0px ${-inset}px 0px`,
-          threshold: 0,
-        },
-      );
-      io.observe(next);
+      const passed = next.getBoundingClientRect().top <= navH;
+      setPastHero((current) => (current === passed ? current : passed));
     };
 
-    connect();
-    window.addEventListener("resize", connect);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
-      io?.disconnect();
-      window.removeEventListener("resize", connect);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
   }, [isHome]);
+
+  const overHero = isHome && !pastHero;
+  const concealed = hidden && !open && !overHero;
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const onHero = () => {
+      if (!isHome) return false;
+      const next = document.getElementById("after-hero");
+      if (!next) return false;
+      const navH = headerBarRef.current?.getBoundingClientRect().height ?? 72;
+      return next.getBoundingClientRect().top > navH;
+    };
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastScrollY.current;
+      lastScrollY.current = y;
+
+      if (open || onHero() || y < 24) {
+        setHidden(false);
+        return;
+      }
+      if (delta > 8) setHidden(true);
+      else if (delta < -8) setHidden(false);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open, isHome]);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const onFocusIn = () => setHidden(false);
+    header.addEventListener("focusin", onFocusIn);
+    return () => header.removeEventListener("focusin", onFocusIn);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -131,22 +166,27 @@ export function Nav() {
 
   return (
     <header
+      ref={headerRef}
       className={
-        covered
-          ? "nav-mast sticky top-0 z-50 is-solid"
-          : "nav-mast sticky top-0 z-50"
+        [
+          "nav-mast sticky top-0 z-50",
+          solid ? "is-solid" : "",
+          concealed ? "is-concealed" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")
       }
     >
       <div
         ref={headerBarRef}
-        className="mx-auto flex h-[var(--header-h)] max-w-[90rem] items-center gap-3 px-4 sm:px-6 lg:gap-6 lg:px-10"
+        className="relative mx-auto flex h-[var(--header-h)] max-w-[90rem] items-center gap-3 px-4 sm:px-6 lg:gap-6 lg:px-10"
       >
-        <div className="min-w-0 shrink">
-          <Logo inverted size="lg" />
+        <div className="flex min-w-0 shrink items-center">
+          <Logo inverted size="lg" tight />
         </div>
 
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
+          className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center lg:flex"
           aria-label="Primary"
         >
           <ul className="flex items-center">
@@ -169,7 +209,7 @@ export function Nav() {
           </ul>
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2.5 lg:ml-0">
+        <div className="ml-auto flex shrink-0 items-center gap-2.5">
           <Link
             to={tasterCta.to}
             search={tasterCta.search}
@@ -187,7 +227,7 @@ export function Nav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls={menuId}
-            className="nav-mast-menu is-dark grid h-11 w-11 min-h-11 min-w-11 cursor-pointer place-items-center rounded-[6px] focus-ring-brand-on-dark lg:hidden"
+            className="nav-mast-menu is-dark grid h-11 w-11 min-h-11 min-w-11 cursor-pointer place-items-center rounded-full focus-ring-brand-on-dark lg:hidden"
           >
             {open ? (
               <X className="h-6 w-6" weight="bold" />
@@ -208,12 +248,12 @@ export function Nav() {
           className="fixed inset-0 z-[60] flex flex-col bg-ink lg:hidden"
         >
           <div className="flex h-[var(--header-h)] items-center justify-between border-b border-white/15 px-4 sm:px-6">
-            <Logo inverted size="lg" />
+            <Logo inverted size="lg" tight />
             <button
               type="button"
               onClick={() => closeMenu()}
               aria-label="Close menu"
-              className="grid h-11 w-11 min-h-11 min-w-11 cursor-pointer place-items-center rounded-[6px] border border-white/25 text-white transition-colors duration-200 hover:bg-white/10 focus-ring-brand-on-dark"
+              className="press grid h-11 w-11 min-h-11 min-w-11 cursor-pointer place-items-center rounded-full border border-white/25 text-white hover:bg-white/10 hover:text-gold-bright focus-ring-brand-on-dark"
             >
               <X className="h-6 w-6" weight="bold" />
             </button>
@@ -231,7 +271,7 @@ export function Nav() {
                   ? { search: { interest: undefined } }
                   : {})}
                 onClick={() => setOpen(false)}
-                className="cursor-pointer border-b border-white/10 py-4 font-sans text-[1.45rem] font-medium tracking-[-0.015em] text-white/90 transition-colors duration-200 hover:text-white focus-ring-brand-on-dark"
+                className="cursor-pointer border-b border-white/10 py-4 font-sans text-[1.45rem] font-medium tracking-[-0.015em] text-white/90 transition-colors duration-200 hover:text-gold-bright active:text-gold focus-ring-brand-on-dark"
                 activeProps={{
                   className:
                     "cursor-pointer border-b border-white/10 py-4 font-sans text-[1.45rem] font-medium tracking-[-0.015em] text-gold-bright focus-ring-brand-on-dark",
@@ -246,7 +286,7 @@ export function Nav() {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="cursor-pointer border-b border-white/10 py-3.5 font-sans text-lg font-medium text-white/75 transition-colors duration-200 hover:text-white focus-ring-brand-on-dark"
+                className="cursor-pointer border-b border-white/10 py-3.5 font-sans text-lg font-medium text-white/75 transition-colors duration-200 hover:text-gold-bright active:text-gold focus-ring-brand-on-dark"
               >
                 {n.label}
               </Link>

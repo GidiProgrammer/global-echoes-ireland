@@ -1,5 +1,5 @@
 import { track } from "@vercel/analytics";
-import { readCookieConsent } from "./cookie-consent";
+import { COOKIE_CONSENT_STORAGE_KEY, readCookieConsent } from "./cookie-consent";
 
 type EventProps = Record<string, string | number | boolean | null>;
 
@@ -17,10 +17,27 @@ export function isGoogleAnalyticsConfigured() {
   return /^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID);
 }
 
-function isLocalHost() {
-  if (typeof window === "undefined") return true;
-  const host = window.location.hostname;
-  return host === "localhost" || host === "127.0.0.1";
+/** Inline bootstrap for the document <head>. One tag only. */
+export function googleTagHeadScript() {
+  return `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+(function () {
+  var granted = false;
+  try {
+    var stored = JSON.parse(localStorage.getItem(${JSON.stringify(COOKIE_CONSENT_STORAGE_KEY)}) || "null");
+    granted = !!(stored && stored.analytics === true);
+  } catch (e) {}
+  gtag("consent", "default", {
+    analytics_storage: granted ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    wait_for_update: 500
+  });
+})();
+gtag("js", new Date());
+gtag("config", ${JSON.stringify(GA_MEASUREMENT_ID)});`;
 }
 
 function toGtagParams(props?: EventProps) {
@@ -65,46 +82,21 @@ export function trackGooglePageview(path: string) {
   });
 }
 
-export function loadGoogleAnalytics() {
+/** Tag lives in <head>. This only unlocks cookies after Accept. */
+export function grantGoogleAnalyticsConsent() {
   if (typeof window === "undefined") return;
-  if (!isGoogleAnalyticsConfigured() || isLocalHost()) return;
   if (!readCookieConsent()?.analytics) return;
-  if (document.querySelector('script[data-analytics-ga="true"]')) {
-    window.gtag?.("consent", "update", {
-      analytics_storage: "granted",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-    });
-    return;
-  }
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    // Google requires the Arguments object, not a rest-parameter array.
-    // eslint-disable-next-line prefer-rest-params
-    window.dataLayer?.push(arguments);
-  };
-  window.gtag("js", new Date());
-  window.gtag("consent", "default", {
+  window.gtag?.("consent", "update", {
     analytics_storage: "granted",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
-  window.gtag("config", GA_MEASUREMENT_ID, {
-    anonymize_ip: true,
-    send_page_view: false,
+  window.gtag?.("event", "page_view", {
+    page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    page_location: window.location.href,
+    page_title: document.title,
   });
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`;
-  script.dataset.analyticsGa = "true";
-  document.head.appendChild(script);
-  trackGooglePageview(
-    `${window.location.pathname}${window.location.search}${window.location.hash}`,
-  );
 }
 
 export function denyGoogleAnalytics() {

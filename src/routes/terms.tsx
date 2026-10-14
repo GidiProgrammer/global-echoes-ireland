@@ -94,7 +94,7 @@ function Terms() {
             Our{" "}
             <Link
               to="/privacy"
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               Privacy Policy
             </Link>{" "}
@@ -111,7 +111,7 @@ function Terms() {
             Questions about these terms:{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               {CONTACT_EMAIL}
             </a>{" "}
@@ -119,7 +119,7 @@ function Terms() {
             <Link
               to="/contact"
               search={{ interest: undefined }}
-              className="font-medium text-forest underline-offset-2 hover:underline"
+              className="link-quiet font-medium text-forest"
             >
               the contact page
             </Link>

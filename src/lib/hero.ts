@@ -35,7 +35,7 @@ export const homeHero: HeroContent = {
   subhead:
     "Wellbeing music programmes for care homes, schools, universities and communities across Ireland and beyond.",
   trustLine:
-    "Led by Dr. John Nutekpor (PhD) and Natalie Rogers, Programme Coordinator.",
+    "Led by Dr. John Nutekpor (PhD) and Natalie Rodgers, Programme Coordinator.",
   proofLine:
     "Delivering therapeutic drumming programmes in care homes across Ireland.",
   primaryCta: {

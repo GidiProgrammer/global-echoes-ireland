@@ -172,7 +172,7 @@ function Gallery() {
                       {film.caption}
                     </p>
                     <details className="mt-4 text-sm">
-                      <summary className="cursor-pointer font-medium text-forest">
+                      <summary className="link-quiet cursor-pointer font-medium text-forest">
                         Read transcript
                       </summary>
                       <p

@@ -105,7 +105,7 @@ export function Hero({
             />
             <HeroCta
               cta={secondaryCta}
-              className="btn-hero-secondary w-full md:w-auto"
+              className="btn-hero-secondary w-fit"
             />
           </div>
         </div>

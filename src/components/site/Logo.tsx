@@ -12,9 +12,12 @@ const sizeClass: Record<LogoSize, string> = {
 export function Logo({
   inverted = false,
   size = "md",
+  tight = false,
 }: {
   inverted?: boolean;
   size?: LogoSize;
+  /** Crop inward so the GE mark fills the circle. */
+  tight?: boolean;
 }) {
   const ring = inverted
     ? "ring-1 ring-white/40 focus-visible:outline-white"
@@ -29,11 +32,19 @@ export function Logo({
       <img
         src="/favicon-48x48.png"
         srcSet="/favicon-48x48.png 48w, /apple-touch-icon.png 180w, /icon-192.png 192w, /icon-512.png 512w"
-        sizes={size === "lg" ? "(min-width: 640px) 3.5rem, 3rem" : "3rem"}
+        sizes={
+          tight
+            ? size === "lg"
+              ? "(min-width: 640px) 8rem, 7rem"
+              : "7rem"
+            : size === "lg"
+              ? "(min-width: 640px) 3.5rem, 3rem"
+              : "3rem"
+        }
         width={48}
         height={48}
         alt=""
-        className={`${sizeClass[size]} rounded-full object-cover`}
+        className={`${sizeClass[size]} rounded-full object-cover ${tight ? "origin-[56%_52%] scale-[1.34]" : ""}`}
       />
     </Link>
   );

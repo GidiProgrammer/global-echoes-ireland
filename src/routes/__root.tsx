@@ -11,6 +11,7 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import outfit600 from "@fontsource/outfit/files/outfit-latin-600-normal.woff2?url";
 import workSans400 from "@fontsource/work-sans/files/work-sans-latin-400-normal.woff2?url";
+import { GA_MEASUREMENT_ID, googleTagHeadScript } from "../lib/analytics";
 import {
   noIndexHead,
   organizationJsonLd,
@@ -122,7 +123,7 @@ export const Route = createRootRoute({
         { rel: "icon", href: "/favicon-32x32.png?v=3", type: "image/png", sizes: "32x32" },
         { rel: "icon", href: "/favicon-16x16.png?v=3", type: "image/png", sizes: "16x16" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=3", sizes: "180x180" },
-        { rel: "manifest", href: "/site.webmanifest?v=3" },
+        { rel: "manifest", href: "/site.webmanifest?v=4" },
       ],
       scripts: [
         {
@@ -146,6 +147,11 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <script dangerouslySetInnerHTML={{ __html: googleTagHeadScript() }} />
         <HeadContent />
       </head>
       <body>
